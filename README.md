@@ -58,7 +58,10 @@ The application architecture is organized into six distinct destinations managed
 5. **Registration (`#/registration`)**
    - Single accreditation track: **Individual Delegate only**.
    - Transparent fee tier breakdown with deadline milestones.
-   - Clear status indicator displaying **"Registration Link Coming Soon"** pending official release (no unofficial external links).
+   - Comprehensive delegate registration form with direct **SheetDB (Google Sheets)** integration.
+   - 4-preference committee selection across UNSC, UNHRC, UNCSW, and AIPPM with 4 optional portfolio choices each.
+   - Client-side duplicate committee prevention and real-time form validation.
+   - Secure submission with zero personal data logged or persisted in client-side storage.
 
 6. **Contact Us (`#/contact`)**
    - Secretariat inquiry desk with one-click email copy to clipboard.
@@ -227,7 +230,25 @@ In the project directory, you can execute:
 | **Eligibility** | Students and working professionals are encouraged to participate |
 | **Registration Track** | Individual Delegates only |
 | **Registration Fees** | Early Bird: ₹400 (till Nov 30) • Regular: ₹450 (till Jan 10) • Late: ₹500 (after Jan 10) |
-| **Registration Status** | **Awaiting Official Release** (*Registration Link Coming Soon*) |
+| **Registration Status** | **Live** (Integrated SheetDB Delegate Registration Form) |
+
+---
+
+## Deployment & Hosting
+
+The website is configured for continuous automated deployment to **GitHub Pages** via GitHub Actions:
+
+- **Repository**: `https://github.com/heyshraavan/NITAMUN-4.0`
+- **Live URL**: `https://heyshraavan.github.io/NITAMUN-4.0/`
+- **Target Branch**: `main`
+- **Workflow**: `.github/workflows/deploy.yml`
+
+### GitHub Pages Setup Instructions
+
+1. In the GitHub repository, navigate to **Settings** → **Pages**.
+2. Under **Build and deployment** → **Source**, select **GitHub Actions**.
+3. Pushes to the `main` branch automatically trigger the build and deployment workflow.
+4. (Optional) Under **Settings** → **Secrets and variables** → **Actions**, you can configure `VITE_SHEETDB_API_URL` to point to a custom SheetDB endpoint. By default, it falls back to the official conference endpoint.
 
 ---
 
