@@ -321,46 +321,48 @@ export const RegistrationPage: React.FC = () => {
     }
 
     try {
-      // Exactly 29 columns matching Google Sheet first row
+      // Generate ISO timestamp immediately before submitting registration
+      const submissionTimestamp = new Date().toISOString();
+
+      // Exactly matching Google Sheet columns (supports both canonical 'timestamp' and sheet header 'texttimestamp')
       const payload = {
-        data: [
-          {
-            timestamp: new Date().toISOString(),
-            full_name: formData.fullName.trim(),
-            email: formData.email.trim(),
-            phone: formData.phone.trim(),
-            gender: formData.gender,
-            institution: formData.institution.trim(),
-            academic_year: formData.academicYear,
-            mun_experience: formData.munExperience,
+        data: {
+          timestamp: submissionTimestamp,
+          texttimestamp: submissionTimestamp,
+          full_name: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          gender: formData.gender,
+          institution: formData.institution.trim(),
+          academic_year: formData.academicYear,
+          mun_experience: formData.munExperience,
 
-            preference_1_committee: formData.preference1Committee,
-            preference_1_portfolio_1: formData.preference1Portfolio1,
-            preference_1_portfolio_2: formData.preference1Portfolio2,
-            preference_1_portfolio_3: formData.preference1Portfolio3,
-            preference_1_portfolio_4: formData.preference1Portfolio4,
+          preference_1_committee: formData.preference1Committee,
+          preference_1_portfolio_1: formData.preference1Portfolio1,
+          preference_1_portfolio_2: formData.preference1Portfolio2,
+          preference_1_portfolio_3: formData.preference1Portfolio3,
+          preference_1_portfolio_4: formData.preference1Portfolio4,
 
-            preference_2_committee: formData.preference2Committee,
-            preference_2_portfolio_1: formData.preference2Portfolio1,
-            preference_2_portfolio_2: formData.preference2Portfolio2,
-            preference_2_portfolio_3: formData.preference2Portfolio3,
-            preference_2_portfolio_4: formData.preference2Portfolio4,
+          preference_2_committee: formData.preference2Committee,
+          preference_2_portfolio_1: formData.preference2Portfolio1,
+          preference_2_portfolio_2: formData.preference2Portfolio2,
+          preference_2_portfolio_3: formData.preference2Portfolio3,
+          preference_2_portfolio_4: formData.preference2Portfolio4,
 
-            preference_3_committee: formData.preference3Committee,
-            preference_3_portfolio_1: formData.preference3Portfolio1,
-            preference_3_portfolio_2: formData.preference3Portfolio2,
-            preference_3_portfolio_3: formData.preference3Portfolio3,
-            preference_3_portfolio_4: formData.preference3Portfolio4,
+          preference_3_committee: formData.preference3Committee,
+          preference_3_portfolio_1: formData.preference3Portfolio1,
+          preference_3_portfolio_2: formData.preference3Portfolio2,
+          preference_3_portfolio_3: formData.preference3Portfolio3,
+          preference_3_portfolio_4: formData.preference3Portfolio4,
 
-            preference_4_committee: formData.preference4Committee,
-            preference_4_portfolio_1: formData.preference4Portfolio1,
-            preference_4_portfolio_2: formData.preference4Portfolio2,
-            preference_4_portfolio_3: formData.preference4Portfolio3,
-            preference_4_portfolio_4: formData.preference4Portfolio4,
+          preference_4_committee: formData.preference4Committee,
+          preference_4_portfolio_1: formData.preference4Portfolio1,
+          preference_4_portfolio_2: formData.preference4Portfolio2,
+          preference_4_portfolio_3: formData.preference4Portfolio3,
+          preference_4_portfolio_4: formData.preference4Portfolio4,
 
-            consent: 'TRUE',
-          },
-        ],
+          consent: true,
+        },
       };
 
       const response = await fetch(sheetDbUrl, {
