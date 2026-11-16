@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ivory: #EBE9D8;
+    --color-ivory-light: #F6F4EB;
+    --color-ivory-surface: #F0EDE0;
+    --color-ivory-border: #DCD8C5;
+    --color-ivory-dark: #CEC9B2;
+    
+    --color-crimson: #CB1B29;
+    --color-crimson-dark: #A51420;
+    --color-crimson-light: #E02B3A;
+    --color-crimson-glow: rgba(203, 27, 41, 0.25);
+    --color-crimson-subtle: rgba(203, 27, 41, 0.08);
+
+    --color-charcoal: #25231F;
+    --color-charcoal-light: #3D3934;
+    --color-charcoal-muted: #6B655D;
+    --color-charcoal-subtle: rgba(37, 35, 31, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #CB1B29;
+    color: #EBE9D8;
+  }
+
+  /* Custom subtle diplomatic scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #EBE9D8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CEC9B2;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #CB1B29;
+  }
+}
+
+/* Typography Utility Classes */
+.font-serif-display {
+  font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-heading {
+  font-family: 'Manrope', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-mono-tech {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Background subtle paper / canvas texture */
+.bg-canvas-texture {
+  background-color: #EBE9D8;
+  background-image: radial-gradient(#25231F 0.6px, transparent 0.6px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+.bg-canvas-subtle {
+  background-color: #EBE9D8;
+  background-image: 
+    radial-gradient(rgba(37, 35, 31, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Map Dot Pattern Styling */
+.map-dot-pattern {
+  background-image: radial-gradient(circle, rgba(37, 35, 31, 0.28) 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+/* Focus styling for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #CB1B29;
+  outline-offset: 3px;
+}
+
+/* Animations for SVG pulses, emblem float & shimmer */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.4;
+  }
+}
+
+@keyframes emblemFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes goldenShimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  25%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lineDash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-emblem-float {
+  animation: emblemFloat 6s ease-in-out infinite;
+}
+
+.animate-golden-shimmer {
+  animation: goldenShimmer 8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 120s linear infinite;
+}
+
+.animate-line-flow {
+  stroke-dasharray: 6 4;
+  animation: lineDash 20s linear infinite;
+}
+
+/* Editorial line decorative dividers */
+.diplomatic-rule {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(37,35,31,0.02) 0%, rgba(37,35,31,0.2) 30%, rgba(203,27,41,0.6) 50%, rgba(37,35,31,0.2) 70%, rgba(37,35,31,0.02) 100%);
+}
+
+.diplomatic-rule-subtle {
+  height: 1px;
+  background: rgba(37, 35, 31, 0.12);
+}
+
+/* Smooth transition utility */
+.transition-editorial {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ensure emblem remains 100% visible on hover under all conditions */
+.official-emblem,
+.official-emblem img,
+.official-emblem:hover,
+.official-emblem:hover img {
+  opacity: 1 !important;
+}
+
+/* Accessibility: Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
