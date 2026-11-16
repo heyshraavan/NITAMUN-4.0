@@ -9,6 +9,7 @@ import { checkReducedMotion } from '../lib/animations';
 import { useNavigation } from '../context/NavigationContext';
 import { ArrowDown, Globe2, Shield, Calendar, Sparkles } from 'lucide-react';
 import officialEmblem from '../assets/emblem.jpg';
+import officialEmblemWebp from '../assets/emblem.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -266,12 +267,19 @@ export const Hero: React.FC = () => {
               style={{ opacity: 1 }}
             >
               {/* The Official NITAMUN Emblem Image */}
-              <img
-                src={officialEmblem}
-                alt="NITAMUN 4.0 Official Emblem"
-                className="w-full h-full object-cover scale-[1.06] select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-110 !opacity-100"
-                style={{ opacity: 1 }}
-              />
+              <picture className="w-full h-full block">
+                <source srcSet={officialEmblemWebp} type="image/webp" />
+                <img
+                  src={officialEmblem}
+                  alt="NITAMUN 4.0 Official Emblem"
+                  width={450}
+                  height={450}
+                  loading="eager"
+                  fetchPriority="high"
+                  className="w-full h-full object-cover scale-[1.06] select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-110 !opacity-100"
+                  style={{ opacity: 1 }}
+                />
+              </picture>
 
               {/* Restrained Golden Shimmer Sweep across Phoenix & Laurels */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-full">

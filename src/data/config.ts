@@ -71,6 +71,9 @@ export interface ConferenceConfig {
     accessKey: string;
     recipientEmail: string;
   };
+  sheetDb: {
+    apiUrl: string;
+  };
   destinations: NavDestination[];
 }
 
@@ -98,10 +101,10 @@ export const conferenceConfig: ConferenceConfig = {
     dayTwoDate: "January 24, 2027",
   },
   registration: {
-    isOpen: false,
-    statusLabel: "Registration Link Coming Soon",
-    portalUrl: "", // No external link per specification
-    isAwaitingLink: true,
+    isOpen: true,
+    statusLabel: "Registration Live",
+    portalUrl: "", // Internal delegate registration form enabled
+    isAwaitingLink: false,
     fees: {
       earlyBird: "₹400",
       earlyBirdDeadline: "till Nov 30",
@@ -130,6 +133,9 @@ export const conferenceConfig: ConferenceConfig = {
     endpoint: "https://api.web3forms.com/submit",
     accessKey: "YOUR_ACCESS_KEY_HERE",
     recipientEmail: "munsoc.nita@gmail.com",
+  },
+  sheetDb: {
+    apiUrl: (import.meta.env.VITE_SHEETDB_API_URL || 'https://sheetdb.io/api/v1/32lxk4x4tllo7').trim(),
   },
   destinations: [
     {

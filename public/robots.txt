@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://heyshraavan.github.io/NITAMUN-4.0/sitemap.xml

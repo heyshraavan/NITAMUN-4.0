@@ -4,6 +4,7 @@ import { conferenceConfig, NavDestinationId } from '../data/config';
 import { Button } from './Button';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import officialEmblem from '../assets/emblem.jpg';
+import officialEmblemWebp from '../assets/emblem.webp';
 
 export const Header: React.FC = () => {
   const { currentDestination, navigateTo } = useNavigation();
@@ -51,11 +52,17 @@ export const Header: React.FC = () => {
           >
             {/* Official Circular Emblem */}
             <div className="official-emblem relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#CB1B29]/30 shadow-xs group-hover:border-[#CB1B29] transition-all shrink-0 bg-[#700F2B]">
-              <img
-                src={officialEmblem}
-                alt="NITAMUN 4.0 Official Emblem"
-                className="w-full h-full object-cover scale-[1.08] transition-transform duration-300 group-hover:scale-115 !opacity-100"
-              />
+              <picture className="w-full h-full block">
+                <source srcSet={officialEmblemWebp} type="image/webp" />
+                <img
+                  src={officialEmblem}
+                  alt="NITAMUN 4.0 Official Emblem"
+                  width={44}
+                  height={44}
+                  loading="eager"
+                  className="w-full h-full object-cover scale-[1.08] transition-transform duration-300 group-hover:scale-115 !opacity-100"
+                />
+              </picture>
             </div>
 
             <div className="flex flex-col">
@@ -131,11 +138,16 @@ export const Header: React.FC = () => {
           <div className="flex items-center justify-between pb-6 border-b border-[#25231F]/15">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full overflow-hidden border border-[#CB1B29] bg-[#700F2B]">
-                <img
-                  src={officialEmblem}
-                  alt="NITAMUN 4.0 Emblem"
-                  className="w-full h-full object-cover scale-[1.08]"
-                />
+                <picture className="w-full h-full block">
+                  <source srcSet={officialEmblemWebp} type="image/webp" />
+                  <img
+                    src={officialEmblem}
+                    alt="NITAMUN 4.0 Emblem"
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-cover scale-[1.08]"
+                  />
+                </picture>
               </div>
               <div>
                 <span className="font-serif-display text-xl font-bold tracking-tight text-[#25231F]">

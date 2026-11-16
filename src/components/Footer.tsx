@@ -3,6 +3,7 @@ import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
 import { ArrowUp, Mail, Globe2 } from 'lucide-react';
 import officialEmblem from '../assets/emblem.jpg';
+import officialEmblemWebp from '../assets/emblem.webp';
 
 export const Footer: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -28,11 +29,17 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
               <div className="official-emblem w-12 h-12 rounded-full overflow-hidden border border-[#CB1B29]/40 bg-[#700F2B] flex items-center justify-center shrink-0 shadow-md">
-                <img
-                  src={officialEmblem}
-                  alt="NITAMUN 4.0 Official Emblem"
-                  className="w-full h-full object-cover scale-[1.08] !opacity-100"
-                />
+                <picture className="w-full h-full block">
+                  <source srcSet={officialEmblemWebp} type="image/webp" />
+                  <img
+                    src={officialEmblem}
+                    alt="NITAMUN 4.0 Official Emblem"
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    className="w-full h-full object-cover scale-[1.08] !opacity-100"
+                  />
+                </picture>
               </div>
               <div>
                 <span className="font-serif-display text-2xl font-bold tracking-tight text-[#EBE9D8]">
