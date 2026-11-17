@@ -4,6 +4,7 @@ import { AVAILABLE_COMMITTEES, getPortfoliosForCommittee } from '../data/portfol
 import { SectionHeading } from '../components/SectionHeading';
 import { Button } from '../components/Button';
 import { PolicyModal } from '../components/PolicyModal';
+import { PortfolioAutocomplete } from '../components/PortfolioAutocomplete';
 import {
   User,
   GraduationCap,
@@ -258,20 +259,15 @@ export const RegistrationPage: React.FC = () => {
       newErrors.munExperience = 'Please select your MUN experience level.';
     }
 
-    // Committee Preferences (All 4 are required and must be distinct)
+    // Committee Preferences (Preference 1 & Preference 2 are MANDATORY; 3 & 4 are OPTIONAL)
     if (!formData.preference1Committee) {
       newErrors.preference1Committee = 'Committee Preference 1 is required.';
     }
     if (!formData.preference2Committee) {
       newErrors.preference2Committee = 'Committee Preference 2 is required.';
     }
-    if (!formData.preference3Committee) {
-      newErrors.preference3Committee = 'Committee Preference 3 is required.';
-    }
-    if (!formData.preference4Committee) {
-      newErrors.preference4Committee = 'Committee Preference 4 is required.';
-    }
 
+    // Uniqueness validation across all selected committee preferences
     const selectedCommittees = [
       formData.preference1Committee,
       formData.preference2Committee,
@@ -280,7 +276,7 @@ export const RegistrationPage: React.FC = () => {
     ].filter(Boolean);
 
     if (new Set(selectedCommittees).size !== selectedCommittees.length) {
-      newErrors.committees = 'All four committee preferences must be distinct.';
+      newErrors.committees = 'Selected committee preferences must be distinct.';
     }
 
     // Consent
@@ -325,6 +321,7 @@ export const RegistrationPage: React.FC = () => {
       const submissionTimestamp = new Date().toISOString();
 
       // Exactly matching Google Sheet columns (supports both canonical 'timestamp' and sheet header 'texttimestamp')
+      // If optional committee 3 or 4 is not selected, its committee and portfolio fields are submitted as empty strings.
       const payload = {
         data: {
           timestamp: submissionTimestamp,
@@ -338,28 +335,28 @@ export const RegistrationPage: React.FC = () => {
           mun_experience: formData.munExperience,
 
           preference_1_committee: formData.preference1Committee,
-          preference_1_portfolio_1: formData.preference1Portfolio1,
-          preference_1_portfolio_2: formData.preference1Portfolio2,
-          preference_1_portfolio_3: formData.preference1Portfolio3,
-          preference_1_portfolio_4: formData.preference1Portfolio4,
+          preference_1_portfolio_1: formData.preference1Portfolio1 || '',
+          preference_1_portfolio_2: formData.preference1Portfolio2 || '',
+          preference_1_portfolio_3: formData.preference1Portfolio3 || '',
+          preference_1_portfolio_4: formData.preference1Portfolio4 || '',
 
           preference_2_committee: formData.preference2Committee,
-          preference_2_portfolio_1: formData.preference2Portfolio1,
-          preference_2_portfolio_2: formData.preference2Portfolio2,
-          preference_2_portfolio_3: formData.preference2Portfolio3,
-          preference_2_portfolio_4: formData.preference2Portfolio4,
+          preference_2_portfolio_1: formData.preference2Portfolio1 || '',
+          preference_2_portfolio_2: formData.preference2Portfolio2 || '',
+          preference_2_portfolio_3: formData.preference2Portfolio3 || '',
+          preference_2_portfolio_4: formData.preference2Portfolio4 || '',
 
-          preference_3_committee: formData.preference3Committee,
-          preference_3_portfolio_1: formData.preference3Portfolio1,
-          preference_3_portfolio_2: formData.preference3Portfolio2,
-          preference_3_portfolio_3: formData.preference3Portfolio3,
-          preference_3_portfolio_4: formData.preference3Portfolio4,
+          preference_3_committee: formData.preference3Committee || '',
+          preference_3_portfolio_1: formData.preference3Committee ? (formData.preference3Portfolio1 || '') : '',
+          preference_3_portfolio_2: formData.preference3Committee ? (formData.preference3Portfolio2 || '') : '',
+          preference_3_portfolio_3: formData.preference3Committee ? (formData.preference3Portfolio3 || '') : '',
+          preference_3_portfolio_4: formData.preference3Committee ? (formData.preference3Portfolio4 || '') : '',
 
-          preference_4_committee: formData.preference4Committee,
-          preference_4_portfolio_1: formData.preference4Portfolio1,
-          preference_4_portfolio_2: formData.preference4Portfolio2,
-          preference_4_portfolio_3: formData.preference4Portfolio3,
-          preference_4_portfolio_4: formData.preference4Portfolio4,
+          preference_4_committee: formData.preference4Committee || '',
+          preference_4_portfolio_1: formData.preference4Committee ? (formData.preference4Portfolio1 || '') : '',
+          preference_4_portfolio_2: formData.preference4Committee ? (formData.preference4Portfolio2 || '') : '',
+          preference_4_portfolio_3: formData.preference4Committee ? (formData.preference4Portfolio3 || '') : '',
+          preference_4_portfolio_4: formData.preference4Committee ? (formData.preference4Portfolio4 || '') : '',
 
           consent: true,
         },
@@ -404,9 +401,10 @@ export const RegistrationPage: React.FC = () => {
 
   // Helper to render committee card
   const renderPreferenceCard = (prefIndex: 1 | 2 | 3 | 4) => {
+    const isMandatory = prefIndex === 1 || prefIndex === 2;
     const commKey = `preference${prefIndex}Committee` as keyof RegistrationFormData;
     const selectedCommittee = formData[commKey] as string;
-    const availablePortfolios = getPortfoliosForCommittee(selectedCommittee);
+    const availablePortfolios = selectedCommittee ? getPortfoliosForCommittee(selectedCommittee) : [];
 
     // Find other selected committees to disable them in this dropdown
     const otherSelectedCommittees = ([1, 2, 3, 4] as const)
@@ -424,21 +422,27 @@ export const RegistrationPage: React.FC = () => {
         {/* Card Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#25231F]/15">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-0.5 rounded-xs bg-[#CB1B29] text-[#EBE9D8] text-xs font-mono-tech font-bold">
+            <span className={`px-2.5 py-0.5 rounded-xs text-[#EBE9D8] text-xs font-mono-tech font-bold ${
+              isMandatory ? 'bg-[#CB1B29]' : 'bg-[#25231F]'
+            }`}>
               0{prefIndex}
             </span>
             <h4 className="font-heading font-bold text-base sm:text-lg text-[#25231F]">
-              Committee Preference {prefIndex} <span className="text-[#CB1B29]">*</span>
+              Committee Preference {prefIndex} {isMandatory ? (
+                <span className="text-[#CB1B29]">*</span>
+              ) : (
+                <span className="text-[#25231F]/50 font-normal text-xs font-mono-tech ml-2">(Optional)</span>
+              )}
             </h4>
           </div>
           <span className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase">
             {prefIndex === 1
-              ? 'PRIMARY PRIORITY'
+              ? 'MANDATORY // PRIMARY PRIORITY'
               : prefIndex === 2
-              ? 'SECONDARY PRIORITY'
+              ? 'MANDATORY // SECONDARY PRIORITY'
               : prefIndex === 3
-              ? 'TERTIARY PRIORITY'
-              : 'QUATERNARY PRIORITY'}
+              ? 'OPTIONAL // TERTIARY PRIORITY'
+              : 'OPTIONAL // QUATERNARY PRIORITY'}
           </span>
         </div>
 
@@ -448,20 +452,26 @@ export const RegistrationPage: React.FC = () => {
             htmlFor={`pref-${prefIndex}-comm`}
             className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5"
           >
-            Select Committee <span className="text-[#CB1B29]">*</span>
+            Select Committee {isMandatory ? (
+              <span className="text-[#CB1B29]">*</span>
+            ) : (
+              <span className="text-[#25231F]/50 font-normal">(Optional)</span>
+            )}
           </label>
           <div className="relative">
             <select
               id={`pref-${prefIndex}-comm`}
               value={selectedCommittee}
               onChange={(e) => handleCommitteeChange(prefIndex, e.target.value)}
-              aria-required="true"
+              aria-required={isMandatory ? 'true' : 'false'}
               aria-invalid={!!commError}
               className={`w-full px-4 py-3 bg-[#F6F4EB] text-[#25231F] border rounded-xs font-body text-sm appearance-none cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-[#CB1B29] ${
                 commError ? 'border-[#CB1B29] bg-red-50/20' : 'border-[#25231F]/20'
               }`}
             >
-              <option value="">Choose Committee</option>
+              <option value="">
+                {isMandatory ? 'Choose Committee (Required)' : 'None / Leave Unselected (Optional)'}
+              </option>
               {AVAILABLE_COMMITTEES.map((comm) => {
                 const isTaken = otherSelectedCommittees.includes(comm);
                 return (
@@ -482,7 +492,7 @@ export const RegistrationPage: React.FC = () => {
         <div className="pt-2 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono-tech uppercase text-[#25231F]/70 font-semibold">
-              Portfolio Preferences (Optional)
+              Portfolio Preferences (Typeahead Searchable)
             </span>
             <span className="text-[10px] font-mono-tech text-[#25231F]/50">
               UP TO 4 PORTFOLIO CHOICES
@@ -506,36 +516,17 @@ export const RegistrationPage: React.FC = () => {
               const isDisabled = !selectedCommittee;
 
               return (
-                <div key={choiceIdx}>
-                  <label
-                    htmlFor={`pref-${prefIndex}-port-${choiceIdx}`}
-                    className="block text-[11px] font-mono-tech uppercase text-[#25231F]/80 font-medium mb-1"
-                  >
-                    Portfolio Choice {choiceIdx} <span className="text-[#25231F]/40 font-normal">(Optional)</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      id={`pref-${prefIndex}-port-${choiceIdx}`}
-                      value={portValue}
-                      disabled={isDisabled}
-                      onChange={(e) => handlePortfolioChange(prefIndex, choiceIdx, e.target.value)}
-                      className={`w-full px-3.5 py-2.5 bg-[#F6F4EB] text-[#25231F] border rounded-xs font-body text-xs sm:text-sm appearance-none cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-[#CB1B29] disabled:bg-[#EBE9D8] disabled:text-[#25231F]/40 disabled:cursor-not-allowed border-[#25231F]/20`}
-                    >
-                      <option value="">
-                        {isDisabled ? 'Select committee first' : 'Choose Portfolio'}
-                      </option>
-                      {availablePortfolios.map((portfolio) => {
-                        const isTakenInCard = otherCardPortfolios.includes(portfolio);
-                        return (
-                          <option key={portfolio} value={portfolio} disabled={isTakenInCard}>
-                            {portfolio} {isTakenInCard ? '(Selected in another choice)' : ''}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-3 w-3.5 h-3.5 text-[#25231F]/60 pointer-events-none" />
-                  </div>
-                </div>
+                <PortfolioAutocomplete
+                  key={choiceIdx}
+                  id={`pref-${prefIndex}-port-${choiceIdx}`}
+                  label={`Portfolio Choice ${choiceIdx}`}
+                  value={portValue}
+                  onChange={(val) => handlePortfolioChange(prefIndex, choiceIdx, val)}
+                  disabled={isDisabled}
+                  suggestions={availablePortfolios}
+                  otherSelectedPortfolios={otherCardPortfolios}
+                  placeholder={isDisabled ? 'Select committee first' : 'Type or search portfolio...'}
+                />
               );
             })}
           </div>
@@ -640,6 +631,8 @@ export const RegistrationPage: React.FC = () => {
                     const p3 = submittedSnapshot[`preference${idx}Portfolio3` as keyof RegistrationFormData] as string;
                     const p4 = submittedSnapshot[`preference${idx}Portfolio4` as keyof RegistrationFormData] as string;
                     const portfolios = [p1, p2, p3, p4].filter(Boolean);
+
+                    if (!comm) return null;
 
                     return (
                       <div key={idx} className="p-3 bg-[#F6F4EB] border border-[#25231F]/10 rounded-xs">
@@ -992,12 +985,12 @@ export const RegistrationPage: React.FC = () => {
                   </legend>
                 </div>
                 <span className="text-[11px] font-mono-tech text-[#25231F]/60 hidden sm:inline">
-                  ALL 4 COUNCILS REQUIRED
+                  PREFERENCES 1 &amp; 2 REQUIRED • 3 &amp; 4 OPTIONAL
                 </span>
               </div>
 
               <p className="text-xs font-body text-[#25231F]/75 leading-relaxed">
-                Rank your preference across all four simulation councils (UNSC, UNHRC, UNCSW, AIPPM). All four committee selections must be distinct. For each council, you may optionally select up to four portfolios in priority order.
+                Rank your committee preferences (UNSC, UNHRC, UNCSW, AIPPM). Preferences 1 and 2 are mandatory; Preferences 3 and 4 are optional. Selected committees must be distinct. For each council, you can search and specify up to four preferred portfolios.
               </p>
 
               {errors.committees && (

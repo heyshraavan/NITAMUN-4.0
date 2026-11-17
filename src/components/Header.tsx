@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
+import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { Button } from './Button';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import officialEmblem from '../assets/emblem.jpg';
@@ -19,13 +21,24 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scroll when mobile menu is open
+  // Lock background scrolling and support Escape key when mobile menu is open
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (!mobileMenuOpen) return;
+
+    lockBackgroundScroll();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      unlockBackgroundScroll();
+    };
   }, [mobileMenuOpen]);
 
   const handleNavClick = (id: NavDestinationId) => {
@@ -131,9 +144,9 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Responsive Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-[#EBE9D8] z-50 flex flex-col justify-between p-6 overflow-y-auto animate-in fade-in duration-200">
+      {/* 4. Responsive Mobile Navigation Drawer - rendered via portal to prevent backdrop-blur clipping */}
+      {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
+        <div className="lg:hidden fixed inset-0 bg-[#EBE9D8] z-[60] flex flex-col justify-between p-6 overflow-y-auto overscroll-contain animate-in fade-in duration-200">
           {/* Mobile Menu Top Bar */}
           <div className="flex items-center justify-between pb-6 border-b border-[#25231F]/15">
             <div className="flex items-center gap-3">
@@ -221,7 +234,8 @@ export const Header: React.FC = () => {
               View Registration Details
             </Button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

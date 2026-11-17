@@ -99,6 +99,26 @@
   background-size: 10px 10px;
 }
 
+/* Chronology Horizontal Track Responsive Padding */
+.chronology-track {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .chronology-track {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chronology-track {
+    padding-left: max(2rem, calc((100vw - 80rem) / 2 + 2rem));
+    padding-right: max(2rem, calc((100vw - 80rem) / 2 + 2rem));
+  }
+}
+
 /* Focus styling for accessibility */
 a:focus-visible,
 button:focus-visible,

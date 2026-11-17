@@ -6,6 +6,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 let lenisInstance: Lenis | null = null;
 let tickerCallback: ((time: number) => void) | null = null;
+let scrollLockCount = 0;
+let savedScrollY = 0;
+
+export function lockBackgroundScroll() {
+  scrollLockCount++;
+  if (scrollLockCount === 1) {
+    if (lenisInstance) {
+      lenisInstance.stop();
+    }
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      savedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+}
+
+export function unlockBackgroundScroll() {
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount === 0) {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, savedScrollY);
+    }
+    if (lenisInstance) {
+      lenisInstance.start();
+    }
+  }
+}
 
 export function initSmoothScroll(): Lenis | null {
   if (typeof window === 'undefined') return null;
@@ -31,6 +69,9 @@ export function initSmoothScroll(): Lenis | null {
   });
 
   lenisInstance = lenis;
+  if (typeof window !== 'undefined') {
+    (window as any).__lenis = lenis;
+  }
 
   // Synchronize Lenis with GSAP ScrollTrigger
   lenis.on('scroll', ScrollTrigger.update);

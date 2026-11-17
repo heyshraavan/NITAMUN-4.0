@@ -1,12 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
+import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { Home, Info, Calendar, Users, Ticket, Mail, X, ChevronUp, ArrowUpRight } from 'lucide-react';
 
 export const FloatingNavbar: React.FC = () => {
   const { currentDestination, navigateTo } = useNavigation();
   const [isDockHovered, setIsDockHovered] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Lock background scrolling and support Escape key when mobile menu is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    lockBackgroundScroll();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      unlockBackgroundScroll();
+    };
+  }, [mobileMenuOpen]);
 
   const getDestinationIcon = (iconName: string, className: string = 'w-4 h-4') => {
     switch (iconName) {
@@ -47,7 +69,11 @@ export const FloatingNavbar: React.FC = () => {
         aria-label="Floating Primary Navigation"
         onMouseEnter={() => setIsDockHovered(true)}
         onMouseLeave={() => setIsDockHovered(false)}
-        className="hidden md:flex fixed bottom-6 left-1/2 -translate-x-1/2 z-40 items-center gap-1.5 p-2 bg-[#25231F] text-[#EBE9D8] rounded-full border border-[#EBE9D8]/20 shadow-2xl shadow-black/60 backdrop-blur-xl select-none transition-all duration-400 ease-out"
+        style={{
+          transform: 'translate3d(-50%, 0, 0)',
+          bottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+        }}
+        className="hidden md:flex fixed left-1/2 z-40 items-center gap-1.5 p-2 bg-[#25231F] text-[#EBE9D8] rounded-full border border-[#EBE9D8]/20 shadow-2xl shadow-black/60 backdrop-blur-xl select-none will-change-transform transition-[background-color,border-color,box-shadow] duration-300 ease-out"
       >
         {conferenceConfig.destinations.map((dest, idx) => {
           const isActive = currentDestination === dest.id;
@@ -106,7 +132,13 @@ export const FloatingNavbar: React.FC = () => {
           - Touch-friendly compact bar, not dependent on hover.
           - Positioned so it does not obstruct content or footer.
           ========================================================================= */}
-      <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-sm">
+      <div
+        style={{
+          transform: 'translate3d(-50%, 0, 0)',
+          bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))',
+        }}
+        className="md:hidden fixed left-1/2 z-40 w-[92%] max-w-sm will-change-transform"
+      >
         <div className="flex items-center justify-between p-2 pl-3.5 bg-[#25231F] text-[#EBE9D8] rounded-full border border-[#EBE9D8]/20 shadow-2xl shadow-black/60 backdrop-blur-md">
           {/* Current Active Destination with Crimson circular indicator */}
           <button
@@ -137,10 +169,17 @@ export const FloatingNavbar: React.FC = () => {
       {/* =========================================================================
           3. MOBILE NAVIGATION DRAWER
           ========================================================================= */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-[#25231F]/80 backdrop-blur-md flex flex-col justify-end animate-in fade-in duration-200">
+      {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Drawer"
+          onClick={() => setMobileMenuOpen(false)}
+          className="md:hidden fixed inset-0 z-[60] bg-[#25231F]/80 backdrop-blur-md flex flex-col justify-end animate-in fade-in duration-200 overscroll-contain"
+        >
           <div
-            className="w-full bg-[#EBE9D8] text-[#25231F] rounded-t-2xl p-6 shadow-2xl max-h-[85vh] overflow-y-auto border-t-2 border-[#CB1B29]"
+            className="w-full bg-[#EBE9D8] text-[#25231F] rounded-t-2xl p-6 shadow-2xl max-h-[85vh] overflow-y-auto overscroll-contain border-t-2 border-[#CB1B29]"
+            style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer Header */}
@@ -216,7 +255,8 @@ export const FloatingNavbar: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

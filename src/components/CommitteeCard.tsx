@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CommitteeItem } from '../data/content';
 import { Button } from './Button';
 import { useNavigation } from '../context/NavigationContext';
+import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { ArrowUpRight, BookOpen, FileText, CheckCircle2, X } from 'lucide-react';
 
 export interface CommitteeCardProps {
@@ -16,21 +17,22 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
   const { navigateTo } = useNavigation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    lockBackgroundScroll();
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
+      if (e.key === 'Escape') {
         setIsModalOpen(false);
       }
     };
-    if (isModalOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      unlockBackgroundScroll();
     };
   }, [isModalOpen]);
 
@@ -94,14 +96,14 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
       {/* Expanded Modal / Dossier View */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/70 backdrop-blur-sm animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/70 backdrop-blur-sm animate-in fade-in duration-200 overscroll-contain"
           onClick={() => setIsModalOpen(false)}
           role="dialog"
           aria-modal="true"
           aria-labelledby={`modal-title-${committee.id}`}
         >
           <div
-            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#CB1B29] p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl"
+            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#CB1B29] p-6 sm:p-8 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl overscroll-contain"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}

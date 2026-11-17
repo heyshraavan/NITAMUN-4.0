@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { X, ShieldCheck, FileText } from 'lucide-react';
 
 interface PolicyModalProps {
@@ -8,16 +9,19 @@ interface PolicyModalProps {
 
 export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
   useEffect(() => {
+    if (!type) return;
+
+    lockBackgroundScroll();
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
-    if (type) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
+      unlockBackgroundScroll();
     };
   }, [type, onClose]);
 
@@ -25,14 +29,14 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200 overscroll-contain"
       role="dialog"
       aria-modal="true"
       aria-labelledby="policy-modal-title"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#F6F4EB] text-[#25231F] border border-[#25231F]/20 shadow-2xl p-6 sm:p-8"
+        className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#F6F4EB] text-[#25231F] border border-[#25231F]/20 shadow-2xl p-6 sm:p-8 overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
