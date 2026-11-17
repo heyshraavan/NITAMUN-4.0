@@ -8,10 +8,12 @@ import { scrollToSection } from '../lib/scroll';
 import { checkReducedMotion } from '../lib/animations';
 import { useNavigation } from '../context/NavigationContext';
 import { ArrowDown, Globe2, Shield, Calendar, Sparkles } from 'lucide-react';
-import officialEmblem from '../assets/emblem.jpg';
-import officialEmblemWebp from '../assets/emblem.webp';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const heroEmblemMobile = `${import.meta.env.BASE_URL}emblem-mobile.webp`;
+const heroEmblemWebp = `${import.meta.env.BASE_URL}emblem.webp`;
+const heroEmblemJpg = `${import.meta.env.BASE_URL}emblem.jpg`;
 
 export const Hero: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -56,11 +58,11 @@ export const Hero: React.FC = () => {
           { opacity: 1, y: 0, duration: 0.7 },
           '-=0.6'
         )
-        // Emblem Reveal: smooth fade & slight scale transition, revealing the golden phoenix & maroon circle
+        // Emblem Reveal: smooth slight scale transition, revealing the golden phoenix & maroon circle
         .fromTo(
           emblemWrapperRef.current,
-          { opacity: 0, scale: 0.9, filter: 'brightness(0.85)' },
-          { opacity: 1, scale: 1, filter: 'brightness(1)', duration: 1.1, ease: 'back.out(1.15)' },
+          { scale: 0.94, filter: 'brightness(0.92)' },
+          { scale: 1, filter: 'brightness(1)', duration: 1.0, ease: 'back.out(1.15)' },
           '-=0.6'
         )
         .fromTo(
@@ -268,9 +270,10 @@ export const Hero: React.FC = () => {
             >
               {/* The Official NITAMUN Emblem Image */}
               <picture className="w-full h-full block">
-                <source srcSet={officialEmblemWebp} type="image/webp" />
+                <source media="(max-width: 640px)" srcSet={heroEmblemMobile} type="image/webp" />
+                <source srcSet={heroEmblemWebp} type="image/webp" />
                 <img
-                  src={officialEmblem}
+                  src={heroEmblemJpg}
                   alt="NITAMUN 4.0 Official Emblem"
                   width={450}
                   height={450}
