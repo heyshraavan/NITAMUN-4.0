@@ -74,6 +74,9 @@ export interface ConferenceConfig {
   sheetDb: {
     apiUrl: string;
   };
+  sheetDbInquiry: {
+    apiUrl: string;
+  };
   destinations: NavDestination[];
 }
 
@@ -136,6 +139,9 @@ export const conferenceConfig: ConferenceConfig = {
   },
   sheetDb: {
     apiUrl: (import.meta.env.VITE_SHEETDB_API_URL || 'https://sheetdb.io/api/v1/32lxk4x4tllo7').trim(),
+  },
+  sheetDbInquiry: {
+    apiUrl: (import.meta.env.VITE_SHEETDB_INQUIRY_API_URL || 'https://sheetdb.io/api/v1/s0lfoie3eqpyp').trim(),
   },
   destinations: [
     {

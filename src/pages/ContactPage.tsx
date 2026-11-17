@@ -6,35 +6,64 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { Button } from '../components/Button';
 import { Globe2, Send, CheckCircle2, AlertTriangle, Copy, Check, Mail } from 'lucide-react';
 
-export const ContactPage: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: 'General Delegate Inquiry',
-    message: '',
-  });
+interface InquiryFormData {
+  fullName: string;
+  email: string;
+  inquiryClassification: string;
+  message: string;
+}
 
+const INQUIRY_CLASSIFICATIONS = [
+  'General Delegate Inquiry',
+  'Registration & Fee Inquiries',
+  'Committee & Portfolio Questions',
+  'Executive Board & Substantive Query',
+  'Partnership & Sponsorship Opportunity',
+] as const;
+
+const initialInquiryFormState: InquiryFormData = {
+  fullName: '',
+  email: '',
+  inquiryClassification: '',
+  message: '',
+};
+
+export const ContactPage: React.FC = () => {
+  const [formData, setFormData] = useState<InquiryFormData>(initialInquiryFormState);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const validate = () => {
+  const validate = (): boolean => {
     const errs: Record<string, string> = {};
-    if (!formData.name.trim()) {
-      errs.name = 'Please provide your full name.';
+
+    const trimmedName = formData.fullName.trim();
+    if (!trimmedName) {
+      errs.fullName = 'Please provide your full name.';
+    } else if (trimmedName.length < 2) {
+      errs.fullName = 'Full name must be at least 2 characters.';
     }
-    if (!formData.email.trim()) {
+
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedEmail) {
       errs.email = 'Please provide your email address.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       errs.email = 'Please provide a valid email address.';
     }
-    if (!formData.message.trim()) {
+
+    if (!formData.inquiryClassification) {
+      errs.inquiryClassification = 'Please select an inquiry classification.';
+    }
+
+    const trimmedMessage = formData.message.trim();
+    if (!trimmedMessage) {
       errs.message = 'Please provide your inquiry message.';
-    } else if (formData.message.trim().length < 10) {
+    } else if (trimmedMessage.length < 10) {
       errs.message = 'Message must be at least 10 characters.';
     }
+
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -42,30 +71,40 @@ export const ContactPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
     setSubmissionStatus('idle');
     setStatusMessage('');
 
-    // Check if form service key is unconfigured
-    if (!conferenceConfig.formService.accessKey || conferenceConfig.formService.accessKey === 'YOUR_ACCESS_KEY_HERE') {
+    const endpoint = conferenceConfig.sheetDbInquiry.apiUrl;
+    if (!endpoint || endpoint === 'YOUR_SHEETDB_INQUIRY_API_URL') {
       setSubmissionStatus('error');
-      setStatusMessage('The direct online form service is awaiting administrator API key configuration. Please transmit your inquiry directly via the email client link below.');
+      setStatusMessage(
+        `The Secretariat inquiry endpoint is not configured. Please contact us directly at ${conferenceConfig.contacts.email}.`
+      );
       setIsSubmitting(false);
       return;
     }
 
     try {
+      // Generate ISO timestamp immediately before submission
+      const submissionTimestamp = new Date().toISOString();
+
       const payload = {
-        access_key: conferenceConfig.formService.accessKey,
-        name: formData.name,
-        email: formData.email,
-        subject: `[NITAMUN 4.0 Inquiry] ${formData.subject}`,
-        message: formData.message,
-        from_name: 'NITAMUN 4.0 Inquiry Desk',
+        data: [
+          {
+            timestamp: submissionTimestamp,
+            full_name: formData.fullName.trim(),
+            email: formData.email.trim(),
+            inquiry_classification: formData.inquiryClassification,
+            message: formData.message.trim(),
+            status: 'Pending',
+          },
+        ],
       };
 
-      const res = await fetch(conferenceConfig.formService.endpoint, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,19 +115,32 @@ export const ContactPage: React.FC = () => {
 
       const data = await res.json().catch(() => null);
 
-      if (res.ok && data?.success) {
+      // SheetDB responds with { created: 1 } or array of inserted records on success
+      const isSuccess =
+        res.ok &&
+        (data?.created === 1 ||
+          (Array.isArray(data) && data.length > 0) ||
+          (typeof data?.created === 'number' && data.created > 0));
+
+      if (isSuccess) {
         setSubmissionStatus('success');
-        setStatusMessage('Your inquiry has been successfully transmitted to the Secretariat. A representative will contact you via email.');
-        setFormData({ name: '', email: '', subject: 'General Delegate Inquiry', message: '' });
+        setStatusMessage(
+          'Your inquiry has been successfully transmitted to the NITAMUN 4.0 Secretariat. We will get back to you through your provided email address.'
+        );
+        setFormData(initialInquiryFormState);
+        setErrors({});
       } else {
         setSubmissionStatus('error');
-        const apiError = data?.message || `Server responded with status code ${res.status}`;
-        setStatusMessage(`Submission notice: ${apiError}. You can email us directly at ${conferenceConfig.contacts.email}.`);
+        const apiError = data?.message || data?.error || `Server responded with status code ${res.status}`;
+        setStatusMessage(
+          `Transmission notice: ${apiError}. You can also write directly to ${conferenceConfig.contacts.email}.`
+        );
       }
-    } catch (err: unknown) {
+    } catch {
       setSubmissionStatus('error');
-      const errStr = err instanceof Error ? err.message : 'Network error';
-      setStatusMessage(`Unable to transmit message: ${errStr}. Please write directly to ${conferenceConfig.contacts.email}.`);
+      setStatusMessage(
+        `Unable to transmit inquiry due to a network error. Please verify your connection and retry, or email us at ${conferenceConfig.contacts.email}.`
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -218,107 +270,198 @@ export const ContactPage: React.FC = () => {
                 <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                   Secretariat Inquiry Form
                 </h3>
-                <p className="text-xs font-mono-tech text-[#25231F]/60 mt-1">
-                  Inquiries are directed to our administrative email: {conferenceConfig.contacts.email}.
+                <p className="text-xs font-mono-tech text-[#25231F]/70 mt-1">
+                  Inquiries are directed to our administrative email:{' '}
+                  <a
+                    href={`mailto:${conferenceConfig.contacts.email}`}
+                    className="font-bold text-[#CB1B29] hover:underline"
+                  >
+                    {conferenceConfig.contacts.email}
+                  </a>
+                  .
                 </p>
               </div>
 
               {/* Submission Notification Banner */}
               {submissionStatus === 'success' && (
-                <div className="p-4 bg-emerald-50 border border-emerald-500 text-emerald-900 text-xs font-mono-tech flex items-start gap-2.5 animate-in fade-in">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{statusMessage}</span>
-                </div>
-              )}
-
-              {submissionStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-400 text-red-900 text-xs font-mono-tech flex items-start gap-2.5 animate-in fade-in">
-                  <AlertTriangle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <span>{statusMessage}</span>
-                    <div>
-                      <a
-                        href={`mailto:${conferenceConfig.contacts.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(formData.message)}`}
-                        className="font-bold underline text-[#CB1B29]"
-                      >
-                        Click here to send directly via your email client →
-                      </a>
+                <div
+                  role="status"
+                  className="p-5 bg-emerald-50 border-2 border-emerald-600 text-emerald-950 text-xs sm:text-sm font-mono-tech space-y-3 animate-in fade-in"
+                >
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <strong className="font-heading font-bold block text-emerald-900 text-sm">
+                        Inquiry Successfully Transmitted
+                      </strong>
+                      <p className="font-body text-xs sm:text-sm text-emerald-900/90 leading-relaxed">
+                        {statusMessage}
+                      </p>
                     </div>
+                  </div>
+                  <div className="pt-2 border-t border-emerald-200 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => setSubmissionStatus('idle')}
+                      className="text-xs font-mono-tech text-emerald-800 hover:text-emerald-950 font-bold underline cursor-pointer"
+                    >
+                      Transmit Another Inquiry →
+                    </button>
+                    <span className="text-[10px] text-emerald-700 uppercase tracking-widest font-semibold">
+                      NITAMUN HELPDESK
+                    </span>
                   </div>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Name */}
+              {submissionStatus === 'error' && (
+                <div
+                  role="alert"
+                  className="p-5 bg-red-50 border-2 border-[#CB1B29] text-red-950 text-xs sm:text-sm font-mono-tech space-y-2 animate-in fade-in"
+                >
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-[#CB1B29] shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <strong className="font-heading font-bold block text-[#CB1B29] text-sm">
+                        Transmission Notice
+                      </strong>
+                      <p className="font-body text-xs sm:text-sm text-red-900/90 leading-relaxed">
+                        {statusMessage}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t border-red-200">
+                    <a
+                      href={`mailto:${conferenceConfig.contacts.email}?subject=${encodeURIComponent(
+                        formData.inquiryClassification || 'NITAMUN 4.0 Inquiry'
+                      )}&body=${encodeURIComponent(formData.message)}`}
+                      className="text-xs font-mono-tech font-bold text-[#CB1B29] hover:underline"
+                    >
+                      Send directly via your email client ({conferenceConfig.contacts.email}) →
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
-                    Full Name *
+                  <label htmlFor="fullName" className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
+                    Full Name <span className="text-[#CB1B29]">*</span>
                   </label>
                   <input
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Delegate Jane Doe / Professional"
-                    className="w-full p-3 bg-[#EBE9D8] border border-[#25231F]/20 text-[#25231F] text-xs font-mono-tech focus:border-[#CB1B29] focus:outline-none transition-colors"
+                    id="fullName"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, fullName: e.target.value }));
+                      if (errors.fullName) setErrors((prev) => ({ ...prev, fullName: '' }));
+                    }}
+                    placeholder="e.g. Delegate Jane Doe"
+                    aria-required="true"
+                    aria-invalid={!!errors.fullName}
+                    className={`w-full p-3 bg-[#EBE9D8] border text-[#25231F] text-xs font-mono-tech rounded-xs transition-colors focus:outline-none focus:ring-1 focus:ring-[#CB1B29] ${
+                      errors.fullName ? 'border-[#CB1B29] bg-red-50/20' : 'border-[#25231F]/20 focus:border-[#CB1B29]'
+                    }`}
                   />
-                  {errors.name && (
-                    <span className="text-[11px] font-mono-tech text-red-600 mt-1 block">
-                      {errors.name}
+                  {errors.fullName && (
+                    <span className="text-[11px] font-mono-tech text-[#CB1B29] mt-1 block">
+                      {errors.fullName}
                     </span>
                   )}
                 </div>
 
-                {/* Email */}
+                {/* Email Address */}
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
-                    Email Address *
+                  <label htmlFor="email" className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
+                    Email Address <span className="text-[#CB1B29]">*</span>
                   </label>
                   <input
                     type="email"
+                    id="email"
+                    name="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, email: e.target.value }));
+                      if (errors.email) setErrors((prev) => ({ ...prev, email: '' }));
+                    }}
                     placeholder="delegate@example.com"
-                    className="w-full p-3 bg-[#EBE9D8] border border-[#25231F]/20 text-[#25231F] text-xs font-mono-tech focus:border-[#CB1B29] focus:outline-none transition-colors"
+                    aria-required="true"
+                    aria-invalid={!!errors.email}
+                    className={`w-full p-3 bg-[#EBE9D8] border text-[#25231F] text-xs font-mono-tech rounded-xs transition-colors focus:outline-none focus:ring-1 focus:ring-[#CB1B29] ${
+                      errors.email ? 'border-[#CB1B29] bg-red-50/20' : 'border-[#25231F]/20 focus:border-[#CB1B29]'
+                    }`}
                   />
                   {errors.email && (
-                    <span className="text-[11px] font-mono-tech text-red-600 mt-1 block">
+                    <span className="text-[11px] font-mono-tech text-[#CB1B29] mt-1 block">
                       {errors.email}
                     </span>
                   )}
                 </div>
 
-                {/* Subject / Category */}
+                {/* Inquiry Classification */}
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
-                    Inquiry Classification
+                  <label htmlFor="inquiryClassification" className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
+                    Inquiry Classification <span className="text-[#CB1B29]">*</span>
                   </label>
                   <select
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full p-3 bg-[#EBE9D8] border border-[#25231F]/20 text-[#25231F] text-xs font-mono-tech focus:border-[#CB1B29] focus:outline-none transition-colors"
+                    id="inquiryClassification"
+                    name="inquiryClassification"
+                    value={formData.inquiryClassification}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, inquiryClassification: e.target.value }));
+                      if (errors.inquiryClassification) setErrors((prev) => ({ ...prev, inquiryClassification: '' }));
+                    }}
+                    aria-required="true"
+                    aria-invalid={!!errors.inquiryClassification}
+                    className={`w-full p-3 bg-[#EBE9D8] border text-[#25231F] text-xs font-mono-tech rounded-xs appearance-none cursor-pointer transition-colors focus:outline-none focus:ring-1 focus:ring-[#CB1B29] ${
+                      errors.inquiryClassification ? 'border-[#CB1B29] bg-red-50/20' : 'border-[#25231F]/20 focus:border-[#CB1B29]'
+                    }`}
                   >
-                    <option value="General Delegate Inquiry">General Delegate Inquiry</option>
-                    <option value="Registration & Fee Inquiries">Registration &amp; Fee Inquiries</option>
-                    <option value="Committee & Portfolio Questions">Committee &amp; Portfolio Questions</option>
-                    <option value="Executive Board & Substantive Query">Executive Board &amp; Substantive Query</option>
-                    <option value="Partnership & Sponsorship Opportunity">Partnership &amp; Sponsorship Opportunity</option>
+                    <option value="">Choose an inquiry classification...</option>
+                    {INQUIRY_CLASSIFICATIONS.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))}
                   </select>
+                  {errors.inquiryClassification && (
+                    <span className="text-[11px] font-mono-tech text-[#CB1B29] mt-1 block">
+                      {errors.inquiryClassification}
+                    </span>
+                  )}
                 </div>
 
-                {/* Message */}
+                {/* Your Message */}
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase font-bold text-[#25231F] mb-1.5">
-                    Your Message *
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label htmlFor="message" className="block text-xs font-mono-tech uppercase font-bold text-[#25231F]">
+                      Your Message <span className="text-[#CB1B29]">*</span>
+                    </label>
+                    <span className="text-[11px] font-mono-tech text-[#25231F]/60">
+                      {formData.message.length} / 1500
+                    </span>
+                  </div>
                   <textarea
+                    id="message"
+                    name="message"
                     rows={5}
+                    maxLength={1500}
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, message: e.target.value }));
+                      if (errors.message) setErrors((prev) => ({ ...prev, message: '' }));
+                    }}
                     placeholder="Please specify your query in detail, including your institution or background if applicable..."
-                    className="w-full p-3 bg-[#EBE9D8] border border-[#25231F]/20 text-[#25231F] text-xs font-mono-tech focus:border-[#CB1B29] focus:outline-none transition-colors resize-y"
+                    aria-required="true"
+                    aria-invalid={!!errors.message}
+                    className={`w-full p-3 bg-[#EBE9D8] border text-[#25231F] text-xs font-mono-tech rounded-xs transition-colors focus:outline-none focus:ring-1 focus:ring-[#CB1B29] resize-y ${
+                      errors.message ? 'border-[#CB1B29] bg-red-50/20' : 'border-[#25231F]/20 focus:border-[#CB1B29]'
+                    }`}
                   />
                   {errors.message && (
-                    <span className="text-[11px] font-mono-tech text-red-600 mt-1 block">
+                    <span className="text-[11px] font-mono-tech text-[#CB1B29] mt-1 block">
                       {errors.message}
                     </span>
                   )}
@@ -336,22 +479,22 @@ export const ContactPage: React.FC = () => {
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
                         <span className="w-3.5 h-3.5 border-2 border-[#EBE9D8] border-t-transparent rounded-full animate-spin" />
-                        Transmitting...
+                        Transmitting Inquiry...
                       </span>
                     ) : (
                       <span className="flex items-center gap-2">
                         <Send className="w-3.5 h-3.5" />
-                        Send Message to Secretariat
+                        Transmit Inquiry
                       </span>
                     )}
                   </Button>
 
                   <a
                     href={`mailto:${conferenceConfig.contacts.email}`}
-                    className="text-xs font-mono-tech text-[#CB1B29] hover:underline flex items-center gap-1"
+                    className="text-xs font-mono-tech text-[#CB1B29] hover:underline flex items-center gap-1.5 font-semibold"
                   >
                     <Mail className="w-3.5 h-3.5" />
-                    <span>Direct mailto: {conferenceConfig.contacts.email}</span>
+                    <span>Direct Desk: {conferenceConfig.contacts.email}</span>
                   </a>
                 </div>
               </form>
