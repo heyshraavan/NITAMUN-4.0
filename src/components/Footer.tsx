@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
 import { ArrowUp, Mail, Globe2 } from 'lucide-react';
-import officialEmblem from '../assets/emblem.jpg';
-import officialEmblemWebp from '../assets/emblem.webp';
+import officialEmblem from '../assets/emblem-sm.jpg';
+import officialEmblemWebp from '../assets/emblem-sm.webp';
 
 export const Footer: React.FC = () => {
   const { navigateTo } = useNavigation();

@@ -5,8 +5,8 @@ import { conferenceConfig, NavDestinationId } from '../data/config';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { Button } from './Button';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
-import officialEmblem from '../assets/emblem.jpg';
-import officialEmblemWebp from '../assets/emblem.webp';
+import officialEmblem from '../assets/emblem-sm.jpg';
+import officialEmblemWebp from '../assets/emblem-sm.webp';
 
 export const Header: React.FC = () => {
   const { currentDestination, navigateTo } = useNavigation();
@@ -14,8 +14,15 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 25);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
