@@ -8,19 +8,14 @@ export interface ExecutiveCardProps {
 export const ExecutiveCard: React.FC<ExecutiveCardProps> = ({ executive }) => {
   return (
     <article
-      className="executive-card-item group relative bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xs hover:shadow-xl select-none"
+      className="executive-card-item group relative bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xs hover:shadow-xl select-none rounded-xs h-full"
       aria-labelledby={`exec-name-${executive.id}`}
     >
       {/* Top Hairline Crimson Accent Indicator on Card Hover */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-[#CB1B29] opacity-0 group-hover:opacity-100 transition-opacity z-20" />
 
-      {/* 1. Large Portrait Photograph Container */}
+      {/* 1. Large Portrait Photograph Container (Aspect 4/5, clean and unobstructed) */}
       <div className="relative w-full aspect-[4/5] bg-[#25231F]/5 overflow-hidden border-b border-[#25231F]/10">
-        {/* Subtle Numerical Tag in Top Corner */}
-        <div className="absolute top-3 left-3 z-10 px-2 py-0.5 bg-[#25231F]/90 backdrop-blur-xs text-[#EBE9D8] text-[10px] font-mono-tech font-bold uppercase tracking-widest border border-[#EBE9D8]/20 shadow-xs">
-          EXECUTIVE // {executive.number}
-        </div>
-
         {/* Clean WebP with JPG fallback */}
         <picture className="w-full h-full block">
           <source srcSet={executive.imageWebp} type="image/webp" />
@@ -37,33 +32,33 @@ export const ExecutiveCard: React.FC<ExecutiveCardProps> = ({ executive }) => {
         </picture>
 
         {/* Delicate Vignette overlay for subtle depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#25231F]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#25231F]/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* 2. Executive Details & Leadership Profile */}
       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-[#F6F4EB]">
         <div>
-          {/* Official Designation */}
-          <div className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] tracking-wider mb-1.5">
+          {/* Official Designation (Strict uniform height for vertical alignment) */}
+          <div className="h-5 sm:h-6 flex items-center text-xs font-mono-tech uppercase font-bold text-[#CB1B29] tracking-wider mb-1 line-clamp-1">
             {executive.designation}
           </div>
 
-          {/* Executive Full Name */}
+          {/* Executive Full Name (Strict uniform height for vertical alignment) */}
           <h4
             id={`exec-name-${executive.id}`}
-            className="font-serif-display text-2xl font-bold text-[#25231F] leading-snug tracking-tight group-hover:text-[#CB1B29] transition-colors"
+            className="h-10 sm:h-12 flex items-center font-serif-display text-2xl font-bold text-[#25231F] leading-tight tracking-tight group-hover:text-[#CB1B29] transition-colors"
           >
             {executive.name}
           </h4>
 
           {/* Department / Scope of Responsibility */}
-          <div className="mt-1 text-[11px] font-mono-tech text-[#25231F]/60 uppercase tracking-wide">
+          <div className="h-5 flex items-center text-[11px] font-mono-tech text-[#25231F]/60 uppercase tracking-wide mt-1 truncate">
             {executive.department}
           </div>
         </div>
 
         {/* 3. Reusable Understated LinkedIn Action */}
-        <div className="pt-4 mt-4 border-t border-[#25231F]/10 flex items-center justify-between">
+        <div className="pt-4 mt-4 border-t border-[#25231F]/10 flex items-center justify-between min-h-[42px]">
           <span className="text-[10px] font-mono-tech text-[#25231F]/45 uppercase tracking-wider">
             Diplomatic Bureau
           </span>
