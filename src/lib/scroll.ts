@@ -41,6 +41,7 @@ export function unlockBackgroundScroll() {
     }
     if (lenisInstance) {
       lenisInstance.start();
+      lenisInstance.scrollTo(savedScrollY, { immediate: true });
     }
   }
 }
@@ -66,6 +67,15 @@ export function initSmoothScroll(): Lenis | null {
     smoothWheel: true,
     wheelMultiplier: 1.0,
     touchMultiplier: 1.5,
+    prevent: (node) => {
+      // Never intercept scroll or touch inside modals, dialogs or explicitly marked elements
+      return (
+        node instanceof HTMLElement &&
+        (node.hasAttribute('data-lenis-prevent') ||
+          node.closest('[data-lenis-prevent]') !== null ||
+          node.closest('[role="dialog"]') !== null)
+      );
+    },
   });
 
   lenisInstance = lenis;

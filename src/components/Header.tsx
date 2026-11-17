@@ -158,11 +158,16 @@ export const Header: React.FC = () => {
 
       {/* 4. Responsive Mobile Navigation Drawer - rendered via portal to prevent backdrop-blur clipping */}
       {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
-        <div className="lg:hidden fixed inset-0 bg-[#EBE9D8] z-[60] flex flex-col justify-between p-6 overflow-y-auto overscroll-contain animate-in fade-in duration-200">
-          {/* Mobile Menu Top Bar */}
-          <div className="flex items-center justify-between pb-6 border-b border-[#25231F]/15">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation Menu"
+          className="lg:hidden fixed inset-0 bg-[#EBE9D8] z-[60] flex flex-col overflow-hidden animate-in fade-in duration-200 h-screen h-[100dvh]"
+        >
+          {/* Mobile Menu Top Bar — FIXED (flex-shrink-0) */}
+          <div className="flex-shrink-0 flex items-center justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-[#CB1B29] bg-[#700F2B]">
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-[#CB1B29] bg-[#700F2B] shrink-0">
                 <picture className="w-full h-full block">
                   <source srcSet={officialEmblemWebp} type="image/webp" />
                   <img
@@ -186,27 +191,36 @@ export const Header: React.FC = () => {
 
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] bg-[#F6F4EB] transition-colors cursor-pointer"
+              className="p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
               aria-label="Close menu"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Destinations Index */}
-          <div className="space-y-6 pt-6">
+          {/* Destinations Index — SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
+          <div
+            data-lenis-prevent
+            className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-4 overscroll-contain"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-y',
+            }}
+          >
             <div className="text-[11px] font-mono-tech tracking-widest text-[#CB1B29] uppercase">
               // Navigation Index
             </div>
 
-            <nav className="flex flex-col space-y-3">
+            <nav className="flex flex-col space-y-2.5">
               {conferenceConfig.destinations.map((dest, index) => {
                 const isActive = currentDestination === dest.id;
                 return (
                   <button
                     key={dest.id}
                     onClick={() => handleNavClick(dest.id)}
-                    className={`flex items-center justify-between text-left py-3 px-3 rounded-xs border transition-all cursor-pointer ${
+                    onMouseEnter={() => prefetchRoute(dest.id)}
+                    onTouchStart={() => prefetchRoute(dest.id)}
+                    className={`flex items-center justify-between text-left py-3 px-3.5 rounded-xs border transition-all cursor-pointer ${
                       isActive
                         ? 'bg-[#25231F] text-[#EBE9D8] border-[#25231F]'
                         : 'bg-[#F6F4EB] text-[#25231F] border-[#25231F]/10 hover:border-[#CB1B29]'
@@ -216,7 +230,7 @@ export const Header: React.FC = () => {
                       <span className={`font-mono-tech text-xs ${isActive ? 'text-[#CB1B29]' : 'text-[#25231F]/40'}`}>
                         0{index + 1}
                       </span>
-                      <span className="font-serif-display text-2xl font-medium">
+                      <span className="font-serif-display text-xl sm:text-2xl font-medium">
                         {dest.label}
                       </span>
                     </div>
@@ -227,8 +241,11 @@ export const Header: React.FC = () => {
             </nav>
           </div>
 
-          {/* Bottom Info & Action */}
-          <div className="space-y-4 pt-8 pb-4 border-t border-[#25231F]/15">
+          {/* Bottom Info & Action — FIXED (flex-shrink-0) */}
+          <div
+            className="flex-shrink-0 p-5 sm:p-6 pt-4 border-t border-[#25231F]/15 bg-[#F6F4EB] space-y-3"
+            style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom, 0px))' }}
+          >
             <div className="text-xs font-mono-tech text-[#25231F]/70">
               {conferenceConfig.organizer.chapter} • {conferenceConfig.organizer.shortInstitute}
               <div className="text-[11px] mt-0.5 text-[#CB1B29] font-bold">

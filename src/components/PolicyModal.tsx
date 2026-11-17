@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { X, ShieldCheck, FileText } from 'lucide-react';
 
@@ -27,20 +28,30 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
 
   if (!type) return null;
 
-  return (
+  return typeof document !== 'undefined' && createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200 overscroll-contain"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#25231F]/80 backdrop-blur-sm animate-in fade-in duration-200 min-h-screen min-h-[100dvh]"
+      style={{
+        paddingTop: 'calc(0.75rem + env(safe-area-inset-top, 0px))',
+        paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))',
+        paddingLeft: 'calc(0.75rem + env(safe-area-inset-left, 0px))',
+        paddingRight: 'calc(0.75rem + env(safe-area-inset-right, 0px))',
+      }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="policy-modal-title"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#F6F4EB] text-[#25231F] border border-[#25231F]/20 shadow-2xl p-6 sm:p-8 overscroll-contain"
+        data-lenis-prevent
+        className="relative w-full max-w-2xl bg-[#F6F4EB] text-[#25231F] border border-[#25231F]/20 shadow-2xl flex flex-col rounded-xs overflow-hidden max-h-[calc(100vh-1.5rem)] max-h-[calc(100dvh-1.5rem)]"
+        style={{
+          maxHeight: 'calc(100dvh - 1.5rem)',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-[#25231F]/15 mb-6">
+        {/* Header — FIXED (flex-shrink-0) */}
+        <div className="flex-shrink-0 flex items-start justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#EBE9D8]">
           <div className="flex items-center gap-3">
             <span className="w-10 h-10 rounded-xs bg-[#CB1B29]/10 text-[#CB1B29] flex items-center justify-center shrink-0">
               {type === 'terms' ? <FileText className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
@@ -63,8 +74,15 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
           </button>
         </div>
 
-        {/* Content */}
-        <div className="space-y-4 text-xs sm:text-sm font-body leading-relaxed text-[#25231F]/85">
+        {/* Content — SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
+        <div
+          data-lenis-prevent
+          className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-4 text-xs sm:text-sm font-body leading-relaxed text-[#25231F]/85 overscroll-contain"
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
+          }}
+        >
           {type === 'terms' ? (
             <>
               <div>
@@ -153,8 +171,8 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
           )}
         </div>
 
-        {/* Footer */}
-        <div className="mt-8 pt-4 border-t border-[#25231F]/15 flex justify-end">
+        {/* Footer — FIXED (flex-shrink-0) */}
+        <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#EBE9D8] flex justify-end">
           <button
             onClick={onClose}
             className="px-5 py-2 bg-[#25231F] text-[#EBE9D8] hover:bg-[#CB1B29] transition-colors text-xs font-heading font-semibold uppercase tracking-wider rounded-xs cursor-pointer"
@@ -163,6 +181,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

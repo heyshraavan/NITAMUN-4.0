@@ -178,15 +178,18 @@ export const FloatingNavbar: React.FC = () => {
           aria-modal="true"
           aria-label="Mobile Navigation Drawer"
           onClick={() => setMobileMenuOpen(false)}
-          className="md:hidden fixed inset-0 z-[60] bg-[#25231F]/80 backdrop-blur-md flex flex-col justify-end animate-in fade-in duration-200 overscroll-contain"
+          className="md:hidden fixed inset-0 z-[60] bg-[#25231F]/80 backdrop-blur-md flex flex-col justify-end animate-in fade-in duration-200 h-screen h-[100dvh]"
         >
           <div
-            className="w-full bg-[#EBE9D8] text-[#25231F] rounded-t-2xl p-6 shadow-2xl max-h-[85vh] overflow-y-auto overscroll-contain border-t-2 border-[#CB1B29]"
-            style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
+            data-lenis-prevent
+            className="w-full bg-[#EBE9D8] text-[#25231F] rounded-t-2xl shadow-2xl border-t-2 border-[#CB1B29] flex flex-col overflow-hidden max-h-[calc(100vh-1.5rem)] max-h-[calc(100dvh-1.5rem)]"
+            style={{
+              maxHeight: 'calc(100dvh - 1.5rem)',
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Drawer Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#25231F]/15 mb-6">
+            {/* Drawer Header — FIXED (flex-shrink-0), stays accessible at all times */}
+            <div className="flex-shrink-0 flex items-center justify-between p-5 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
               <div className="flex items-center gap-2">
                 <span className="font-serif-display text-2xl font-bold tracking-tight text-[#25231F]">
                   {conferenceConfig.name} {conferenceConfig.editionRoman}
@@ -197,15 +200,26 @@ export const FloatingNavbar: React.FC = () => {
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-8 h-8 rounded-full border border-[#25231F]/20 flex items-center justify-center text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full border border-[#25231F]/20 flex items-center justify-center text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
                 aria-label="Close navigation"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Destination List (01 to 06) */}
-            <div className="space-y-2 mb-6">
+            {/* Scrollable Destination List (01 to 06) — flex-1 min-h-0 with native touch scroll */}
+            <div
+              data-lenis-prevent
+              className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-2 overscroll-contain"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-y',
+              }}
+            >
+              <div className="text-[10px] font-mono-tech tracking-widest text-[#CB1B29] uppercase pb-1">
+                // Select Destination
+              </div>
+
               {conferenceConfig.destinations.map((dest, idx) => {
                 const isActive = currentDestination === dest.id;
                 return (
@@ -214,43 +228,46 @@ export const FloatingNavbar: React.FC = () => {
                     onClick={() => handleSelect(dest.id)}
                     onMouseEnter={() => prefetchRoute(dest.id)}
                     onTouchStart={() => prefetchRoute(dest.id)}
-                    className={`w-full p-3.5 rounded-xs border text-left flex items-center justify-between transition-all cursor-pointer ${
+                    className={`w-full p-3 rounded-xs border text-left flex items-center justify-between transition-all cursor-pointer ${
                       isActive
                         ? 'bg-[#25231F] text-[#EBE9D8] border-[#25231F]'
                         : 'bg-[#F6F4EB] text-[#25231F] border-[#25231F]/15 hover:border-[#CB1B29]'
                     }`}
                   >
-                    <div className="flex items-center gap-3.5">
+                    <div className="flex items-center gap-3 min-w-0">
                       <span
-                        className={`w-8 h-8 rounded-xs flex items-center justify-center ${
+                        className={`w-8 h-8 rounded-xs flex items-center justify-center shrink-0 ${
                           isActive ? 'bg-[#CB1B29] text-[#EBE9D8]' : 'bg-[#EBE9D8] text-[#25231F]'
                         }`}
                       >
                         {getDestinationIcon(dest.iconName, 'w-4 h-4')}
                       </span>
-                      <div>
+                      <div className="min-w-0">
                         <div className="flex items-center gap-2">
                           <span className={`text-[10px] font-mono-tech ${isActive ? 'text-[#CB1B29]' : 'text-[#25231F]/50'}`}>
                             0{idx + 1}
                           </span>
-                          <span className="font-serif-display text-xl font-bold">
+                          <span className="font-serif-display text-lg sm:text-xl font-bold truncate">
                             {dest.label}
                           </span>
                         </div>
-                        <p className={`text-xs ${isActive ? 'text-[#EBE9D8]/70' : 'text-[#25231F]/60'}`}>
+                        <p className={`text-xs truncate ${isActive ? 'text-[#EBE9D8]/70' : 'text-[#25231F]/60'}`}>
                           {dest.description}
                         </p>
                       </div>
                     </div>
 
-                    <ArrowUpRight className={`w-4 h-4 ${isActive ? 'text-[#CB1B29]' : 'text-[#25231F]/40'}`} />
+                    <ArrowUpRight className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#CB1B29]' : 'text-[#25231F]/40'}`} />
                   </button>
                 );
               })}
             </div>
 
-            {/* Quick Link to Registration */}
-            <div className="pt-4 border-t border-[#25231F]/15 flex items-center justify-between text-xs font-mono-tech text-[#25231F]/60">
+            {/* Quick Link to Registration — FIXED (flex-shrink-0) with safe area padding */}
+            <div
+              className="flex-shrink-0 p-4 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-between text-xs font-mono-tech text-[#25231F]/60"
+              style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}
+            >
               <span>{conferenceConfig.organizer.shortInstitute}</span>
               <button
                 onClick={() => handleSelect('registration')}

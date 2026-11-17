@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { CommitteeItem } from '../data/content';
 import { Button } from './Button';
 import { useNavigation } from '../context/NavigationContext';
@@ -93,46 +94,63 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         </div>
       </div>
 
-      {/* Expanded Modal / Dossier View */}
-      {isModalOpen && (
+      {/* Expanded Modal / Dossier View — Rendered via Portal directly into document.body */}
+      {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#25231F]/70 backdrop-blur-sm animate-in fade-in duration-200 overscroll-contain"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#25231F]/80 backdrop-blur-sm animate-in fade-in duration-200 min-h-screen min-h-[100dvh]"
+          style={{
+            paddingTop: 'calc(0.75rem + env(safe-area-inset-top, 0px))',
+            paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))',
+            paddingLeft: 'calc(0.75rem + env(safe-area-inset-left, 0px))',
+            paddingRight: 'calc(0.75rem + env(safe-area-inset-right, 0px))',
+          }}
           onClick={() => setIsModalOpen(false)}
           role="dialog"
           aria-modal="true"
           aria-labelledby={`modal-title-${committee.id}`}
         >
           <div
-            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#CB1B29] p-6 sm:p-8 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl overscroll-contain"
+            data-lenis-prevent
+            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#CB1B29] shadow-2xl flex flex-col rounded-xs overflow-hidden max-h-[calc(100vh-1.5rem)] max-h-[calc(100dvh-1.5rem)]"
+            style={{
+              maxHeight: 'calc(100dvh - 1.5rem)',
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] transition-colors cursor-pointer"
-              aria-label="Close dossier"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Dossier Header */}
-            <div className="space-y-2 border-b border-[#25231F]/15 pb-4 mb-6">
-              <div className="flex items-center gap-2 text-xs font-mono-tech text-[#CB1B29]">
+            {/* Modal Header — FIXED (flex-shrink-0), stays visible & accessible at all times */}
+            <div className="flex-shrink-0 p-5 sm:p-6 border-b border-[#25231F]/15 bg-[#F6F4EB] relative pr-14">
+              <div className="flex items-center gap-2 text-xs font-mono-tech text-[#CB1B29] mb-1">
                 <span className="font-bold px-2 py-0.5 bg-[#CB1B29]/15 border border-[#CB1B29]/30">
                   {committee.acronym}
                 </span>
                 <span>// COMMITTEE DOSSIER & MANDATE</span>
               </div>
-              <h3 id={`modal-title-${committee.id}`} className="font-serif-display text-3xl font-bold text-[#25231F]">
+              <h3 id={`modal-title-${committee.id}`} className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] leading-tight">
                 {committee.name}
               </h3>
-              <p className="text-xs font-mono-tech text-[#25231F]/70">
+              <p className="text-xs font-mono-tech text-[#25231F]/70 mt-1">
                 Classification: {committee.type} • Matrix: {committee.delegationType}
               </p>
+
+              {/* Close Button — Permanently accessible in header */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
+                aria-label="Close dossier"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Substantive Sections */}
-            <div className="space-y-6 text-sm text-[#25231F]">
+            {/* Scrollable Substantive Sections — flex-1 min-h-0 with native touch scrolling */}
+            <div
+              data-lenis-prevent
+              className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 text-sm text-[#25231F] overscroll-contain"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-y',
+              }}
+            >
               {/* Agenda Box */}
               <div className="p-4 bg-[#F6F4EB] border-l-3 border-[#CB1B29]">
                 <h4 className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] mb-1">
@@ -180,8 +198,8 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
               </div>
             </div>
 
-            {/* Bottom Actions */}
-            <div className="mt-8 pt-4 border-t border-[#25231F]/15 flex items-center justify-end gap-3">
+            {/* Modal Footer Actions — FIXED (flex-shrink-0), always visible and accessible */}
+            <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-end gap-3">
               <Button
                 variant="outline"
                 size="sm"
@@ -202,7 +220,8 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
               </Button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
