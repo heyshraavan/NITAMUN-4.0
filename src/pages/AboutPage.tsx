@@ -1,10 +1,11 @@
 import React from 'react';
-import { aboutUsContent, secretariatData } from '../data/content';
+import { aboutUsContent } from '../data/content';
 import { SectionHeading } from '../components/SectionHeading';
 import { conferenceConfig } from '../data/config';
 import { useNavigation } from '../context/NavigationContext';
 import { Button } from '../components/Button';
-import { Scale, Globe, Award, Briefcase, Users, ShieldCheck, UserCheck } from 'lucide-react';
+import { ExecutiveLeadership } from '../components/ExecutiveLeadership';
+import { Scale, Globe, Award, Briefcase, Users, ShieldCheck } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -173,56 +174,8 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        {/* 5. Executive Secretariat Board */}
-        <div>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-            <div>
-              <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block">
-                // ORGANISING BODY
-              </span>
-              <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#25231F] mt-1">
-                The Executive Secretariat
-              </h3>
-              <p className="text-sm text-[#25231F]/70 font-body mt-2">
-                The leadership entrusted with conference administration, substantive design, and delegate welfare.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {secretariatData.map((member) => (
-              <div
-                key={member.id}
-                className="p-6 bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] transition-all"
-              >
-                <div className="relative w-full aspect-[4/5] bg-[#EBE9D8] border border-[#25231F]/10 flex flex-col items-center justify-center p-6 text-center mb-6">
-                  <div className="w-16 h-16 rounded-full border border-[#25231F]/20 bg-[#F6F4EB] flex items-center justify-center mb-3 text-[#CB1B29]">
-                    <UserCheck className="w-8 h-8 stroke-[1.2]" />
-                  </div>
-                  <span className="text-[10px] font-mono-tech text-[#CB1B29] uppercase font-bold">
-                    [OFFICIAL PORTRAIT]
-                  </span>
-                  <span className="text-[9px] font-mono-tech text-[#25231F]/40 mt-1 uppercase">
-                    CONFIDENTIAL / TBA
-                  </span>
-                </div>
-
-                <div className="font-mono-tech text-xs font-bold text-[#CB1B29] uppercase mb-1">
-                  {member.role}
-                </div>
-                <div className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase mb-2">
-                  {member.department}
-                </div>
-                <h4 className="font-serif-display text-xl font-bold text-[#25231F] mb-2">
-                  {member.name}
-                </h4>
-                <p className="text-xs text-[#25231F]/75 font-body leading-relaxed">
-                  {member.message}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* 5. Executive Secretariat Leadership Showcase */}
+        <ExecutiveLeadership />
 
         {/* Bottom Navigation CTA */}
         <div className="mt-20 pt-10 border-t border-[#25231F]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
