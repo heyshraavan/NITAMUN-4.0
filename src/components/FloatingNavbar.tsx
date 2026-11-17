@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
+import { prefetchRoute } from '../lib/prefetch';
 import { Home, Info, Calendar, Users, Ticket, Mail, X, ChevronUp, ArrowUpRight } from 'lucide-react';
 
 export const FloatingNavbar: React.FC = () => {
@@ -82,6 +83,8 @@ export const FloatingNavbar: React.FC = () => {
             <button
               key={dest.id}
               onClick={() => handleSelect(dest.id)}
+              onMouseEnter={() => prefetchRoute(dest.id)}
+              onTouchStart={() => prefetchRoute(dest.id)}
               aria-label={`${dest.label} — Destination 0${idx + 1}`}
               aria-current={isActive ? 'page' : undefined}
               className={`group relative flex items-center justify-center rounded-full text-xs font-heading font-medium uppercase tracking-wider transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CB1B29] ${
@@ -209,6 +212,8 @@ export const FloatingNavbar: React.FC = () => {
                   <button
                     key={dest.id}
                     onClick={() => handleSelect(dest.id)}
+                    onMouseEnter={() => prefetchRoute(dest.id)}
+                    onTouchStart={() => prefetchRoute(dest.id)}
                     className={`w-full p-3.5 rounded-xs border text-left flex items-center justify-between transition-all cursor-pointer ${
                       isActive
                         ? 'bg-[#25231F] text-[#EBE9D8] border-[#25231F]'

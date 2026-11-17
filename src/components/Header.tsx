@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
+import { prefetchRoute } from '../lib/prefetch';
 import { Button } from './Button';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import officialEmblem from '../assets/emblem-sm.jpg';
@@ -108,6 +109,8 @@ export const Header: React.FC = () => {
                 <button
                   key={dest.id}
                   onClick={() => handleNavClick(dest.id)}
+                  onMouseEnter={() => prefetchRoute(dest.id)}
+                  onTouchStart={() => prefetchRoute(dest.id)}
                   className={`relative px-3.5 py-1 text-xs font-heading font-medium tracking-wider uppercase transition-all rounded-full cursor-pointer select-none ${
                     isActive
                       ? 'text-[#EBE9D8] bg-[#CB1B29] font-semibold shadow-xs'
@@ -132,6 +135,8 @@ export const Header: React.FC = () => {
               variant={currentDestination === 'registration' ? 'secondary' : 'primary'}
               size="sm"
               onClick={() => handleNavClick('registration')}
+              onMouseEnter={() => prefetchRoute('registration')}
+              onTouchStart={() => prefetchRoute('registration')}
               withArrow
               className="hidden sm:inline-flex"
             >
