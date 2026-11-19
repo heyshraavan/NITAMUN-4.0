@@ -20,6 +20,8 @@ import delegateAffairsWebp from '../assets/secretariat/usg-delegate-affairs.webp
 import delegateAffairsJpg from '../assets/secretariat/usg-delegate-affairs.jpg';
 import outreachWebp from '../assets/secretariat/usg-outreach.webp';
 import outreachJpg from '../assets/secretariat/usg-outreach.jpg';
+import ujeshaWebp from '../assets/secretariat/ujesha-srivastava.webp';
+import ujeshaJpg from '../assets/secretariat/ujesha-srivastava.jpg';
 
 export interface ExecutiveProfile {
   id: string;
@@ -173,11 +175,23 @@ export const underSecretaryGenerals: SecretariatMember[] = [
 ];
 
 /**
- * Future Core Members storage.
- * Core Members will automatically populate into the exact same Secretariat grid
+ * Core Members storage.
+ * Core Members populate into the exact same Secretariat grid
  * with the exact same compact card hierarchy as USGs.
  */
-export const coreMembers: SecretariatMember[] = [];
+export const coreMembers: SecretariatMember[] = [
+  {
+    id: 'core-ujesha-srivastava',
+    designation: 'Core Member',
+    name: 'Ujesha Srivastava',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/ujesha-srivastava-4ab004239/',
+    imageWebp: ujeshaWebp,
+    imageJpg: ujeshaJpg,
+    objectPosition: 'center 20%',
+    category: 'Core Member',
+  },
+];
 
 /**
  * Unified Secretariat roster: USGs and Core Members as peers.

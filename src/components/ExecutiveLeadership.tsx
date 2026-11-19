@@ -150,7 +150,7 @@ export const ExecutiveLeadership: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-6 pb-5 border-b border-[#25231F]/15">
           <div className="max-w-3xl">
             <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block mb-2">
-              // ORGANISING TEAM &amp; DEPARTMENTAL LEADS
+              // ORGANISING TEAM &amp; SECRETARIAT CORPS
             </span>
             <h3 className="font-serif-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#25231F] tracking-tight">
               The Secretariat
