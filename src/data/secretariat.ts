@@ -22,6 +22,8 @@ import outreachWebp from '../assets/secretariat/usg-outreach.webp';
 import outreachJpg from '../assets/secretariat/usg-outreach.jpg';
 import ujeshaWebp from '../assets/secretariat/ujesha-srivastava.webp';
 import ujeshaJpg from '../assets/secretariat/ujesha-srivastava.jpg';
+import nyasaWebp from '../assets/secretariat/nyasa-jha.webp';
+import nyasaJpg from '../assets/secretariat/nyasa-jha.jpg';
 
 export interface ExecutiveProfile {
   id: string;
@@ -111,7 +113,7 @@ export const underSecretaryGenerals: SecretariatMember[] = [
     designation: 'USG Finance',
     name: 'Piyush Raj',
     department: 'Finance & Treasury',
-    linkedInUrl: undefined, // Not provided
+    linkedInUrl: 'https://www.linkedin.com/in/piyush-raj-b282bb304/',
     imageWebp: piyushWebp,
     imageJpg: piyushJpg,
     objectPosition: 'center top',
@@ -188,6 +190,17 @@ export const coreMembers: SecretariatMember[] = [
     linkedInUrl: 'https://www.linkedin.com/in/ujesha-srivastava-4ab004239/',
     imageWebp: ujeshaWebp,
     imageJpg: ujeshaJpg,
+    objectPosition: 'center 20%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-nyasa-jha',
+    designation: 'Core Member',
+    name: 'Nyasa Jha',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/nyasa-jha-2b200242a/',
+    imageWebp: nyasaWebp,
+    imageJpg: nyasaJpg,
     objectPosition: 'center 20%',
     category: 'Core Member',
   },
