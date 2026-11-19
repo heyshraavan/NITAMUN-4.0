@@ -32,13 +32,21 @@ export const prefetchAllRoutesIdle = (): void => {
   };
 
   if (typeof window !== 'undefined') {
-    if ('requestIdleCallback' in window) {
-      (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
-        prefetchRemaining,
-        { timeout: 3500 }
-      );
+    const schedule = () => {
+      if ('requestIdleCallback' in window) {
+        (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+          prefetchRemaining,
+          { timeout: 8000 }
+        );
+      } else {
+        setTimeout(prefetchRemaining, 6000);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      setTimeout(schedule, 2000);
     } else {
-      setTimeout(prefetchRemaining, 2500);
+      window.addEventListener('load', () => setTimeout(schedule, 2000), { once: true });
     }
   }
 };

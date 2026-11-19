@@ -28,7 +28,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
     <div
       className={cn(
         'mb-12 md:mb-16',
-        align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-4xl',
+        align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-5xl',
         className
       )}
     >
@@ -60,13 +60,13 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       {/* Main Editorial Heading */}
       <h2
         className={cn(
-          'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif-display font-normal tracking-tight leading-[1.08]',
+          'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif-display font-normal tracking-tight leading-[1.12]',
           isDark ? 'text-[#EBE9D8]' : 'text-[#25231F]'
         )}
       >
-        {title}
+        <span>{title}</span>
         {titleAccent && (
-          <span className="text-[#CB1B29] italic font-editorial ml-2.5">
+          <span className="block text-[#CB1B29] italic font-editorial mt-1 sm:mt-1.5">
             {titleAccent}
           </span>
         )}

@@ -41,15 +41,42 @@
     <link rel="preload" as="image" href="%BASE_URL%emblem-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 640px)">
     <link rel="preload" as="image" href="%BASE_URL%emblem.webp" type="image/webp" fetchpriority="high" media="(min-width: 641px)">
 
-    <!-- Google Fonts with preconnect & display=swap -->
+    <!-- Google Fonts with preconnect & non-render-blocking delivery -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexmono/v23/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2" as="font" type="font/woff2" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7M.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-iNM8.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexmono/v23/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    </noscript>
   </head>
   <body class="bg-[#EBE9D8] text-[#25231F] antialiased selection:bg-[#CB1B29] selection:text-[#EBE9D8] overflow-x-hidden">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Above-the-fold Critical Hero Shell for Instant FCP & LCP (< 2.0s) -->
+      <div class="relative min-h-[100svh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 bg-[#EBE9D8] overflow-hidden">
+        <div class="relative z-10 my-auto py-6 sm:py-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-center">
+          <div class="official-emblem relative w-[270px] h-[270px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] lg:w-[410px] lg:h-[410px] xl:w-[450px] xl:h-[450px] rounded-full overflow-hidden shadow-2xl shadow-[#25231F]/40 bg-[#700F2B] border-2 border-[#EBE9D8]/50">
+            <picture class="w-full h-full block">
+              <source media="(max-width: 640px)" srcset="%BASE_URL%emblem-mobile.webp" type="image/webp" />
+              <source srcset="%BASE_URL%emblem.webp" type="image/webp" />
+              <img
+                src="%BASE_URL%emblem.jpg"
+                alt="NITAMUN 4.0 Official Emblem"
+                width="450"
+                height="450"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover select-none pointer-events-none"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

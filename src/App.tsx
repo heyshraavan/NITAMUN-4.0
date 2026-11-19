@@ -23,7 +23,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ defa
  */
 const DestinationFallback: React.FC = () => (
   <div
-    className="w-full min-h-[70vh] pt-32 sm:pt-40 pb-24 flex items-center justify-center bg-[#EBE9D8]"
+    className="w-full min-h-screen min-h-[100dvh] pt-32 sm:pt-40 pb-24 flex items-center justify-center bg-[#EBE9D8]"
     aria-busy="true"
     aria-live="polite"
   >
@@ -41,39 +41,54 @@ const DestinationRenderer: React.FC = () => {
 
   switch (currentDestination) {
     case 'home':
-      return <HomePage />;
+      return (
+        <>
+          <HomePage />
+          <Footer />
+        </>
+      );
     case 'about':
       return (
         <Suspense fallback={<DestinationFallback />}>
           <AboutPage />
+          <Footer />
         </Suspense>
       );
     case 'events':
       return (
         <Suspense fallback={<DestinationFallback />}>
           <EventsPage />
+          <Footer />
         </Suspense>
       );
     case 'committees':
       return (
         <Suspense fallback={<DestinationFallback />}>
           <CommitteesPage />
+          <Footer />
         </Suspense>
       );
     case 'registration':
       return (
         <Suspense fallback={<DestinationFallback />}>
           <RegistrationPage />
+          <Footer />
         </Suspense>
       );
     case 'contact':
       return (
         <Suspense fallback={<DestinationFallback />}>
           <ContactPage />
+          <Footer />
         </Suspense>
       );
     default:
-      return <HomePage />;
+      return (
+        <>
+          <HomePage />
+          <Footer />
+        </>
+      );
   }
 };
 
@@ -101,9 +116,6 @@ const MainLayout: React.FC = () => {
 
       {/* Global Floating Pill Navigation (Accommodating all 6 destinations) */}
       <FloatingNavbar />
-
-      {/* Global Conference Footer (Dark, with 6 destination links) */}
-      <Footer />
     </div>
   );
 };
