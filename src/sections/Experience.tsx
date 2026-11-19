@@ -26,6 +26,9 @@ export const Experience: React.FC = () => {
         return Math.max(0, trackRef.current.scrollWidth - window.innerWidth);
       };
 
+      // Settling dwell distance so the final stage (Stage 5) remains fully visible and legible before unpinning
+      const getDwellDistance = () => Math.min(window.innerHeight * 0.45, 420);
+
       const pinTween = gsap.to(trackRef.current, {
         x: () => -getScrollDistance(),
         ease: 'none',
@@ -34,7 +37,7 @@ export const Experience: React.FC = () => {
           pin: true,
           scrub: 1,
           start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
+          end: () => `+=${getScrollDistance() + getDwellDistance()}`,
           invalidateOnRefresh: true,
         },
       });
@@ -68,7 +71,7 @@ export const Experience: React.FC = () => {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative bg-[#25231F] text-[#EBE9D8] pt-24 pb-32 sm:pt-28 sm:pb-36 lg:pt-28 lg:pb-28 lg:h-screen lg:min-h-[700px] flex flex-col justify-start overflow-hidden border-b border-[#EBE9D8]/15"
+      className="relative bg-[#25231F] text-[#EBE9D8] pt-20 pb-28 sm:pt-24 sm:pb-32 lg:pt-12 lg:pb-12 xl:pt-14 xl:pb-14 lg:h-screen lg:min-h-[720px] flex flex-col justify-center overflow-hidden border-b border-[#EBE9D8]/15"
     >
       {/* Background Watermark */}
       <div 
@@ -80,7 +83,7 @@ export const Experience: React.FC = () => {
       />
 
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-4 lg:mb-6 shrink-0">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-4 lg:mb-5 shrink-0">
         <SectionHeading
           sectionNumber="03"
           eyebrow="THE DIPLOMATIC JOURNEY"
@@ -88,11 +91,11 @@ export const Experience: React.FC = () => {
           titleAccent="An Editorial Arc"
           subtitle="From solitary archival research to high-stakes multilateral consensus: trace the transformative arc of a NITAMUN delegate."
           variant="dark"
-          className="!mb-0 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl [&_p]:text-xs [&_p]:sm:text-sm [&_p]:!mt-2 [&>div.my-4]:!my-2"
+          className="!mb-0 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl [&_p]:text-xs [&_p]:sm:text-sm [&_p]:!mt-1.5 [&>div.my-4]:!my-1.5"
         />
 
         {/* Scroll narrative tip on desktop */}
-        <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono-tech text-[#CB1B29] tracking-wider uppercase mt-2">
+        <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono-tech text-[#CB1B29] tracking-wider uppercase mt-1.5">
           <span>// SCROLL DOWN TO TRAVERSE THE DIPLOMATIC CHRONOLOGY</span>
           <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
         </div>
@@ -107,7 +110,7 @@ export const Experience: React.FC = () => {
           {experienceStages.map((stage) => (
             <div
               key={stage.step}
-              className="w-full max-w-2xl mx-auto lg:max-w-none lg:w-[540px] xl:w-[580px] h-auto lg:h-[385px] shrink-0 bg-[#2D2A26] border border-[#EBE9D8]/20 p-6 sm:p-7 relative flex flex-col justify-between group hover:border-[#CB1B29] transition-colors rounded-xs shadow-xl"
+              className="w-full max-w-2xl mx-auto lg:max-w-none lg:w-[520px] xl:w-[560px] h-auto lg:h-[390px] xl:h-[400px] shrink-0 bg-[#2D2A26] border border-[#EBE9D8]/20 p-5 sm:p-6 lg:p-6 relative flex flex-col justify-between group hover:border-[#CB1B29] transition-colors rounded-xs shadow-xl"
             >
               {/* Huge Stage Number Watermark */}
               <div className="absolute top-2 right-4 font-serif-display text-7xl sm:text-8xl font-bold text-[#EBE9D8]/5 select-none pointer-events-none group-hover:text-[#CB1B29]/10 transition-colors">
@@ -116,16 +119,16 @@ export const Experience: React.FC = () => {
 
               <div>
                 {/* Header: Stage Step & Icon */}
-                <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#EBE9D8]/10">
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-xs border border-[#EBE9D8]/20 flex items-center justify-center bg-[#25231F] shrink-0">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#EBE9D8]/10">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-xs border border-[#EBE9D8]/20 flex items-center justify-center bg-[#25231F] shrink-0">
                       {getStageIcon(stage.iconName)}
                     </span>
                     <div>
                       <span className="text-[11px] font-mono-tech uppercase tracking-widest text-[#CB1B29] block font-semibold">
                         STAGE {stage.step} OF 05
                       </span>
-                      <span className="text-[11px] font-mono-tech text-[#EBE9D8]/60 uppercase">
+                      <span className="text-[10px] font-mono-tech text-[#EBE9D8]/60 uppercase">
                         {stage.subtitle}
                       </span>
                     </div>
@@ -137,23 +140,23 @@ export const Experience: React.FC = () => {
                 </div>
 
                 {/* Stage Title */}
-                <h3 className="font-serif-display text-2xl lg:text-3xl font-bold text-[#EBE9D8] leading-tight mb-2.5">
+                <h3 className="font-serif-display text-2xl lg:text-3xl font-bold text-[#EBE9D8] leading-tight mb-2">
                   {stage.title}
                 </h3>
 
                 {/* Narrative Description */}
-                <p className="text-xs sm:text-sm text-[#EBE9D8]/80 font-body leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-[#EBE9D8]/80 font-body leading-relaxed mb-3 line-clamp-3 lg:line-clamp-none">
                   {stage.description}
                 </p>
 
                 {/* Sovereign Quote */}
-                <div className="p-3 bg-[#25231F] border-l-2 border-[#CB1B29] text-xs font-serif-display italic text-[#EBE9D8]/90 mb-4">
+                <div className="p-2.5 bg-[#25231F] border-l-2 border-[#CB1B29] text-xs font-serif-display italic text-[#EBE9D8]/90 mb-2">
                   "{stage.quote}"
                 </div>
               </div>
 
               {/* Bottom Diplomatic Focus */}
-              <div className="pt-3 border-t border-[#EBE9D8]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs font-mono-tech">
+              <div className="pt-2.5 border-t border-[#EBE9D8]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs font-mono-tech">
                 <div className="text-[#EBE9D8]/70 text-[11px]">
                   <span className="text-[#CB1B29] font-bold">FOCUS:</span> {stage.diplomaticFocus}
                 </div>

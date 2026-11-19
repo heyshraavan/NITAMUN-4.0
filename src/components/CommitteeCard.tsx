@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { CommitteeItem } from '../data/content';
 import { Button } from './Button';
+import { CommitteeInsignia } from './CommitteeInsignia';
 import { useNavigation } from '../context/NavigationContext';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
-import { ArrowUpRight, BookOpen, FileText, CheckCircle2, X } from 'lucide-react';
+import { ArrowUpRight, BookOpen, FileText, CheckCircle2, X, Shield } from 'lucide-react';
 
 export interface CommitteeCardProps {
   committee: CommitteeItem;
@@ -39,20 +40,28 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
 
   return (
     <>
-      <div className="group relative bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] p-6 sm:p-8 flex flex-col justify-between transition-all duration-400 hover:shadow-lg hover:-translate-y-1">
-        {/* Background diplomatic watermark */}
-        <div className="absolute top-4 right-4 text-6xl font-serif-display font-bold text-[#25231F]/5 group-hover:text-[#CB1B29]/10 transition-colors pointer-events-none select-none">
+      <div className="group relative bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] p-6 sm:p-8 flex flex-col justify-between transition-all duration-400 hover:shadow-xl hover:-translate-y-1.5 rounded-xs overflow-hidden">
+        {/* Subtle top crimson hairline accent expanding on hover */}
+        <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#CB1B29] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+        {/* Oversized Translucent Committee Insignia Watermark */}
+        <div className="absolute -bottom-10 -right-10 w-56 h-56 text-[#25231F]/5 group-hover:text-[#CB1B29]/15 group-hover:scale-108 group-hover:rotate-2 transition-all duration-500 pointer-events-none select-none">
+          <CommitteeInsignia id={committee.id} size="100%" />
+        </div>
+
+        {/* Background Numeric Index */}
+        <div className="absolute top-4 right-6 text-5xl font-serif-display font-bold text-[#25231F]/5 group-hover:text-[#CB1B29]/10 transition-colors pointer-events-none select-none">
           0{index + 1}
         </div>
 
-        <div>
-          {/* Top Row: Acronym & Council Type */}
+        <div className="relative z-10">
+          {/* Top Row: Acronym Badge & Council Type */}
           <div className="flex items-center justify-between gap-2 mb-4">
-            <span className="font-mono-tech text-xs text-[#CB1B29] font-bold px-2 py-0.5 bg-[#CB1B29]/10 border border-[#CB1B29]/20 uppercase">
+            <span className="font-mono-tech text-xs text-[#CB1B29] font-bold px-2.5 py-0.5 bg-[#CB1B29]/10 border border-[#CB1B29]/25 uppercase tracking-wide">
               {committee.acronym}
             </span>
-            <span className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase text-right">
-              {committee.type.split('/')[0]}
+            <span className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase text-right font-medium">
+              {committee.type.split('/')[0].trim()}
             </span>
           </div>
 
@@ -62,12 +71,12 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
           </h3>
 
           {/* Agenda Placeholder Box */}
-          <div className="my-4 p-3 bg-[#EBE9D8]/70 border-l-2 border-[#CB1B29] text-xs">
-            <div className="font-mono-tech text-[10px] text-[#CB1B29] font-semibold tracking-wider uppercase mb-1 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29]" />
-              Agenda Deliberation // [STATUS: {committee.agenda.status}]
+          <div className="my-4 p-3.5 bg-[#EBE9D8]/80 border-l-3 border-[#CB1B29] text-xs shadow-2xs">
+            <div className="font-mono-tech text-[10px] text-[#CB1B29] font-bold tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
+              <span>Agenda Item // [STATUS: {committee.agenda.status}]</span>
             </div>
-            <p className="font-mono-tech text-[#25231F]/80 text-[11px] leading-relaxed">
+            <p className="font-mono-tech text-[#25231F]/85 text-[11px] leading-relaxed font-medium">
               {committee.agenda.title}
             </p>
           </div>
@@ -79,22 +88,22 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         </div>
 
         {/* Bottom Actions: Delegation format & Explore CTA */}
-        <div className="pt-4 border-t border-[#25231F]/10 flex items-center justify-between gap-3">
-          <div className="text-[11px] font-mono-tech text-[#25231F]/60">
+        <div className="relative z-10 pt-4 border-t border-[#25231F]/10 flex items-center justify-between gap-3">
+          <div className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase tracking-wide">
             {committee.delegationType}
           </div>
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold text-[#CB1B29] hover:underline uppercase tracking-wider cursor-pointer group-hover:translate-x-0.5 transition-transform"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-[#25231F] hover:bg-[#CB1B29] text-[#EBE9D8] text-xs font-heading font-semibold uppercase tracking-wider transition-colors cursor-pointer group/btn"
           >
-            Explore Council
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span>Explore Council</span>
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
           </button>
         </div>
       </div>
 
-      {/* Expanded Modal / Dossier View — Rendered via Portal directly into document.body */}
+      {/* Expanded Modal / Diplomatic Dossier View — Rendered via Portal directly into document.body */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#25231F]/80 backdrop-blur-sm animate-in fade-in duration-200 min-h-screen min-h-[100dvh]"
@@ -111,113 +120,151 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         >
           <div
             data-lenis-prevent
-            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#CB1B29] shadow-2xl flex flex-col rounded-xs overflow-hidden max-h-[calc(100vh-1.5rem)] max-h-[calc(100dvh-1.5rem)]"
+            className="relative w-full max-w-2xl bg-[#EBE9D8] border-2 border-[#25231F]/30 shadow-2xl flex flex-col rounded-xs overflow-hidden max-h-[calc(100vh-1.5rem)] max-h-[calc(100dvh-1.5rem)]"
             style={{
               maxHeight: 'calc(100dvh - 1.5rem)',
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Archival Security Header Banner */}
+            <div className="flex-shrink-0 px-4 sm:px-6 py-1.5 bg-[#25231F] text-[#EBE9D8] text-[10px] font-mono-tech tracking-widest uppercase flex items-center justify-between border-b border-[#CB1B29]/40">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29]" />
+                OFFICIAL COMMITTEE DOSSIER // DECLASSIFIED
+              </span>
+              <span className="text-[#CB1B29] font-bold">REF: NITAMUN-4.0/{committee.acronym}</span>
+            </div>
+
             {/* Modal Header — FIXED (flex-shrink-0), stays visible & accessible at all times */}
-            <div className="flex-shrink-0 p-5 sm:p-6 border-b border-[#25231F]/15 bg-[#F6F4EB] relative pr-14">
-              <div className="flex items-center gap-2 text-xs font-mono-tech text-[#CB1B29] mb-1">
-                <span className="font-bold px-2 py-0.5 bg-[#CB1B29]/15 border border-[#CB1B29]/30">
-                  {committee.acronym}
-                </span>
-                <span>// COMMITTEE DOSSIER & MANDATE</span>
+            <div className="flex-shrink-0 p-5 sm:p-6 border-b border-[#25231F]/15 bg-[#F6F4EB] relative flex items-start gap-4 pr-14 sm:pr-16">
+              {/* Committee Insignia Crest Seal */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xs border border-[#CB1B29]/30 bg-[#EBE9D8] p-1.5 flex items-center justify-center text-[#CB1B29] shrink-0 shadow-xs">
+                <CommitteeInsignia id={committee.id} size="100%" />
               </div>
-              <h3 id={`modal-title-${committee.id}`} className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] leading-tight">
-                {committee.name}
-              </h3>
-              <p className="text-xs font-mono-tech text-[#25231F]/70 mt-1">
-                Classification: {committee.type} • Matrix: {committee.delegationType}
-              </p>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono-tech text-[#CB1B29] mb-1">
+                  <span className="font-bold px-2 py-0.5 bg-[#CB1B29] text-[#EBE9D8] rounded-2xs">
+                    {committee.acronym}
+                  </span>
+                  <span className="text-[#25231F]/60 text-[10px] sm:text-[11px] uppercase tracking-wider">
+                    // {committee.type}
+                  </span>
+                </div>
+                <h3 id={`modal-title-${committee.id}`} className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] leading-tight">
+                  {committee.name}
+                </h3>
+                <p className="text-xs font-mono-tech text-[#25231F]/70 mt-1">
+                  Matrix: {committee.delegationType}
+                </p>
+              </div>
 
               {/* Close Button — Permanently accessible in header */}
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#EBE9D8] hover:bg-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
                 aria-label="Close dossier"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Scrollable Substantive Sections — flex-1 min-h-0 with native touch scrolling */}
+            {/* Scrollable Substantive Dossier Sections — flex-1 min-h-0 with native touch scrolling */}
             <div
               data-lenis-prevent
-              className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 text-sm text-[#25231F] overscroll-contain"
+              className="relative flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 text-sm text-[#25231F] overscroll-contain bg-[#EBE9D8]"
               style={{
                 WebkitOverflowScrolling: 'touch',
                 touchAction: 'pan-y',
               }}
             >
-              {/* Agenda Box */}
-              <div className="p-4 bg-[#F6F4EB] border-l-3 border-[#CB1B29]">
-                <h4 className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] mb-1">
-                  Official Committee Agenda [PLACEHOLDER]
-                </h4>
-                <p className="font-mono-tech text-xs text-[#25231F] font-medium leading-relaxed">
+              {/* Background Watermark Insignia inside Dossier */}
+              <div className="absolute right-4 bottom-6 w-72 h-72 text-[#25231F]/4 pointer-events-none select-none">
+                <CommitteeInsignia id={committee.id} size="100%" />
+              </div>
+
+              {/* Section 1: Agenda Box */}
+              <div className="relative z-10 p-4 sm:p-5 bg-[#F6F4EB] border-l-4 border-[#CB1B29] shadow-xs">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <h4 className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] tracking-wider flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#CB1B29]" />
+                    Official Committee Agenda
+                  </h4>
+                  <span className="text-[10px] font-mono-tech uppercase px-2 py-0.5 rounded-2xs bg-[#CB1B29]/10 text-[#CB1B29] font-bold border border-[#CB1B29]/25">
+                    {committee.agenda.status}
+                  </span>
+                </div>
+                <p className="font-mono-tech text-xs sm:text-sm text-[#25231F] font-semibold leading-relaxed">
                   {committee.agenda.title}
                 </p>
-                <p className="text-xs text-[#25231F]/70 mt-2 font-body italic">
+                <p className="text-xs text-[#25231F]/75 mt-2.5 font-body leading-relaxed border-t border-[#25231F]/10 pt-2">
                   {committee.agenda.description}
                 </p>
               </div>
 
-              {/* Mandate & Legal Framework */}
-              <div>
+              {/* Section 2: Mandate & Legal Framework */}
+              <div className="relative z-10">
                 <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 mb-2 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-[#CB1B29]" />
                   Charter & Legal Mandate
                 </h4>
-                <p className="text-sm font-body text-[#25231F]/80 leading-relaxed bg-[#F6F4EB] p-3 border border-[#25231F]/10">
+                <div className="text-sm font-body text-[#25231F]/85 leading-relaxed bg-[#F6F4EB] p-4 border border-[#25231F]/10 shadow-2xs">
                   {committee.mandate}
-                </p>
+                </div>
               </div>
 
-              {/* Expected Outcomes */}
-              <div>
-                <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 mb-2 flex items-center gap-2">
+              {/* Section 3: Expected Outcomes & Simulated Instruments */}
+              <div className="relative z-10">
+                <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 mb-2.5 flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[#CB1B29]" />
-                  Simulated Instruments & Outcomes
+                  Simulated Instruments & Binding Outcomes
                 </h4>
-                <ul className="space-y-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {committee.expectedOutcomes.map((outcome, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs font-mono-tech text-[#25231F]/85">
+                    <div key={idx} className="flex items-start gap-2 text-xs font-mono-tech text-[#25231F]/90 bg-[#F6F4EB] p-2.5 border border-[#25231F]/10">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#CB1B29] shrink-0 mt-0.5" />
                       <span>{outcome}</span>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              {/* Background Guide Notice */}
-              <div className="p-3 bg-[#CB1B29]/8 border border-[#CB1B29]/30 flex items-center justify-between text-xs font-mono-tech">
-                <span className="text-[#CB1B29]">Background Guide:</span>
-                <span className="font-bold text-[#25231F]">{committee.backgroundGuideStatus} (To be uploaded by Substantive Board)</span>
+              {/* Section 4: Background Guide & Preparation Notice */}
+              <div className="relative z-10 p-3.5 bg-[#CB1B29]/8 border border-[#CB1B29]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono-tech">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-[#CB1B29] shrink-0" />
+                  <span className="text-[#CB1B29] font-bold">Substantive Guide:</span>
+                  <span className="text-[#25231F]/80">{committee.backgroundGuideStatus} (Releasing prior to accreditation)</span>
+                </div>
+                <span className="text-[10px] uppercase tracking-wider text-[#25231F]/50">SEC-ID: {committee.id.toUpperCase()}</span>
               </div>
             </div>
 
             {/* Modal Footer Actions — FIXED (flex-shrink-0), always visible and accessible */}
-            <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-end gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Close Dossier
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => {
-                  setIsModalOpen(false);
-                  navigateTo('registration');
-                }}
-                withArrow
-              >
-                Apply for {committee.acronym}
-              </Button>
+            <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-between gap-3">
+              <div className="hidden sm:block text-xs font-mono-tech text-[#25231F]/60">
+                // ACCREDITATION PROTOCOL
+              </div>
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Close Dossier
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    navigateTo('registration');
+                  }}
+                  withArrow
+                >
+                  Apply for {committee.acronym}
+                </Button>
+              </div>
             </div>
           </div>
         </div>,

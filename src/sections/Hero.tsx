@@ -160,7 +160,7 @@ export const Hero: React.FC = () => {
         <div className="flex items-center gap-4 text-[11px] uppercase tracking-wider text-[#25231F]/60">
           <div className="hidden md:flex items-center gap-1.5">
             <Globe2 className="w-3.5 h-3.5 text-[#CB1B29]" />
-            <span>GLOBAL ONLINE DIPLOMATIC FORUM</span>
+            <span className="font-semibold text-[#25231F]/80">INDIA'S LARGEST ONLINE MUN</span>
           </div>
           <span className="font-semibold text-[#25231F] px-2 py-0.5 bg-[#F6F4EB] border border-[#25231F]/15">
             {conferenceConfig.dates.displayDate}
@@ -179,10 +179,17 @@ export const Hero: React.FC = () => {
             ref={leftColRef}
             className="lg:col-span-7 xl:col-span-7 text-left space-y-5 sm:space-y-6 order-2 lg:order-1 will-change-transform"
           >
-            {/* Conference Format Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xs bg-[#F6F4EB]/95 border border-[#25231F]/20 backdrop-blur-sm text-xs font-mono-tech tracking-widest uppercase text-[#25231F] shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#CB1B29]" />
-              <span>FLAGSHIP ONLINE MODEL UNITED NATIONS CONFERENCE</span>
+            {/* National Positioning & Format Badge */}
+            <div className="inline-flex flex-wrap items-center gap-2 sm:gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xs bg-[#CB1B29]/10 border border-[#CB1B29]/30 text-xs font-mono-tech tracking-widest uppercase text-[#CB1B29] font-bold shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
+                <span>INDIA'S LARGEST ONLINE MUN</span>
+              </div>
+              <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#25231F]/30" />
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xs bg-[#F6F4EB]/95 border border-[#25231F]/20 backdrop-blur-sm text-[11px] font-mono-tech tracking-wider uppercase text-[#25231F]/85">
+                <Sparkles className="w-3.5 h-3.5 text-[#CB1B29]" />
+                <span>4th Flagship Edition</span>
+              </div>
             </div>
 
             {/* Large Editorial Heading */}

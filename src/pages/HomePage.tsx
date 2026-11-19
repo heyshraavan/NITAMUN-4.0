@@ -5,6 +5,7 @@ import { committeesData, statisticsData } from '../data/content';
 import { conferenceConfig } from '../data/config';
 import { useNavigation } from '../context/NavigationContext';
 import { Button } from '../components/Button';
+import { CommitteeInsignia } from '../components/CommitteeInsignia';
 import { ArrowRight, Compass, Calendar, Users, Sparkles } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -19,7 +20,7 @@ export const HomePage: React.FC = () => {
       <Experience />
 
       {/* 3. Conference Highlights & Quick Gateways Section */}
-      <section className="relative py-20 sm:py-28 bg-[#EBE9D8] border-b border-[#25231F]/15">
+      <section className="relative pt-12 sm:pt-16 pb-20 sm:pb-28 bg-[#EBE9D8] border-b border-[#25231F]/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Eyebrow & Editorial Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -145,24 +146,52 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {committeesData.map((c) => (
+              {committeesData.map((c, idx) => (
                 <div
                   key={c.id}
                   onClick={() => navigateTo('committees')}
-                  className="p-6 bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] transition-all cursor-pointer group hover:-translate-y-1"
+                  className="relative p-6 sm:p-7 bg-[#F6F4EB] border border-[#25231F]/15 hover:border-[#CB1B29] transition-all duration-300 cursor-pointer group hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between overflow-hidden rounded-xs"
                 >
-                  <span className="font-mono-tech text-xs text-[#CB1B29] font-bold px-2 py-0.5 bg-[#CB1B29]/10">
-                    {c.acronym}
-                  </span>
-                  <h4 className="font-serif-display text-xl font-bold text-[#25231F] group-hover:text-[#CB1B29] transition-colors mt-3 mb-2">
-                    {c.name}
-                  </h4>
-                  <p className="text-xs text-[#25231F]/70 font-body line-clamp-3 mb-4">
-                    {c.overview}
-                  </p>
-                  <span className="text-[11px] font-mono-tech text-[#CB1B29] group-hover:underline flex items-center gap-1">
-                    Examine Agenda →
-                  </span>
+                  {/* Subtle top crimson hairline accent expanding on hover */}
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#CB1B29] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                  {/* Oversized Translucent Committee Insignia Watermark */}
+                  <div className="absolute -bottom-8 -right-8 w-44 h-44 text-[#25231F]/6 group-hover:text-[#CB1B29]/15 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 pointer-events-none select-none">
+                    <CommitteeInsignia id={c.id} size="100%" />
+                  </div>
+
+                  <div className="relative z-10">
+                    {/* Top Row: Acronym Badge & Council Type */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="font-mono-tech text-xs text-[#CB1B29] font-bold px-2 py-0.5 bg-[#CB1B29]/10 border border-[#CB1B29]/25 uppercase tracking-wide">
+                        {c.acronym}
+                      </span>
+                      <span className="text-[10px] font-mono-tech text-[#25231F]/50 uppercase tracking-wider font-semibold">
+                        0{idx + 1} // {c.type.split('/')[0].trim()}
+                      </span>
+                    </div>
+
+                    {/* Committee Title */}
+                    <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#25231F] group-hover:text-[#CB1B29] transition-colors leading-snug mb-3">
+                      {c.name}
+                    </h4>
+
+                    {/* Concise Overview */}
+                    <p className="text-xs text-[#25231F]/75 font-body line-clamp-3 leading-relaxed mb-4">
+                      {c.overview}
+                    </p>
+                  </div>
+
+                  {/* Bottom Interactive Link with Animated Arrow */}
+                  <div className="relative z-10 pt-3 border-t border-[#25231F]/10 flex items-center justify-between">
+                    <span className="text-[11px] font-mono-tech font-bold text-[#CB1B29] uppercase tracking-wider flex items-center gap-1.5 group-hover:underline">
+                      <span>Examine Agenda</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                    <span className="text-[10px] font-mono-tech text-[#25231F]/40 uppercase">
+                      DETAILS
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
