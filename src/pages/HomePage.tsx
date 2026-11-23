@@ -6,7 +6,7 @@ import { conferenceConfig } from '../data/config';
 import { useNavigation } from '../context/NavigationContext';
 import { Button } from '../components/Button';
 import { CommitteeInsignia } from '../components/CommitteeInsignia';
-import { ArrowRight, Compass, Calendar, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, Compass, Calendar, Users } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -26,13 +26,13 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
               <div className="flex items-center gap-2 text-xs font-mono-tech text-[#CB1B29] tracking-widest uppercase mb-2">
-                <span>[ 01 // OVERVIEW & DESTINATIONS ]</span>
+                <span>CONFERENCE OVERVIEW</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-serif-display font-bold text-[#25231F] leading-tight">
-                Diplomatic Highlights & Portals
+                Conference Highlights
               </h2>
               <p className="text-base sm:text-lg text-[#25231F]/75 font-body max-w-2xl mt-3">
-                Explore the primary destinations of NITAMUN 4.0. From the official editorial events and committee dossiers to registration details and secretariat helplines.
+                Explore NITAMUN 4.0: from committees and event dates to registration details and the organising secretariat.
               </p>
             </div>
 
@@ -57,7 +57,7 @@ export const HomePage: React.FC = () => {
                   <Compass className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold block mb-1">
-                  DESTINATION 02
+                  ABOUT US
                 </span>
                 <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] mb-3">
                   About NITAMUN & MUNSOC
@@ -82,7 +82,7 @@ export const HomePage: React.FC = () => {
                   <Calendar className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold block mb-1">
-                  DESTINATION 03
+                  SCHEDULE & FEES
                 </span>
                 <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] mb-3">
                   Important Dates & Fees
@@ -107,7 +107,7 @@ export const HomePage: React.FC = () => {
                   <Users className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold block mb-1">
-                  DESTINATION 04
+                  COMMITTEES
                 </span>
                 <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] mb-3">
                   The 4 Simulation Councils
@@ -131,10 +131,10 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold">
-                  SIMULATION COUNCILS // 04 DAIS
+                  SIMULATION COUNCILS
                 </span>
                 <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
-                  Four Theatres of Statecraft
+                  Four Simulation Councils
                 </h3>
               </div>
               <button
@@ -146,7 +146,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {committeesData.map((c, idx) => (
+              {committeesData.map((c) => (
                 <div
                   key={c.id}
                   onClick={() => navigateTo('committees')}
@@ -167,7 +167,7 @@ export const HomePage: React.FC = () => {
                         {c.acronym}
                       </span>
                       <span className="text-[10px] font-mono-tech text-[#25231F]/50 uppercase tracking-wider font-semibold">
-                        0{idx + 1} // {c.type.split('/')[0].trim()}
+                        {c.type.split('/')[0].trim()}
                       </span>
                     </div>
 
@@ -185,11 +185,8 @@ export const HomePage: React.FC = () => {
                   {/* Bottom Interactive Link with Animated Arrow */}
                   <div className="relative z-10 pt-3 border-t border-[#25231F]/10 flex items-center justify-between">
                     <span className="text-[11px] font-mono-tech font-bold text-[#CB1B29] uppercase tracking-wider flex items-center gap-1.5 group-hover:underline">
-                      <span>Examine Agenda</span>
+                      <span>View Committee</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                    <span className="text-[10px] font-mono-tech text-[#25231F]/40 uppercase">
-                      DETAILS
                     </span>
                   </div>
                 </div>
@@ -222,8 +219,7 @@ export const HomePage: React.FC = () => {
       <section className="relative py-24 sm:py-32 bg-[#25231F] text-[#EBE9D8] overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xs bg-[#CB1B29]/20 border border-[#CB1B29]/40 text-xs font-mono-tech text-[#CB1B29] uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>JOIN THE FOURTH EDITION // ONLINE</span>
+            <span>JOIN THE FOURTH EDITION • ONLINE</span>
           </div>
 
           <h2 className="font-serif-display text-4xl sm:text-6xl font-bold text-[#EBE9D8]">

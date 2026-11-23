@@ -2,19 +2,19 @@ import React from 'react';
 import { conferenceConfig } from '../data/config';
 import { useNavigation } from '../context/NavigationContext';
 import { Button } from '../components/Button';
-import { Calendar, Globe2, Award, Users, Sparkles } from 'lucide-react';
+import { Calendar, Globe2, Award, Users, CreditCard } from 'lucide-react';
 
 export const EventsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
 
   return (
     <div className="w-full pt-28 sm:pt-36 pb-32 bg-[#EBE9D8] text-[#25231F] min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Page Header: Editorial Serif Heading */}
         <div className="mb-16 sm:mb-20 max-w-4xl">
           <div className="flex items-center gap-2 text-xs font-mono-tech text-[#CB1B29] tracking-widest uppercase mb-3">
-            <span>[ 03 // OFFICIAL CONFERENCE EVENTS & SPECIFICATIONS ]</span>
+            <span>OFFICIAL SCHEDULE &amp; SPECIFICATIONS</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif-display font-bold text-[#25231F] tracking-tight leading-[1.05]">
@@ -55,7 +55,7 @@ export const EventsPage: React.FC = () => {
                 </span>
                 <div>
                   <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block">
-                    GROUP 01 // CALENDAR SPECIFICATIONS
+                    CONFERENCE DATES
                   </span>
                   <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                     Important Dates
@@ -117,11 +117,11 @@ export const EventsPage: React.FC = () => {
             <div className="flex items-center justify-between pb-6 border-b border-[#25231F]/10 mb-8">
               <div className="flex items-center gap-3">
                 <span className="w-10 h-10 rounded-xs bg-[#25231F] text-[#EBE9D8] flex items-center justify-center shrink-0">
-                  <Sparkles className="w-5 h-5 text-[#CB1B29]" />
+                  <CreditCard className="w-5 h-5 text-[#CB1B29]" />
                 </span>
                 <div>
                   <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block">
-                    GROUP 02 // FINANCIAL TARIFFS
+                    REGISTRATION FEES
                   </span>
                   <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                     Registration Fees
@@ -214,7 +214,7 @@ export const EventsPage: React.FC = () => {
                 </span>
                 <div>
                   <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block">
-                    GROUP 03 // ELIGIBILITY & COHORT
+                    ELIGIBILITY &amp; PARTICIPANTS
                   </span>
                   <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                     Participants
@@ -254,7 +254,7 @@ export const EventsPage: React.FC = () => {
                 </span>
                 <div>
                   <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block">
-                    GROUP 04 // MERIT RECOGNITION
+                    COMMITTEE AWARDS
                   </span>
                   <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                     Awards Per Committee
@@ -366,7 +366,7 @@ export const EventsPage: React.FC = () => {
         {/* Bottom Destination Transition to Registration & Committees */}
         <div className="mt-20 pt-10 border-t border-[#25231F]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs font-mono-tech text-[#25231F]/70">
-            Next Destination // Inspect Committee Dossiers &amp; Agendas
+            Next: Explore Committees &amp; Agendas
           </div>
           <div className="flex items-center gap-3">
             <Button

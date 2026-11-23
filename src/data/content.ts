@@ -71,7 +71,7 @@ export const statisticsData: StatisticItem[] = [
     value: "04",
     label: "Edition",
     isPlaceholder: false,
-    subtext: "Fourth Flagship Edition",
+    subtext: "Fourth Edition",
   },
   {
     id: "stat-mode",
@@ -83,7 +83,7 @@ export const statisticsData: StatisticItem[] = [
   {
     id: "stat-committees",
     value: "04",
-    label: "Flagship Simulation Councils",
+    label: "Simulation Councils",
     isPlaceholder: false,
     subtext: "UNSC, UNHRC, UNCSW & AIPPM",
   },
@@ -101,9 +101,9 @@ export const statisticsData: StatisticItem[] = [
    ========================================================================= */
 export const aboutUsContent = {
   eyebrow: "ORGANISER PROFILE & DIPLOMATIC VISION",
-  headline: "A flagship online Model United Nations conference where ideas cross borders and perspectives challenge conventions.",
+  headline: "An online Model United Nations conference where ideas cross borders and perspectives challenge conventions.",
   overview:
-    "NITAMUN 4.0 is the flagship online Model United Nations conference organised by the Model United Nations Society (MUNSOC) of the National Institute of Technology Agartala. Convened entirely online, NITAMUN 4.0 provides a premier international platform bringing together students and working professionals to experience diplomacy, debate, and international relations at the highest substantive standard.",
+    "NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC) of the National Institute of Technology Agartala. Convened entirely online, NITAMUN 4.0 brings together students and working professionals to experience diplomacy, debate, and international relations.",
   munsocNarrative:
     "Founded as an intellectual crucible within NIT Agartala, MUNSOC has fostered a community of debaters, policy analysts, and multilateral thinkers. The society organises year-round parliamentary workshops, training caucuses, and crisis simulations, bringing together collegiate scholars, school debaters, and working professionals from across the globe.",
   vision:
@@ -306,52 +306,32 @@ export const secretariatData: SecretariatMember[] = [
 export const experienceStages: ExperienceStage[] = [
   {
     step: "01",
-    title: "Research & Synthesis",
-    subtitle: "The Foundation of Sovereign Stance",
+    title: "Research & Sovereign Representation",
+    subtitle: "The Foundation of Statecraft",
     description:
-      "Diplomacy does not begin at the podium; it begins in deep archival inquiry. Delegates interrogate treaties, UN resolutions, economic pacts, and cultural nuances to construct an unshakeable policy stance.",
-    diplomaticFocus: "Treaty analysis, country dossiers, and bilateral history mapping.",
-    quote: "To speak for a nation, one must first master its deepest anxieties and highest aspirations.",
+      "Diplomacy begins with thorough research. Delegates examine treaties, resolutions, and geopolitical contexts to understand their country's stance, mastering procedural rules to represent their assigned portfolio with precision.",
+    diplomaticFocus: "Treaty analysis, country dossiers, and Rules of Procedure (RoP).",
+    quote: "To speak for a nation, one must first understand its responsibilities and interests.",
     iconName: "Search",
   },
   {
     step: "02",
-    title: "Representation & Decorum",
-    subtitle: "The Embodiment of Statecraft",
-    description:
-      "Stepping beyond personal bias, every delegate embodies the diplomatic poise, legal obligations, and strategic leverage of their assigned portfolio with uncompromising procedural precision.",
-    diplomaticFocus: "Rules of Procedure (RoP), diplomatic decorum, and formal address.",
-    quote: "A diplomat does not express opinion; a diplomat articulates sovereign will.",
-    iconName: "UserCheck",
-  },
-  {
-    step: "03",
-    title: "Debate & Interpellation",
+    title: "Debate & Caucus Negotiation",
     subtitle: "The Crucible of Ideas",
     description:
-      "General Speakers Lists, Moderated Caucuses, and Point of Information interpellations test rhetorical clarity and intellectual agility under the relentless scrutiny of the Executive Board.",
-    diplomaticFocus: "Persuasive oratory, crisis response, and multilateral discourse.",
-    quote: "In the chamber of nations, the strongest argument is forged in restraint and facts.",
+      "From formal speeches on the General Speakers List to dynamic moderated caucuses, delegates test ideas under scrutiny. In unmoderated caucuses, regional blocs form and strategic compromises are negotiated to build consensus.",
+    diplomaticFocus: "Persuasive oratory, caucus diplomacy, and cross-bloc negotiation.",
+    quote: "In multilateral chambers, enduring agreements are forged through dialogue and constructive compromise.",
     iconName: "Mic",
   },
   {
-    step: "04",
-    title: "Negotiation & Bloc Alliances",
-    subtitle: "The Art of the Unmoderated Caucus",
-    description:
-      "Beyond the formal dais, the chamber dissolves into strategic coalitions. Blocs form, regional interests align, and diplomatic compromises are negotiated through bilateral statecraft.",
-    diplomaticFocus: "Bilateral pacts, caucus lobbying, and strategic concessions.",
-    quote: "Agreements are drafted in ink, but negotiated through trust and leverage.",
-    iconName: "Handshake",
-  },
-  {
-    step: "05",
+    step: "03",
     title: "Resolution & Consensus",
     subtitle: "The Sovereign Document",
     description:
-      "The culmination of hours of exhaustive committee work: authoring operative clauses, surviving line-by-line amendments, and navigating decisive roll-call votes to seal the conference declaration.",
-    diplomaticFocus: "Working papers, draft resolutions, amendment ballots, and press communiqués.",
-    quote: "A resolution is not a victory of one; it is a shared triumph of compromise.",
+      "The culmination of committee sessions: translating debate into actionable policy. Delegates author working papers, debate line-by-line amendments, and navigate roll-call voting to adopt comprehensive resolutions.",
+    diplomaticFocus: "Working papers, draft resolutions, amendments, and voting procedure.",
+    quote: "A resolution reflects the collective will of nations united in purposeful action.",
     iconName: "FileCheck",
   },
 ];
@@ -364,7 +344,7 @@ export const faqData: FAQItem[] = [
     id: "faq-01",
     question: "What is NITAMUN 4.0?",
     answer:
-      "NITAMUN 4.0 is the fourth edition of the flagship Model United Nations conference organised by MUNSOC, the Model United Nations Society of the National Institute of Technology Agartala. It simulates high-level international multilateral bodies and parliamentary forums in an online format, offering delegates a premier platform to practice diplomacy, debate pressing global dilemmas, and draft actionable resolutions.",
+      "NITAMUN 4.0 is the fourth edition of the annual Model United Nations conference organised by MUNSOC, the Model United Nations Society of the National Institute of Technology Agartala. It simulates high-level international multilateral bodies and parliamentary forums in an online format, offering delegates a premier platform to practice diplomacy, debate pressing global dilemmas, and draft actionable resolutions.",
     category: "General",
   },
   {
@@ -411,7 +391,7 @@ export const aboutContent = {
   eyebrow: "THE ONLINE CONFERENCE",
   headline: "Where diplomacy transcends borders and perspectives challenge convention.",
   leadParagraph:
-    "NITAMUN 4.0 is a flagship online Model United Nations conference organised by MUNSOC, National Institute of Technology Agartala. Bringing together students and working professionals to experience diplomacy, debate, and international relations at the highest substantive level.",
+    "NITAMUN 4.0 is an online Model United Nations conference organised by MUNSOC, National Institute of Technology Agartala. Bringing together students and working professionals to experience diplomacy, debate, and international relations.",
   bodyParagraph:
     "Convened virtually on January 23–24, 2027, NITAMUN 4.0 enables delegates worldwide to connect seamlessly, debate pressing geopolitical issues under authentic UN procedures, and negotiate binding consensus across four specialized councils.",
   pillars: [

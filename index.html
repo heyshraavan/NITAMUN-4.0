@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#25231F" />
-    <title>NITAMUN 4.0 — Flagship Online Model United Nations | MUNSOC, NIT Agartala</title>
-    <meta name="description" content="NITAMUN 4.0 — Flagship Online Model United Nations conference organised by MUNSOC, National Institute of Technology Agartala. Convening delegates worldwide on January 23–24, 2027 for high-level diplomatic debate and international relations." />
+    <title>NITAMUN 4.0 — Online Model United Nations | MUNSOC, NIT Agartala</title>
+    <meta name="description" content="NITAMUN 4.0 — Online Model United Nations conference organised by MUNSOC, National Institute of Technology Agartala. Convening delegates worldwide on January 23–24, 2027 for high-level diplomatic debate and international relations." />
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://heyshraavan.github.io/NITAMUN-4.0/" />
@@ -24,7 +24,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://heyshraavan.github.io/NITAMUN-4.0/" />
     <meta property="og:title" content="NITAMUN 4.0 — Beyond Borders. Beyond Perspectives." />
-    <meta property="og:description" content="A flagship online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
+    <meta property="og:description" content="An online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
     <meta property="og:image" content="https://heyshraavan.github.io/NITAMUN-4.0/emblem.jpg" />
     <meta property="og:image:alt" content="NITAMUN 4.0 Official Emblem" />
     <meta property="og:site_name" content="NITAMUN 4.0" />
@@ -32,14 +32,14 @@
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://heyshraavan.github.io/NITAMUN-4.0/" />
-    <meta name="twitter:title" content="NITAMUN 4.0 — Flagship Online MUN" />
-    <meta name="twitter:description" content="A flagship online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
+    <meta name="twitter:title" content="NITAMUN 4.0 — Online MUN" />
+    <meta name="twitter:description" content="An online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
     <meta name="twitter:image" content="https://heyshraavan.github.io/NITAMUN-4.0/emblem.jpg" />
     <meta name="twitter:image:alt" content="NITAMUN 4.0 Official Emblem" />
 
     <!-- Preload critical above-the-fold Hero emblem image -->
-    <link rel="preload" as="image" href="%BASE_URL%emblem-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 640px)">
-    <link rel="preload" as="image" href="%BASE_URL%emblem.webp" type="image/webp" fetchpriority="high" media="(min-width: 641px)">
+    <link rel="preload" as="image" href="/src/assets/emblem-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 640px)">
+    <link rel="preload" as="image" href="/src/assets/emblem.webp" type="image/webp" fetchpriority="high" media="(min-width: 641px)">
 
     <!-- Google Fonts with preconnect & non-render-blocking delivery -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,18 +59,18 @@
       <!-- Above-the-fold Critical Hero Shell for Instant FCP & LCP (< 2.0s) -->
       <div class="relative min-h-[100svh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 bg-[#EBE9D8] overflow-hidden">
         <div class="relative z-10 my-auto py-6 sm:py-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-center">
-          <div class="official-emblem relative w-[270px] h-[270px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] lg:w-[410px] lg:h-[410px] xl:w-[450px] xl:h-[450px] rounded-full overflow-hidden shadow-2xl shadow-[#25231F]/40 bg-[#700F2B] border-2 border-[#EBE9D8]/50">
+          <div class="official-emblem relative w-[280px] h-[220px] sm:w-[330px] sm:h-[260px] md:w-[380px] md:h-[295px] lg:w-[430px] lg:h-[335px] xl:w-[480px] xl:h-[370px] rounded-[50%] overflow-hidden shadow-2xl shadow-[#25231F]/40 bg-[#66091c] border-2 border-[#CB1B29]/40 p-2 sm:p-2.5 md:p-3">
             <picture class="w-full h-full block">
-              <source media="(max-width: 640px)" srcset="%BASE_URL%emblem-mobile.webp" type="image/webp" />
-              <source srcset="%BASE_URL%emblem.webp" type="image/webp" />
+              <source media="(max-width: 640px)" srcset="/src/assets/emblem-mobile.webp" type="image/webp" />
+              <source srcset="/src/assets/emblem.webp" type="image/webp" />
               <img
-                src="%BASE_URL%emblem.jpg"
+                src="/src/assets/emblem.jpg"
                 alt="NITAMUN 4.0 Official Emblem"
-                width="450"
-                height="450"
+                width="480"
+                height="370"
                 loading="eager"
                 fetchpriority="high"
-                class="w-full h-full object-cover select-none pointer-events-none"
+                class="w-full h-full object-contain select-none pointer-events-none"
               />
             </picture>
           </div>

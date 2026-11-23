@@ -86,14 +86,14 @@ export const conferenceConfig: ConferenceConfig = {
   editionRoman: "4.0",
   year: "2027",
   tagline: "Beyond Borders. Beyond Perspectives.",
-  subTagline: "A flagship online Model United Nations conference bringing together students and working professionals to experience diplomacy, debate, and international relations.",
+  subTagline: "An online Model United Nations conference bringing together students and working professionals to experience diplomacy, debate, and international relations.",
   organizer: {
     name: "MUNSOC",
     parentInstitute: "National Institute of Technology Agartala",
     shortInstitute: "NIT Agartala",
     location: "NIT Agartala, Tripura, India",
     chapter: "Model United Nations Society, NIT Agartala",
-    conferenceMode: "Flagship Online Model United Nations Conference",
+    conferenceMode: "Online Model United Nations Conference",
   },
   dates: {
     status: "CONFIRMED",

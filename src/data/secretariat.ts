@@ -24,6 +24,16 @@ import ujeshaWebp from '../assets/secretariat/ujesha-srivastava.webp';
 import ujeshaJpg from '../assets/secretariat/ujesha-srivastava.jpg';
 import nyasaWebp from '../assets/secretariat/nyasa-jha.webp';
 import nyasaJpg from '../assets/secretariat/nyasa-jha.jpg';
+import shrilaWebp from '../assets/secretariat/shrila-sinha.webp';
+import shrilaJpg from '../assets/secretariat/shrila-sinha.jpg';
+import devanshWebp from '../assets/secretariat/devansh-bansal.webp';
+import devanshJpg from '../assets/secretariat/devansh-bansal.jpg';
+import shubhiWebp from '../assets/secretariat/shubhi-tripathi.webp';
+import shubhiJpg from '../assets/secretariat/shubhi-tripathi.jpg';
+import arunavoWebp from '../assets/secretariat/arunavo-das.webp';
+import arunavoJpg from '../assets/secretariat/arunavo-das.jpg';
+import rashiWebp from '../assets/secretariat/rashi-gupta.webp';
+import rashiJpg from '../assets/secretariat/rashi-gupta.jpg';
 
 export interface ExecutiveProfile {
   id: string;
@@ -201,6 +211,61 @@ export const coreMembers: SecretariatMember[] = [
     linkedInUrl: 'https://www.linkedin.com/in/nyasa-jha-2b200242a/',
     imageWebp: nyasaWebp,
     imageJpg: nyasaJpg,
+    objectPosition: 'center 20%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-shrila-sinha',
+    designation: 'Core Member',
+    name: 'Shrila Sinha',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/shrila-sinha-9130163a5/',
+    imageWebp: shrilaWebp,
+    imageJpg: shrilaJpg,
+    objectPosition: 'center 15%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-devansh-bansal',
+    designation: 'Core Member',
+    name: 'Devansh Bansal',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/devansh-bansal-683902380/',
+    imageWebp: devanshWebp,
+    imageJpg: devanshJpg,
+    objectPosition: 'center 10%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-shubhi-tripathi',
+    designation: 'Core Member',
+    name: 'Shubhi Tripathi',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/shubhi-tripathi-211470415/',
+    imageWebp: shubhiWebp,
+    imageJpg: shubhiJpg,
+    objectPosition: 'center 15%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-arunavo-das',
+    designation: 'Core Member',
+    name: 'Arunavo Das',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/arunavo-das-43935a30b/',
+    imageWebp: arunavoWebp,
+    imageJpg: arunavoJpg,
+    objectPosition: 'center 20%',
+    category: 'Core Member',
+  },
+  {
+    id: 'core-rashi-gupta',
+    designation: 'Core Member',
+    name: 'Rashi Gupta',
+    department: 'Secretariat',
+    linkedInUrl: 'https://www.linkedin.com/in/rashi-gupta-0046263a1/',
+    imageWebp: rashiWebp,
+    imageJpg: rashiJpg,
     objectPosition: 'center 20%',
     category: 'Core Member',
   },

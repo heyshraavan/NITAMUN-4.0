@@ -437,12 +437,12 @@ export const RegistrationPage: React.FC = () => {
           </div>
           <span className="text-[11px] font-mono-tech text-[#25231F]/60 uppercase">
             {prefIndex === 1
-              ? 'MANDATORY // PRIMARY PRIORITY'
+              ? 'MANDATORY • PRIMARY PRIORITY'
               : prefIndex === 2
-              ? 'MANDATORY // SECONDARY PRIORITY'
+              ? 'MANDATORY • SECONDARY PRIORITY'
               : prefIndex === 3
-              ? 'OPTIONAL // TERTIARY PRIORITY'
-              : 'OPTIONAL // QUATERNARY PRIORITY'}
+              ? 'OPTIONAL • TERTIARY PRIORITY'
+              : 'OPTIONAL • QUATERNARY PRIORITY'}
           </span>
         </div>
 
@@ -588,7 +588,7 @@ export const RegistrationPage: React.FC = () => {
             {/* Submitted Summary Dossier */}
             <div className="p-6 bg-[#EBE9D8] border border-[#25231F]/15 mb-8">
               <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block mb-4">
-                // SUBMITTED DELEGATE DOSSIER
+                SUBMITTED DELEGATE DOSSIER
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono-tech">

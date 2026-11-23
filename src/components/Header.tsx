@@ -49,6 +49,17 @@ export const Header: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Close mobile drawer on desktop resize to prevent scroll-lock desync
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (id: NavDestinationId) => {
     navigateTo(id);
     setMobileMenuOpen(false);
@@ -71,17 +82,17 @@ export const Header: React.FC = () => {
             className="group flex items-center gap-3 text-left focus:outline-none cursor-pointer select-none"
             aria-label="NITAMUN 4.0 Home"
           >
-            {/* Official Circular Emblem */}
-            <div className="official-emblem relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-[#CB1B29]/30 shadow-xs group-hover:border-[#CB1B29] transition-all shrink-0 bg-[#700F2B]">
+            {/* Official Oval Emblem Frame */}
+            <div className="official-emblem relative w-12 h-9 sm:w-13 sm:h-9.5 md:w-14 md:h-10 rounded-[50%] overflow-hidden border border-[#CB1B29]/40 shadow-xs group-hover:border-[#CB1B29] transition-all shrink-0 bg-[#66091c] p-0.5 flex items-center justify-center">
               <picture className="w-full h-full block">
                 <source srcSet={officialEmblemWebp} type="image/webp" />
                 <img
                   src={officialEmblem}
                   alt="NITAMUN 4.0 Official Emblem"
-                  width={44}
+                  width={48}
                   height={44}
                   loading="eager"
-                  className="w-full h-full object-cover scale-[1.08] transition-transform duration-300 group-hover:scale-115 !opacity-100"
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 !opacity-100"
                 />
               </picture>
             </div>
@@ -167,15 +178,15 @@ export const Header: React.FC = () => {
           {/* Mobile Menu Top Bar — FIXED (flex-shrink-0) */}
           <div className="flex-shrink-0 flex items-center justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-[#CB1B29] bg-[#700F2B] shrink-0">
+              <div className="official-emblem w-11 h-8 rounded-[50%] overflow-hidden border border-[#CB1B29] bg-[#66091c] p-0.5 shrink-0 flex items-center justify-center">
                 <picture className="w-full h-full block">
                   <source srcSet={officialEmblemWebp} type="image/webp" />
                   <img
                     src={officialEmblem}
                     alt="NITAMUN 4.0 Emblem"
-                    width={36}
+                    width={40}
                     height={36}
-                    className="w-full h-full object-cover scale-[1.08]"
+                    className="w-full h-full object-contain"
                   />
                 </picture>
               </div>

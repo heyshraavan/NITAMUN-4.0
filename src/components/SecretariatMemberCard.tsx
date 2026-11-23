@@ -85,7 +85,7 @@ export const SecretariatMemberCard: React.FC<SecretariatMemberCardProps> = ({ me
             </a>
           ) : (
             <div className="w-full text-center py-1 px-2 text-[10px] font-mono-tech text-[#25231F]/40 uppercase tracking-tight">
-              Internal Registry
+              NITAMUN 4.0
             </div>
           )}
         </div>

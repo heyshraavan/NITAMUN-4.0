@@ -44,10 +44,10 @@ export const AboutPage: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <div className="p-8 bg-[#F6F4EB] border-l-4 border-[#CB1B29] space-y-4">
               <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider">
-                // ABOUT THE FOURTH EDITION
+                ABOUT THE CONFERENCE
               </span>
               <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
-                {conferenceConfig.name} {conferenceConfig.editionRoman} — Flagship Online Edition
+                {conferenceConfig.name} {conferenceConfig.editionRoman} — Online Edition
               </h3>
               <p className="text-base sm:text-lg text-[#25231F]/85 font-body leading-relaxed">
                 {aboutUsContent.overview}
@@ -56,7 +56,7 @@ export const AboutPage: React.FC = () => {
 
             <div className="p-8 bg-[#F6F4EB] border border-[#25231F]/15 space-y-4">
               <span className="text-xs font-mono-tech uppercase text-[#25231F]/60 font-bold tracking-wider">
-                // ABOUT THE HOST SOCIETY
+                HOST SOCIETY
               </span>
               <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
                 MUNSOC — NIT Agartala Chapter
@@ -75,7 +75,7 @@ export const AboutPage: React.FC = () => {
             <div className="p-8 bg-[#25231F] text-[#EBE9D8] border border-[#EBE9D8]/15 space-y-6 shadow-xl">
               <div>
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block mb-2">
-                  // OUR GUIDING VISION
+                  OUR GUIDING VISION
                 </span>
                 <h4 className="font-serif-display text-2xl font-bold text-[#EBE9D8] mb-3">
                   Empowered Multilateral Statecraft
@@ -87,7 +87,7 @@ export const AboutPage: React.FC = () => {
 
               <div className="pt-6 border-t border-[#EBE9D8]/15">
                 <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block mb-2">
-                  // OUR MISSION
+                  OUR MISSION
                 </span>
                 <p className="text-sm font-body text-[#EBE9D8]/80 leading-relaxed">
                   {aboutUsContent.mission}
@@ -106,7 +106,7 @@ export const AboutPage: React.FC = () => {
         <div className="mb-24">
           <div className="mb-10">
             <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block">
-              // METHODOLOGY & STANDARDS
+              METHODOLOGY &amp; STANDARDS
             </span>
             <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#25231F] mt-1">
               Core Conference Objectives
@@ -139,7 +139,7 @@ export const AboutPage: React.FC = () => {
         <div className="mb-24 p-8 sm:p-12 bg-[#F6F4EB] border border-[#25231F]/15">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block">
-              // DELEGATE VALUE PROPOSITION
+              WHY DELEGATES PARTICIPATE
             </span>
             <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#25231F] mt-1">
               Why Delegates Choose NITAMUN
@@ -180,7 +180,7 @@ export const AboutPage: React.FC = () => {
         {/* Bottom Navigation CTA */}
         <div className="mt-20 pt-10 border-t border-[#25231F]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs font-mono-tech text-[#25231F]/70">
-            Next Destination // View Important Dates &amp; Registration Fees
+            Next: Important Dates &amp; Registration Fees
           </div>
           <Button
             variant="primary"

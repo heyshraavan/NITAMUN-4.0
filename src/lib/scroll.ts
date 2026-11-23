@@ -119,15 +119,19 @@ export function scrollToSection(target: string | HTMLElement, offset: number = -
   }
 }
 
+export function refreshScrollTriggers() {
+  if (typeof window !== 'undefined') {
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+  }
+}
+
 export function scrollToTop() {
   if (lenisInstance) {
     lenisInstance.scrollTo(0, { immediate: true });
   } else if (typeof window !== 'undefined') {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
-  if (typeof window !== 'undefined') {
-    requestAnimationFrame(() => {
-      ScrollTrigger.refresh();
-    });
-  }
+  refreshScrollTriggers();
 }

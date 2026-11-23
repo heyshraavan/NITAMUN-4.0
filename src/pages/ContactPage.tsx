@@ -4,7 +4,7 @@ import { faqData } from '../data/content';
 import { SectionHeading } from '../components/SectionHeading';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { Button } from '../components/Button';
-import { Globe2, Send, CheckCircle2, AlertTriangle, Copy, Check, Mail } from 'lucide-react';
+import { Globe2, Send, CheckCircle2, AlertTriangle, Copy, Check, Mail, Phone } from 'lucide-react';
 
 interface InquiryFormData {
   fullName: string;
@@ -19,6 +19,13 @@ const INQUIRY_CLASSIFICATIONS = [
   'Committee & Portfolio Questions',
   'Executive Board & Substantive Query',
   'Partnership & Sponsorship Opportunity',
+] as const;
+
+const SECRETARIAT_PHONE_NUMBERS = [
+  { display: '+91 91012 05308', tel: '+919101205308' },
+  { display: '+91 70671 64917', tel: '+917067164917' },
+  { display: '+91 7005789121', tel: '+917005789121' },
+  { display: '+91 9774550462', tel: '+919774550462' },
 ] as const;
 
 const initialInquiryFormState: InquiryFormData = {
@@ -190,6 +197,34 @@ export const ContactPage: React.FC = () => {
                   >
                     {copiedEmail ? <Check className="w-4 h-4 text-green-700" /> : <Copy className="w-4 h-4" />}
                   </button>
+                </div>
+              </div>
+
+              {/* Phone Numbers */}
+              <div className="space-y-1.5 pt-2 border-t border-[#25231F]/10 text-xs font-mono-tech">
+                <span className="text-[#25231F]/60 uppercase block">Phone</span>
+                <div className="p-3 bg-[#EBE9D8] border border-[#25231F]/15 space-y-2.5">
+                  {SECRETARIAT_PHONE_NUMBERS.map((phone, idx) => (
+                    <div
+                      key={phone.tel}
+                      className={`flex items-center justify-between gap-3 ${idx > 0 ? 'pt-2 border-t border-[#25231F]/10' : ''}`}
+                    >
+                      <a
+                        href={`tel:${phone.tel}`}
+                        className="flex items-center gap-2 font-mono-tech text-xs sm:text-sm font-bold text-[#CB1B29] hover:underline group min-w-0"
+                      >
+                        <Phone className="w-3.5 h-3.5 text-[#CB1B29] shrink-0 transition-transform group-hover:scale-110" />
+                        <span className="truncate">{phone.display}</span>
+                      </a>
+                      <a
+                        href={`tel:${phone.tel}`}
+                        className="text-[10px] text-[#25231F]/50 hover:text-[#CB1B29] font-mono-tech shrink-0 transition-colors"
+                        aria-label={`Call ${phone.display}`}
+                      >
+                        Call →
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
 

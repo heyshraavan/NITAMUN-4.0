@@ -97,7 +97,7 @@ export const ExecutiveLeadership: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 gap-6 pb-6 border-b border-[#25231F]/15">
           <div className="max-w-3xl">
             <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block mb-2">
-              // PRINCIPAL DIPLOMATIC OVERSIGHT
+              EXECUTIVE LEADERSHIP
             </span>
             <h3 className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#25231F] tracking-tight">
               The Executives
@@ -110,8 +110,8 @@ export const ExecutiveLeadership: React.FC = () => {
           {/* Administrative Badge */}
           <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 bg-[#F6F4EB] border border-[#25231F]/15 rounded-xs text-xs font-mono-tech text-[#25231F]/70">
             <span className="w-2 h-2 rounded-full bg-[#CB1B29]" />
-            <span className="font-bold">SECRETARIAT BOARD</span>
-            <span>// 4 PRINCIPALS</span>
+            <span className="font-bold">EXECUTIVE BOARD</span>
+            <span>• 4 Principals</span>
           </div>
         </div>
 
@@ -135,7 +135,7 @@ export const ExecutiveLeadership: React.FC = () => {
         </div>
         <div className="relative px-4 bg-[#EBE9D8] text-[10px] font-mono-tech uppercase text-[#25231F]/50 tracking-widest flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29]" />
-          <span>NITAMUN 4.0 LEADERSHIP CONTINUUM</span>
+          <span>NITAMUN 4.0 LEADERSHIP</span>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export const ExecutiveLeadership: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-6 pb-5 border-b border-[#25231F]/15">
           <div className="max-w-3xl">
             <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block mb-2">
-              // ORGANISING TEAM &amp; SECRETARIAT CORPS
+              SECRETARIAT &amp; OPERATIONS
             </span>
             <h3 className="font-serif-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#25231F] tracking-tight">
               The Secretariat
@@ -164,7 +164,7 @@ export const ExecutiveLeadership: React.FC = () => {
           <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-[#F6F4EB] border border-[#25231F]/15 rounded-xs text-xs font-mono-tech text-[#25231F]/70">
             <span className="w-2 h-2 rounded-full bg-[#CB1B29]" />
             <span className="font-bold">SECRETARIAT CORPS</span>
-            <span>// {secretariatMembers.length} APPOINTMENTS</span>
+            <span>• {secretariatMembers.length} Members</span>
           </div>
         </div>
 

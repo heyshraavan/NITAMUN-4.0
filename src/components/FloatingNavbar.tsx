@@ -31,6 +31,17 @@ export const FloatingNavbar: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Close mobile drawer on desktop resize to prevent scroll-lock desync
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const getDestinationIcon = (iconName: string, className: string = 'w-4 h-4') => {
     switch (iconName) {
       case 'Home':

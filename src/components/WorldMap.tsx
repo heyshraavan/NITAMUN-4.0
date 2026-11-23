@@ -157,7 +157,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <text x="45" y="194">23°26' N TROPIC OF CANCER</text>
           <text x="45" y="318">23°26' S TROPIC OF CAPRICORN</text>
           <text x="504" y="50">00°00' PRIME MERIDIAN</text>
-          <text x="732" y="244" fill="#CB1B29" fontWeight="600">NIT AGARTALA // 23°50'N 91°16'E</text>
+          <text x="732" y="244" fill="#CB1B29" fontWeight="600">NIT AGARTALA • 23°50'N 91°16'E</text>
         </g>
 
         {/* 2. WORLD CONTINENTS SILHOUETTES & DOTTED TEXTURE */}
@@ -515,7 +515,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         <div className="absolute bottom-4 left-4 sm:left-8 bg-[#F6F4EB]/95 border border-[#CB1B29] p-3 rounded-xs shadow-md backdrop-blur-md max-w-xs animate-in fade-in duration-200">
           <div className="flex items-center gap-1.5 text-[10px] font-mono-tech text-[#CB1B29] uppercase tracking-wider">
             <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
-            Diplomatic Node // {hoveredHub.country}
+            Diplomatic Node • {hoveredHub.country}
           </div>
           <div className="font-serif-display text-lg font-bold text-[#25231F] mt-0.5">
             {hoveredHub.name}

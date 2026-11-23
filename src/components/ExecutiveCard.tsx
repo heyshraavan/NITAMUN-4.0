@@ -58,11 +58,7 @@ export const ExecutiveCard: React.FC<ExecutiveCardProps> = ({ executive }) => {
         </div>
 
         {/* 3. Reusable Understated LinkedIn Action */}
-        <div className="pt-4 mt-4 border-t border-[#25231F]/10 flex items-center justify-between min-h-[42px]">
-          <span className="text-[10px] font-mono-tech text-[#25231F]/45 uppercase tracking-wider">
-            Diplomatic Bureau
-          </span>
-
+        <div className="pt-4 mt-4 border-t border-[#25231F]/10 flex items-center justify-end min-h-[42px]">
           <a
             href={executive.linkedInUrl}
             target="_blank"

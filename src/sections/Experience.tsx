@@ -22,12 +22,15 @@ export const Experience: React.FC = () => {
       if (!trackRef.current || !sectionRef.current) return;
 
       const getScrollDistance = () => {
-        if (!trackRef.current) return 2500;
+        if (!trackRef.current) return 1200;
         return Math.max(0, trackRef.current.scrollWidth - window.innerWidth);
       };
 
-      // Settling dwell distance so the final stage (Stage 5) remains fully visible and legible before unpinning
-      const getDwellDistance = () => Math.min(window.innerHeight * 0.45, 420);
+      // Settling dwell distance so the final stage (Stage 3) remains fully visible and legible before unpinning
+      const getDwellDistance = () => {
+        const scrollDist = getScrollDistance();
+        return scrollDist > 0 ? Math.min(window.innerHeight * 0.35, 320) : 0;
+      };
 
       const pinTween = gsap.to(trackRef.current, {
         x: () => -getScrollDistance(),
@@ -88,16 +91,16 @@ export const Experience: React.FC = () => {
           sectionNumber="03"
           eyebrow="THE DIPLOMATIC JOURNEY"
           title="The Anatomy of Model Diplomacy"
-          titleAccent="An Editorial Arc"
-          subtitle="From solitary archival research to high-stakes multilateral consensus: trace the transformative arc of a NITAMUN delegate."
+          titleAccent="Three Stages of Consensus"
+          subtitle="From archival research to multilateral consensus: trace the progression of a committee session."
           variant="dark"
           className="!mb-0 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl [&_p]:text-xs [&_p]:sm:text-sm [&_p]:!mt-1.5 [&>div.my-4]:!my-1.5"
         />
 
         {/* Scroll narrative tip on desktop */}
         <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono-tech text-[#CB1B29] tracking-wider uppercase mt-1.5">
-          <span>// SCROLL DOWN TO TRAVERSE THE DIPLOMATIC CHRONOLOGY</span>
-          <ArrowRight className="w-3.5 h-3.5 animate-pulse" />
+          <span>Scroll to explore the conference progression</span>
+          <ArrowRight className="w-3.5 h-3.5" />
         </div>
       </div>
 
@@ -110,7 +113,7 @@ export const Experience: React.FC = () => {
           {experienceStages.map((stage) => (
             <div
               key={stage.step}
-              className="w-full max-w-2xl mx-auto lg:max-w-none lg:w-[520px] xl:w-[560px] h-auto lg:h-[390px] xl:h-[400px] shrink-0 bg-[#2D2A26] border border-[#EBE9D8]/20 p-5 sm:p-6 lg:p-6 relative flex flex-col justify-between group hover:border-[#CB1B29] transition-colors rounded-xs shadow-xl"
+              className="w-full max-w-2xl mx-auto lg:max-w-none lg:w-[480px] xl:w-[520px] h-auto lg:h-[390px] xl:h-[400px] shrink-0 bg-[#2D2A26] border border-[#EBE9D8]/20 p-5 sm:p-6 lg:p-6 relative flex flex-col justify-between group hover:border-[#CB1B29] transition-colors rounded-xs shadow-xl"
             >
               {/* Huge Stage Number Watermark */}
               <div className="absolute top-2 right-4 font-serif-display text-7xl sm:text-8xl font-bold text-[#EBE9D8]/5 select-none pointer-events-none group-hover:text-[#CB1B29]/10 transition-colors">
@@ -126,7 +129,7 @@ export const Experience: React.FC = () => {
                     </span>
                     <div>
                       <span className="text-[11px] font-mono-tech uppercase tracking-widest text-[#CB1B29] block font-semibold">
-                        STAGE {stage.step} OF 05
+                        STAGE {stage.step} OF 03
                       </span>
                       <span className="text-[10px] font-mono-tech text-[#EBE9D8]/60 uppercase">
                         {stage.subtitle}
@@ -135,7 +138,7 @@ export const Experience: React.FC = () => {
                   </div>
 
                   <span className="text-[10px] font-mono-tech text-[#EBE9D8]/40 tracking-wider">
-                    NITAMUN PROTOCOL
+                    NITAMUN 4.0
                   </span>
                 </div>
 

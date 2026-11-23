@@ -16,9 +16,9 @@ export const CommitteesPage: React.FC = () => {
         <SectionHeading
           sectionNumber="04"
           eyebrow="CHAMBERS OF DELIBERATION"
-          title="The Four Flagship Committees"
-          titleAccent="NITAMUN 4.0 Dais"
-          subtitle="Explore the councils simulating high-stakes continuous crisis statecraft, universal humanitarian protections, socioeconomic gender equity, and dynamic Indian parliamentary politics."
+          title="The Four Committees"
+          titleAccent="NITAMUN 4.0 Councils"
+          subtitle="Explore the councils simulating continuous crisis statecraft, universal humanitarian protections, socioeconomic gender equity, and dynamic Indian parliamentary politics."
         />
 
         {/* Substantive Guidance Callout */}
@@ -59,15 +59,15 @@ export const CommitteesPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs font-mono-tech text-[#25231F]/80">
             <div className="p-4 bg-[#EBE9D8] border border-[#25231F]/10">
-              <span className="font-bold text-[#CB1B29] block mb-1">01 // POSITION PAPERS</span>
+              <span className="font-bold text-[#CB1B29] block mb-1">Position Papers</span>
               Mandatory for Best Delegate consideration. Outlines historical sovereign stance, treaty precedents, and proposed operative solutions.
             </div>
             <div className="p-4 bg-[#EBE9D8] border border-[#25231F]/10">
-              <span className="font-bold text-[#CB1B29] block mb-1">02 // RULES OF PROCEDURE</span>
+              <span className="font-bold text-[#CB1B29] block mb-1">Rules of Procedure</span>
               UN councils follow UNA-USA / UN4MUN parliamentary rules; AIPPM follows Indian Parliamentary Conventions and Lok Sabha rules.
             </div>
             <div className="p-4 bg-[#EBE9D8] border border-[#25231F]/10">
-              <span className="font-bold text-[#CB1B29] block mb-1">03 // BACKGROUND GUIDES</span>
+              <span className="font-bold text-[#CB1B29] block mb-1">Background Guides</span>
               Comprehensive study dossiers curated by the Executive Board to be downloaded directly through the delegate portal.
             </div>
           </div>
@@ -76,7 +76,7 @@ export const CommitteesPage: React.FC = () => {
         {/* Bottom Destination Transition */}
         <div className="pt-10 border-t border-[#25231F]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs font-mono-tech text-[#25231F]/70">
-            Next Destination // Secure Your Seat at the Dais
+            Next: Delegate Registration &amp; Fees
           </div>
           <Button
             variant="primary"

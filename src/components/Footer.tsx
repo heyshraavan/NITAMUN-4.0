@@ -28,16 +28,16 @@ export const Footer: React.FC = () => {
           {/* Col 1: Identity & Positioning (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="official-emblem w-12 h-12 rounded-full overflow-hidden border border-[#CB1B29]/40 bg-[#700F2B] flex items-center justify-center shrink-0 shadow-md">
+              <div className="official-emblem w-13 h-9.5 rounded-[50%] overflow-hidden border border-[#CB1B29]/40 bg-[#66091c] flex items-center justify-center shrink-0 shadow-md p-0.5">
                 <picture className="w-full h-full block">
                   <source srcSet={officialEmblemWebp} type="image/webp" />
                   <img
                     src={officialEmblem}
                     alt="NITAMUN 4.0 Official Emblem"
                     width={48}
-                    height={48}
+                    height={44}
                     loading="lazy"
-                    className="w-full h-full object-cover scale-[1.08] !opacity-100"
+                    className="w-full h-full object-contain !opacity-100"
                   />
                 </picture>
               </div>
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
             </p>
 
             <p className="text-sm text-[#EBE9D8]/65 font-body leading-relaxed max-w-md">
-              A flagship online Model United Nations conference organised by MUNSOC, 
+              An online Model United Nations conference organised by MUNSOC, 
               National Institute of Technology Agartala. Bringing together students and working professionals 
               to experience diplomacy, debate, and international relations.
             </p>
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
           {/* Col 2: The Six Primary Destinations (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-mono-tech tracking-widest text-[#CB1B29] uppercase">
-              // Primary Destinations
+              Primary Destinations
             </h4>
             <ul className="space-y-2.5">
               {conferenceConfig.destinations.map((dest, idx) => (
@@ -133,7 +133,7 @@ export const Footer: React.FC = () => {
           {/* Col 3: Secretariat & Inquiries (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="text-xs font-mono-tech tracking-widest text-[#CB1B29] uppercase">
-              // Secretariat Headquarters &amp; Format
+              Secretariat Headquarters &amp; Format
             </h4>
 
             <div className="space-y-3 text-xs font-mono-tech text-[#EBE9D8]/70">
@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
               <div className="pt-2 border-t border-[#EBE9D8]/10 space-y-1">
                 <div className="text-[11px] text-[#EBE9D8]/50 uppercase">Conference Information:</div>
                 <div>Dates: {conferenceConfig.dates.displayDate}</div>
-                <div>Mode: Flagship Online Conference</div>
+                <div>Mode: Online Conference</div>
               </div>
 
               <div className="pt-2">

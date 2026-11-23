@@ -74,7 +74,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
           <div className="my-4 p-3.5 bg-[#EBE9D8]/80 border-l-3 border-[#CB1B29] text-xs shadow-2xs">
             <div className="font-mono-tech text-[10px] text-[#CB1B29] font-bold tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
-              <span>Agenda Item // [STATUS: {committee.agenda.status}]</span>
+              <span>Agenda Status: {committee.agenda.status}</span>
             </div>
             <p className="font-mono-tech text-[#25231F]/85 text-[11px] leading-relaxed font-medium">
               {committee.agenda.title}
@@ -126,11 +126,11 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Archival Security Header Banner */}
+            {/* Archival Header Banner */}
             <div className="flex-shrink-0 px-4 sm:px-6 py-1.5 bg-[#25231F] text-[#EBE9D8] text-[10px] font-mono-tech tracking-widest uppercase flex items-center justify-between border-b border-[#CB1B29]/40">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29]" />
-                OFFICIAL COMMITTEE DOSSIER // DECLASSIFIED
+                COMMITTEE DOSSIER • NITAMUN 4.0
               </span>
               <span className="text-[#CB1B29] font-bold">REF: NITAMUN-4.0/{committee.acronym}</span>
             </div>
@@ -148,7 +148,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
                     {committee.acronym}
                   </span>
                   <span className="text-[#25231F]/60 text-[10px] sm:text-[11px] uppercase tracking-wider">
-                    // {committee.type}
+                    {committee.type}
                   </span>
                 </div>
                 <h3 id={`modal-title-${committee.id}`} className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F] leading-tight">
@@ -243,7 +243,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
             {/* Modal Footer Actions — FIXED (flex-shrink-0), always visible and accessible */}
             <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-between gap-3">
               <div className="hidden sm:block text-xs font-mono-tech text-[#25231F]/60">
-                // ACCREDITATION PROTOCOL
+                Accreditation Protocol
               </div>
               <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                 <Button

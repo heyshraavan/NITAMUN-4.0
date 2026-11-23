@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import { FloatingNavbar } from './components/FloatingNavbar';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
-import { initSmoothScroll, destroySmoothScroll } from './lib/scroll';
+import { initSmoothScroll, destroySmoothScroll, refreshScrollTriggers } from './lib/scroll';
 import { prefetchAllRoutesIdle } from './lib/prefetch';
 
 // Critical Landing Page - imported synchronously for instantaneous LCP & zero CLS
@@ -93,6 +93,8 @@ const DestinationRenderer: React.FC = () => {
 };
 
 const MainLayout: React.FC = () => {
+  const { currentDestination } = useNavigation();
+
   useEffect(() => {
     initSmoothScroll();
     prefetchAllRoutesIdle();
@@ -100,6 +102,15 @@ const MainLayout: React.FC = () => {
       destroySmoothScroll();
     };
   }, []);
+
+  // Recalculate ScrollTrigger markers whenever destination changes and content finishes loading
+  useEffect(() => {
+    refreshScrollTriggers();
+    const timer = setTimeout(() => {
+      refreshScrollTriggers();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [currentDestination]);
 
   return (
     <div className="relative min-h-screen bg-[#EBE9D8] text-[#25231F] flex flex-col font-body selection:bg-[#CB1B29] selection:text-[#EBE9D8]">
