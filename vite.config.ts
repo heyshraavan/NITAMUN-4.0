@@ -6,8 +6,10 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
   const isProduction = mode === 'production' || command === 'build';
+  const isVercel = Boolean(process.env.VERCEL);
+
   return {
-    base: process.env.VITE_BASE_PATH || (isProduction ? '/NITAMUN-4.0/' : '/'),
+    base: process.env.VITE_BASE_PATH || (isVercel ? '/' : isProduction ? '/NITAMUN-4.0/' : '/'),
     plugins: [
       react(),
       tailwindcss(),
