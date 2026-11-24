@@ -41,6 +41,8 @@ export interface ExecutiveProfile {
   name: string;
   designation: string;
   department: string;
+  whatsAppUrl: string;
+  instagramUrl: string;
   linkedInUrl: string;
   imageWebp: string;
   imageJpg: string;
@@ -71,6 +73,8 @@ export const principalExecutives: ExecutiveProfile[] = [
     name: 'Dattatreya Datta',
     designation: 'Secretary General',
     department: 'Executive Leadership',
+    whatsAppUrl: 'https://wa.me/919233053409',
+    instagramUrl: 'https://www.instagram.com/treya__d/',
     linkedInUrl: 'https://www.linkedin.com/in/dattatreya-datta-322585324/',
     imageWebp: dattatreyaWebp,
     imageJpg: dattatreyaJpg,
@@ -82,6 +86,8 @@ export const principalExecutives: ExecutiveProfile[] = [
     name: 'Sreejan Das',
     designation: 'Deputy Secretary General',
     department: 'Executive Leadership',
+    whatsAppUrl: 'https://wa.me/919330539813',
+    instagramUrl: 'https://www.instagram.com/sreejan019/',
     linkedInUrl: 'https://www.linkedin.com/in/sreejan-das-396b0631b/',
     imageWebp: sreejanWebp,
     imageJpg: sreejanJpg,
@@ -93,6 +99,8 @@ export const principalExecutives: ExecutiveProfile[] = [
     name: 'Dweep Sutradhar',
     designation: "Chargé d'affaires",
     department: 'External & Diplomatic Affairs',
+    whatsAppUrl: 'https://wa.me/916009018900',
+    instagramUrl: 'https://www.instagram.com/thedeeppp/',
     linkedInUrl: 'https://www.linkedin.com/in/dweep-sutradhar-5090591b7/',
     imageWebp: dweepWebp,
     imageJpg: dweepJpg,
@@ -104,6 +112,8 @@ export const principalExecutives: ExecutiveProfile[] = [
     name: 'Sumit Paul',
     designation: 'Chief of Staff',
     department: 'Administration & Operations',
+    whatsAppUrl: 'https://wa.me/918974626081',
+    instagramUrl: 'https://www.instagram.com/sumittlm__paul/',
     linkedInUrl: 'https://www.linkedin.com/in/sumit-paul-990729316/',
     imageWebp: sumitWebp,
     imageJpg: sumitJpg,
