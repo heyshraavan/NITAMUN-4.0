@@ -85,7 +85,7 @@ export const principalExecutives: ExecutiveProfile[] = [
     linkedInUrl: 'https://www.linkedin.com/in/sreejan-das-396b0631b/',
     imageWebp: sreejanWebp,
     imageJpg: sreejanJpg,
-    objectPosition: 'center 15%',
+    objectPosition: 'center 20%',
   },
   {
     id: 'dweep-sutradhar',
@@ -96,7 +96,7 @@ export const principalExecutives: ExecutiveProfile[] = [
     linkedInUrl: 'https://www.linkedin.com/in/dweep-sutradhar-5090591b7/',
     imageWebp: dweepWebp,
     imageJpg: dweepJpg,
-    objectPosition: 'center 30%',
+    objectPosition: 'center 20%',
   },
   {
     id: 'sumit-paul',
@@ -107,7 +107,7 @@ export const principalExecutives: ExecutiveProfile[] = [
     linkedInUrl: 'https://www.linkedin.com/in/sumit-paul-990729316/',
     imageWebp: sumitWebp,
     imageJpg: sumitJpg,
-    objectPosition: 'center 18%',
+    objectPosition: 'center 20%',
   },
 ];
 
