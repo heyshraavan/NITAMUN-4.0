@@ -1,109 +1,104 @@
 # NITAMUN 4.0
 
-> **"Beyond Borders. Beyond Perspectives."**  
-> Official website and delegate interface for the fourth edition of NITAMUN, organised by the **Model United Nations Society (MUNSOC)** at the **National Institute of Technology Agartala**.
+> **Beyond Borders. Beyond Perspectives.**  
+> Official web platform and delegate interface for the fourth edition of NITAMUN, organised by the **Model United Nations Society (MUNSOC)** at the **National Institute of Technology Agartala**.
 
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)](#tech-stack)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](#tech-stack)
-[![Vite](https://img.shields.io/badge/Vite-6.2-646CFF?logo=vite&logoColor=white)](#tech-stack)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-06B6D4?logo=tailwindcss&logoColor=white)](#tech-stack)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react&logoColor=black)](#technology-stack)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-3178C6?logo=typescript&logoColor=white)](#technology-stack)
+[![Vite](https://img.shields.io/badge/Vite-6.2.0-646CFF?logo=vite&logoColor=white)](#technology-stack)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0.9-06B6D4?logo=tailwindcss&logoColor=white)](#technology-stack)
+[![GSAP](https://img.shields.io/badge/GSAP-3.12.7-88CE02?logo=greensock&logoColor=white)](#technology-stack)
+[![Lenis](https://img.shields.io/badge/Lenis-1.1.20-black)](#technology-stack)
 
 ---
 
-## About the Website
+## Project Overview
 
-The **NITAMUN 4.0** website serves as the primary digital gateway, information repository, and accreditation interface for the conference. Convened **online** on **January 23–24, 2027**, the platform provides delegates and participants with:
+- **Project Name:** NITAMUN 4.0 (Fourth Edition)
+- **Organised By:** Model United Nations Society (MUNSOC), National Institute of Technology Agartala
+- **Tagline:** Beyond Borders. Beyond Perspectives.
+- **Conference Dates:** January 23–24, 2027
+- **Conference Mode:** Online Conference (Convened digitally worldwide)
+- **Official Inquiries:** munsoc.nitamun@gmail.com
 
-- Official conference timelines, fee tiers, and participation guidelines.
-- Substantive council dossiers, agendas, and procedural mandates.
-- An interactive five-stage exploration of the Model UN diplomatic process.
-- A centralized inquiry desk and secretariat contact interface.
-- A responsive, accessible single-page application (SPA) built with React, TypeScript, and Vite.
+NITAMUN 4.0 serves as the primary digital portal, substantive repository, and delegate accreditation interface for the conference. Designed with an editorial diplomatic aesthetic—Warm Ivory canvas (`#EBE9D8`), Deep Charcoal typography (`#25231F`), and Crimson accents (`#CB1B29`), paired with classical serifs and modern grotesques—the platform provides an authentic, accessible, and high-performance user experience across all devices.
 
-The visual direction follows an editorial diplomatic aesthetic: Warm Ivory canvas (`#EBE9D8`), Deep Charcoal typography (`#25231F`), and Crimson accents (`#CB1B29`), paired with classical display serifs (`Instrument Serif`, `Cormorant Garamond`) and modern grotesques (`Inter`, `Manrope`, `IBM Plex Mono`).
+---
+
+## Technology Stack
+
+The project utilizes a modern frontend architecture with strict dependency boundaries:
+
+| Technology | Version | Purpose in Project |
+| :--- | :--- | :--- |
+| **React** | `19.0.0` | Declarative UI layer, concurrent rendering, and route-level code splitting via `React.lazy` and `Suspense` |
+| **TypeScript** | `~5.7.2` | Static type checking and strict interface contracts across configuration, committees, and registration payloads |
+| **Vite** | `^6.2.0` | Development server with instant HMR and optimized production Rollup bundling |
+| **Tailwind CSS** | `^4.0.9` | High-performance CSS engine via `@tailwindcss/vite` using native CSS variables and responsive design tokens |
+| **GSAP** | `^3.12.7` | Professional animation engine driving entrance reveals, parallax scroll effects, and pinned horizontal transitions |
+| **ScrollTrigger** | `^3.12.7` | Scroll position synchronization with GSAP timelines |
+| **Lenis** | `^1.1.20` | Hardware-accelerated smooth scrolling synchronized with ScrollTrigger and modal scroll locks |
+| **Lucide React** | `^1.16.0` | Lightweight, accessible SVG iconography |
+| **clsx & tailwind-merge** | `^2.1.1` / `^3.0.2` | Deterministic conditional className merging |
+| **sharp** | `^0.35.5` | Asset processing utility for multi-resolution images and favicons (dev-only) |
 
 ---
 
 ## Features
 
-### Six Primary Destinations
-The application architecture is organized into six distinct destinations managed via client-side hash routing (`NavigationContext`):
+### 1. Six Dedicated Destinations (SPA Client Routing)
+Managed via `NavigationContext` with URL hash synchronization (`#/home`, `#/about`, `#/events`, `#/committees`, `#/registration`, `#/contact`):
 
-1. **Home (`#/home`)**
-   - Balanced two-column hero composition pairing editorial typography with the official circular emblem.
-   - Interactive background world map with diplomatic connection arcs and active node pulses.
-   - Pinned five-stage horizontal storytelling experience traversing the anatomy of multilateral diplomacy.
-   - Key highlights and strategic entry gateways to other destinations.
+- **Home (`#/home`):**
+  - Two-column hero with the official circular emblem, golden shimmer sweep, and dynamic astrolabe orbits.
+  - Interactive background world map with diplomatic connection arcs and active node pulses.
+  - Pinned 3-stage horizontal narrative (`Experience.tsx`) covering the progression of model diplomacy on desktop, adapting gracefully to vertical flow on mobile.
+  - Highlights grid with quick gateways to other conference pillars and conference statistics.
+- **About Us (`#/about`):**
+  - Institutional profile of MUNSOC and National Institute of Technology Agartala.
+  - Conference vision, mission statement, and the four core institutional objectives.
+  - Five pillars explaining why delegates choose NITAMUN.
+  - Comprehensive two-tier Secretariat leadership showcase.
+- **Events (`#/events`):**
+  - **Important Dates:** January 23–24, 2027 (Confirmed Online Conclave).
+  - **Registration Fees:** Early Bird (₹400, until December 15), Regular (₹450, till Jan 10), Late (₹500, after Jan 10).
+  - **Participants:** Open accreditation welcoming students and working professionals.
+  - **Awards Per Committee:** Best Delegate (1), High Commendation (1), Special Mention (1), Verbal/Honorable Mention (5).
+  - **Total Prize Pool:** Prominent diplomatic distinction announcement block.
+- **Committees (`#/committees`):**
+  - Four simulation councils:
+    - **UNSC** — United Nations Security Council (Continuous Crisis / Specialized Agency)
+    - **UNHRC** — United Nations Human Rights Council (General Assembly Body)
+    - **UNCSW** — United Nations Commission on the Status of Women (Functional Commission of ECOSOC)
+    - **AIPPM** — All India Political Parties Meet (Specialized Indian Parliamentary Simulation)
+  - Interactive substantive dossier modals with full background scroll lock, touch-friendly scrolling, and Escape key dismissal.
+- **Registration (`#/registration`):**
+  - Single delegate track: Individual Delegate.
+  - Real-time client-side validation, duplicate committee preference prevention, and automatic portfolio choice resetting.
+  - Direct integration with **SheetDB (Google Sheets)** for live submission tracking with timestamping and error resilience.
+  - Smooth automatic scrolling to the first invalid input on validation failures.
+- **Contact Us (`#/contact`):**
+  - Direct Secretariat phone numbers with clickable `tel:` links:
+    - `+91 91012 05308`
+    - `+91 70671 64917`
+    - `+91 7005789121`
+    - `+91 9774550462`
+  - Secretariat inquiry desk with direct SheetDB integration and one-click email copying.
+  - Categorized FAQ accordion covering format, eligibility, fees, and committees.
 
-2. **About Us (`#/about`)**
-   - Institutional profile of MUNSOC and NIT Agartala.
-   - Conference vision, mission, and the four institutional objectives.
-   - "Why Participate" overview highlighting substantive quality, diverse cohorts, and recognition.
+### 2. Secretariat Leadership Architecture
+- **Tier 1: Principal Executives:**
+  - Four senior leadership cards: Secretary General, Deputy Secretary General, Chargé d'affaires, Chief of Staff.
+  - Dedicated brand icon actions for each executive in strict order: **WhatsApp** (`wa.me`), **Instagram**, and **LinkedIn**.
+- **Tier 2: Secretariat & Operations:**
+  - 13 uniform profile cards for Under Secretary Generals (USGs) and Core Members sharing equal visual importance.
 
-3. **Events (`#/events`)**
-   - Curated into four official information groups:
-     - **Important Dates**: January 23–24, 2027 (Online Format).
-     - **Registration Fees**: Early Bird (₹400), Regular (₹450), and Late (₹500).
-     - **Participants**: Students and working professionals are encouraged to participate.
-     - **Awards Per Committee**: Best Delegate (1), High Commendation (1), Special Mention (1), and Verbal Mentions (5).
-
-4. **Committees (`#/committees`)**
-   - Detailed committee dossiers for four simulation councils:
-     - **UNSC** — United Nations Security Council (Continuous Crisis / Specialized Agency)
-     - **UNHRC** — United Nations Human Rights Council (General Assembly Body)
-     - **UNCSW** — United Nations Commission on the Status of Women (Functional Commission of ECOSOC)
-     - **AIPPM** — All India Political Parties Meet (Specialized Indian Parliamentary Simulation)
-   - Interactive modal drawers detailing mandates, agenda overviews, and expected resolution outcomes.
-
-5. **Registration (`#/registration`)**
-   - Single accreditation track: **Individual Delegate only**.
-   - Transparent fee tier breakdown with deadline milestones.
-   - Comprehensive delegate registration form with direct **SheetDB (Google Sheets)** integration.
-   - 4-preference committee selection across UNSC, UNHRC, UNCSW, and AIPPM with 4 optional portfolio choices each.
-   - Client-side duplicate committee prevention and real-time form validation.
-   - Secure submission with zero personal data logged or persisted in client-side storage.
-
-6. **Contact Us (`#/contact`)**
-   - Secretariat inquiry desk with one-click email copy to clipboard.
-   - Contact form with client-side validation, Web3Forms support, and a pre-filled `mailto:` fallback if unconfigured.
-   - Categorized and searchable FAQ accordion covering General, Format, Participation, and Committees topics.
-
-### Navigation & Global Interface
-- **Sticky Header**: Top bar featuring the official circular emblem and wordmark linking to Home, active destination pill indicator, and responsive mobile drawer.
-- **Floating Dock Navbar**: Centered bottom pill default-styled with **icons only** in deep charcoal and a crimson active dot; smoothly expands on hover to display destination labels.
-- **Footer**: Three-column editorial footer with institutional credentials, verified social links, and padding to prevent dock collision.
-
-### Motion Design & Accessibility
-- **GSAP & ScrollTrigger**: Entrance reveals, parallax depth effects, and desktop horizontal pinned track traversal.
-- **Lenis Smooth Scroll**: Hardware-accelerated smooth scrolling synchronized with ScrollTrigger updates.
-- **Reduced Motion**: Comprehensive `@media (prefers-reduced-motion: reduce)` support in CSS and programmatic checks in JavaScript (`checkReducedMotion`).
-- **Hardware-Accelerated Cursor**: Custom desktop cursor follower utilizing direct DOM matrix transforms via `requestAnimationFrame` (0 React state re-renders during pointer moves).
-- **Focus Indicators**: High-contrast focus rings (`outline: 2px solid #CB1B29`) across all interactive elements for keyboard navigation.
-
-### Official Favicon Suite
-Multi-platform icon suite generated directly from the authentic NITAMUN 4.0 logo with an anti-aliased circular alpha mask:
-- `favicon.ico` (multi-resolution container: 16×16, 32×32, 48×48)
-- `favicon.svg` (scalable SVG container)
-- `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`
-- `apple-touch-icon.png` (180×180 for iOS Safari)
-- `android-chrome-192x192.png`, `android-chrome-512x512.png`
-- `site.webmanifest` (Web App Manifest with institutional metadata)
-
----
-
-## Tech Stack
-
-| Technology | Category | Purpose in Project |
-| :--- | :--- | :--- |
-| **React 19** | UI Library | Component hierarchy, hooks, route-level code splitting via `React.lazy` and `Suspense` |
-| **TypeScript 5** | Language | Type safety, interface contracts for configuration, content, and council agendas |
-| **Vite 6** | Build Tool | Development server with HMR, optimized Rollup bundling, asset pipeline |
-| **Tailwind CSS 4** | Styling | Utility styling via `@tailwindcss/vite`, CSS design tokens, custom font definitions |
-| **GSAP 3** | Motion | Entrance timeline sequencing, parallax scroll effects, pinned horizontal scroll |
-| **Lenis** | Motion | Smooth scrolling integrated with GSAP ScrollTrigger updates |
-| **Lucide React** | Icons | Diplomatic and interface iconography |
-| **sharp** | Build / Utility | High-performance image processing for multi-resolution favicon generation |
-| **clsx & tailwind-merge** | Utility | Deterministic conditional className combination |
+### 3. Motion, Scrolling & Accessibility
+- **Synchronized Scrolling:** Lenis smooth scrolling integrated with GSAP ScrollTrigger updates.
+- **Background Scroll Locking:** Centralized reference-counted scroll locking (`lockBackgroundScroll` / `unlockBackgroundScroll`) that prevents background jumping when opening drawers or dossier modals.
+- **Modal Isolation:** All scrollable modals feature `data-lenis-prevent` and `overscroll-contain` with native touch momentum (`-webkit-overflow-scrolling: touch`).
+- **Keyboard Navigation:** Full Escape key handling on modals and mobile drawer, logical tab order, and high-contrast visible focus rings (`outline: 2px solid #CB1B29`).
+- **Reduced Motion:** Automatic adaptation via `@media (prefers-reduced-motion: reduce)` in CSS and `checkReducedMotion()` in GSAP animations.
 
 ---
 
@@ -111,172 +106,215 @@ Multi-platform icon suite generated directly from the authentic NITAMUN 4.0 logo
 
 ```text
 NITAMUN-4.0/
-├── public/                     # Static public assets served directly
+├── public/                       # Static public assets served at root
 │   ├── android-chrome-192x192.png
 │   ├── android-chrome-512x512.png
 │   ├── apple-touch-icon.png
-│   ├── emblem.jpg              # Official NITAMUN 4.0 diplomatic emblem
+│   ├── emblem-circular.png       # Master circular emblem (transparent PNG)
+│   ├── emblem-circular.webp      # Optimized circular emblem (WebP)
 │   ├── favicon-16x16.png
 │   ├── favicon-32x32.png
 │   ├── favicon-48x48.png
-│   ├── favicon.ico             # Multi-resolution ICO (16, 32, 48)
-│   ├── favicon.svg             # Scalable SVG favicon
-│   └── site.webmanifest        # Web App Manifest
+│   ├── favicon.ico               # Multi-resolution ICO container
+│   ├── favicon.svg               # Scalable vector favicon
+│   ├── robots.txt                # Search engine crawler instructions
+│   ├── site.webmanifest          # PWA & Web App Manifest
+│   ├── sitemap.xml               # XML Sitemap
+│   └── _headers                  # Security & caching headers
 ├── src/
-│   ├── assets/                 # Bundled graphic assets
-│   │   └── emblem.jpg          # High-resolution official emblem
-│   ├── components/             # Reusable UI components
-│   │   ├── AnimatedText.tsx    # Split-text entrance animation
-│   │   ├── Button.tsx          # Editorial and primary CTA buttons
-│   │   ├── CommitteeCard.tsx   # Council card with interactive dossier modal
-│   │   ├── CustomCursor.tsx    # RAF-driven desktop pointer follower
-│   │   ├── FAQAccordion.tsx    # Accessible categorized inquiry accordion
-│   │   ├── FloatingNavbar.tsx  # Expandable bottom dock navigation
-│   │   ├── Footer.tsx          # Editorial site footer
-│   │   ├── Header.tsx          # Persistent top header with mobile drawer
-│   │   ├── SectionHeading.tsx  # Standardized editorial section headers
-│   │   ├── StatusBadge.tsx     # Pulsing live status indicator badge
-│   │   └── WorldMap.tsx        # Dotted cartographic map with SVG connection arcs
+│   ├── assets/                   # Bundled graphics and photographs
+│   │   ├── emblem-circular.png   # Bundled circular emblem PNG
+│   │   ├── emblem-circular.webp  # Bundled circular emblem WebP
+│   │   └── secretariat/          # Executive and Secretariat portraits (WebP + JPG)
+│   ├── components/               # Reusable UI components
+│   │   ├── AnimatedText.tsx      # Editorial text animation
+│   │   ├── Button.tsx            # Accessible button with auto-wrapping & arrow support
+│   │   ├── CommitteeCard.tsx     # Council card with substantive dossier modal
+│   │   ├── CommitteeInsignia.tsx # Vector insignia watermarks for committees
+│   │   ├── CustomCursor.tsx      # Desktop RAF matrix cursor follower
+│   │   ├── ExecutiveCard.tsx     # Principal executive card with social icon buttons
+│   │   ├── ExecutiveLeadership.tsx # Secretariat section renderer
+│   │   ├── FAQAccordion.tsx      # Searchable, accessible FAQ accordion
+│   │   ├── FloatingNavbar.tsx    # Expandable floating dock navigation
+│   │   ├── Footer.tsx            # Global 3-column diplomatic footer
+│   │   ├── Header.tsx            # Sticky header with circular emblem & mobile drawer
+│   │   ├── PolicyModal.tsx       # Terms & Conditions / Privacy Policy modal
+│   │   ├── PortfolioAutocomplete.tsx # Searchable portfolio selector
+│   │   ├── SecretariatMemberCard.tsx # Uniform USG and Core Member card
+│   │   ├── SectionHeading.tsx    # Editorial section title component
+│   │   ├── StatusBadge.tsx       # Pulsing status indicator
+│   │   └── WorldMap.tsx          # Dotted cartographic map with SVG connection arcs
 │   ├── context/
 │   │   └── NavigationContext.tsx # Centralized client-side destination routing
 │   ├── data/
-│   │   ├── config.ts           # Central configuration (dates, fees, links, contacts)
-│   │   └── content.ts          # Substantive content (committees, stages, FAQs, about)
+│   │   ├── config.ts             # Central configuration (dates, fees, links, contacts)
+│   │   ├── content.ts            # Substantive content (committees, stages, FAQs, about)
+│   │   ├── portfolios.ts         # Portfolio country matrices per committee
+│   │   └── secretariat.ts        # Executive and Secretariat rosters and links
 │   ├── hooks/
-│   │   ├── useReducedMotion.ts # Detects system accessibility motion preferences
-│   │   └── useScrollProgress.ts# Tracks scroll percentages for animations
+│   │   ├── useReducedMotion.ts   # Accessibility reduced motion hook
+│   │   └── useScrollProgress.ts  # Scroll tracking hook
 │   ├── lib/
-│   │   ├── animations.ts       # GSAP helper functions and motion guards
-│   │   ├── scroll.ts           # Lenis initialization and scroll synchronization
-│   │   └── utils.ts            # ClassName merging utilities
-│   ├── pages/                  # Route-level lazy-loaded destinations
-│   │   ├── AboutPage.tsx       # Destination 02: About Us
-│   │   ├── CommitteesPage.tsx  # Destination 04: Committees
-│   │   ├── ContactPage.tsx     # Destination 06: Contact Us
-│   │   ├── EventsPage.tsx      # Destination 03: Events, Dates & Fees
-│   │   ├── HomePage.tsx        # Destination 01: Home
-│   │   └── RegistrationPage.tsx# Destination 05: Delegate Registration
-│   ├── sections/               # Home-specific composite sections
-│   │   ├── Experience.tsx      # 5-stage horizontal pinned storytelling section
-│   │   └── Hero.tsx            # Two-column hero with parallel emblem & map canvas
+│   │   ├── animations.ts         # GSAP helper functions and motion checks
+│   │   ├── prefetch.ts           # Route chunk idle prefetching
+│   │   ├── scroll.ts             # Lenis smooth scroll and background scroll locks
+│   │   └── utils.ts              # ClassName merging utility
+│   ├── pages/                    # Route-level lazy-loaded destinations
+│   │   ├── AboutPage.tsx         # Destination 02: About Us & Secretariat
+│   │   ├── CommitteesPage.tsx    # Destination 04: Committees & Dossiers
+│   │   ├── ContactPage.tsx       # Destination 06: Contact Us & Inquiries
+│   │   ├── EventsPage.tsx        # Destination 03: Events, Dates & Fees
+│   │   ├── HomePage.tsx          # Destination 01: Home
+│   │   └── RegistrationPage.tsx  # Destination 05: Delegate Registration Form
+│   ├── sections/                 # Home page specific sections
+│   │   ├── Experience.tsx        # Pinned 3-stage diplomatic journey
+│   │   └── Hero.tsx              # Two-column hero with emblem & world map
 │   ├── styles/
-│   │   └── index.css           # Tailwind CSS imports, color tokens, font utilities
-│   ├── App.tsx                 # Root application wrapper with Suspense boundaries
-│   ├── main.tsx                # React entry point
-│   └── vite-env.d.ts           # Vite TypeScript environment declarations
-├── index.html                  # HTML5 document template with complete SEO & touch metadata
-├── package.json                # Project dependencies, scripts, and engine metadata
-├── tsconfig.json               # TypeScript compiler options
-├── tsconfig.node.json          # Node configuration for build tools
-└── vite.config.ts              # Vite bundler, plugins, aliases, and Rollup chunking
+│   │   └── index.css             # Tailwind CSS tokens, typography, and utility classes
+│   ├── App.tsx                   # Main layout with Suspense fallback and prefetching
+│   ├── main.tsx                  # React application entry point
+│   └── vite-env.d.ts             # Vite client environment declarations
+├── index.html                    # HTML document with critical Hero shell & LCP preload
+├── package.json                  # Dependencies, scripts, and project metadata
+├── tsconfig.json                 # TypeScript compiler configuration
+├── tsconfig.node.json            # Node TypeScript configuration
+└── vite.config.ts                # Vite build and Rollup chunking configuration
 ```
-
-### Important Files
-- **`src/data/config.ts`**: Centralized configuration containing official dates, registration status, fee tiers, contact emails, social channels, and destination route definitions.
-- **`src/data/content.ts`**: Substantive content repository storing committee mandates, agendas, the 5-stage experience narrative, FAQ items, and institutional overview text.
-- **`src/context/NavigationContext.tsx`**: Provides application-wide destination routing via browser hash synchronization (`#/home`, `#/about`, etc.), programmatic transitions, and scroll resets.
 
 ---
 
-## Getting Started
+## Local Development
 
 ### Prerequisites
-- **Node.js**: `v18.0.0` or higher (tested on Node.js `v24.x`)
-- **Package Manager**: `npm` (v9 or higher)
+- **Node.js:** `v20.x` LTS recommended (`v18.0.0` or higher supported)
+- **Package Manager:** `npm` (`v9.x` or higher)
 
-### Installation
-1. Clone the repository:
+### Setup & Commands
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/souradeep-das-04/NITAMUN-4.0.git
+   cd "NITAMUN 4.0"
    ```
-2. Navigate into the cloned project directory:
-   ```bash
-   cd NITAMUN-4.0
-   ```
-3. Install project dependencies:
+
+2. **Install dependencies:**
    ```bash
    npm install
    ```
-4. Start the local development server:
+
+3. **Start local development server:**
    ```bash
    npm run dev
    ```
-5. Open your browser and navigate to `http://localhost:5173/`.
+   Open `http://localhost:5173/` in your browser.
+
+4. **Run TypeScript type validation:**
+   ```bash
+   npx tsc -b
+   ```
+
+5. **Build for production:**
+   ```bash
+   npm run build
+   ```
+   Compiles type-checked, minified, fingerprinted static bundles into `dist/`.
+
+6. **Preview production build locally:**
+   ```bash
+   npm run preview
+   ```
+   Serves the generated `dist/` directory at `http://localhost:4173/`.
 
 ---
 
-## Available Scripts
+## Environment Configuration
 
-In the project directory, you can execute:
+The application uses client-side Vite environment variables. All variables exposed to the browser must be prefixed with `VITE_`.
 
-| Command | Action | Description |
+| Variable | Description | Default Fallback |
 | :--- | :--- | :--- |
-| `npm run dev` | `vite` | Starts the Vite development server with Hot Module Replacement (HMR). |
-| `npm run build` | `tsc -b && vite build` | Type-checks the entire TypeScript codebase and compiles static assets into `dist/`. |
-| `npm run preview` | `vite preview` | Runs a local web server serving the production build from `dist/` for pre-deployment verification. |
+| `VITE_BASE_PATH` | Base path for GitHub Pages deployment (e.g. `/NITAMUN-4.0/`) | `/` |
+| `VITE_SHEETDB_API_URL` | SheetDB API endpoint for delegate registration submissions | `https://sheetdb.io/api/v1/32lxk4x4tllo7` |
+| `VITE_SHEETDB_INQUIRY_API_URL` | SheetDB API endpoint for Secretariat inquiry submissions | `https://sheetdb.io/api/v1/s0lfoie3eqpyp` |
+
+Create a `.env` file in the project root if you wish to override the defaults locally:
+
+```bash
+cp .env.example .env
+```
+
+> **Security Note:** Never place secret credentials, private database passwords, or service-role keys in `.env` files, as any `VITE_` variables are bundled directly into client-side JavaScript.
 
 ---
 
-## Conference Information
+## Deployment
 
-| Parameter | Official Details |
-| :--- | :--- |
-| **Conference** | NITAMUN 4.0 (Fourth Edition) |
-| **Dates** | **January 23–24, 2027** |
-| **Format** | **Online** (Convened digitally) |
-| **Organiser** | Model United Nations Society (MUNSOC), NIT Agartala |
-| **Institution** | National Institute of Technology Agartala, Tripura, India |
-| **Committees** | UNSC, UNHRC, UNCSW, AIPPM |
-| **Eligibility** | Students and working professionals are encouraged to participate |
-| **Registration Track** | Individual Delegates only |
-| **Registration Fees** | Early Bird: ₹400 (till Nov 30) • Regular: ₹450 (till Jan 10) • Late: ₹500 (after Jan 10) |
-| **Registration Status** | **Live** (Integrated SheetDB Delegate Registration Form) |
+### Vercel Deployment (Primary)
+The repository is optimized for deployment on Vercel:
+- **Framework Preset:** Vite
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Root Directory:** `./`
+- **Node.js Version:** `20.x`
 
----
-
-## Deployment & Hosting
-
-The website is configured for continuous automated deployment to **GitHub Pages** via GitHub Actions:
-
-- **Repository**: `https://github.com/heyshraavan/NITAMUN-4.0`
-- **Live URL**: `https://heyshraavan.github.io/NITAMUN-4.0/`
-- **Target Branch**: `main`
-- **Workflow**: `.github/workflows/deploy.yml`
-
-### GitHub Pages Setup Instructions
-
-1. In the GitHub repository, navigate to **Settings** → **Pages**.
-2. Under **Build and deployment** → **Source**, select **GitHub Actions**.
-3. Pushes to the `main` branch automatically trigger the build and deployment workflow.
-4. (Optional) Under **Settings** → **Secrets and variables** → **Actions**, you can configure `VITE_SHEETDB_API_URL` to point to a custom SheetDB endpoint. By default, it falls back to the official conference endpoint.
+### GitHub Pages Deployment (Automated Workflow)
+Continuous deployment to GitHub Pages is configured via `.github/workflows/deploy.yml`:
+- Triggered automatically on pushes to branch `main`.
+- Automatically sets `VITE_BASE_PATH: /NITAMUN-4.0/`.
+- Executes `npm ci` and `npm run build`, uploading the resulting `dist/` artifact to GitHub Pages.
 
 ---
 
-## Screenshots
+## Project Maintenance Guide
 
-<!--
-Optional Section: Add screenshots of the website once preview environments are deployed.
-Example:
-![NITAMUN 4.0 Hero Section](public/screenshots/hero-desktop.png)
-![NITAMUN 4.0 Events & Fees](public/screenshots/events-desktop.png)
--->
+### 1. Updating Executive & Secretariat Photographs
+1. Place the optimized `.webp` and fallback `.jpg` images in `src/assets/secretariat/`.
+2. Follow standard aspect ratio `4:5` (recommended `480×600` for Executives, `260×325` for Secretariat).
+3. Import the assets in `src/data/secretariat.ts` and update the `imageWebp`, `imageJpg`, and `objectPosition` properties on the respective member object.
 
-*Screenshots will be added upon deployment of official conference preview environments.*
+### 2. Updating Secretariat Social Media Links
+In `src/data/secretariat.ts`:
+- Update `whatsAppUrl` (format: `https://wa.me/91XXXXXXXXXX`).
+- Update `instagramUrl` (format: `https://www.instagram.com/username/`).
+- Update `linkedInUrl` (format: `https://www.linkedin.com/in/username/`).
+
+### 3. Updating Committee Information & Agendas
+In `src/data/content.ts`:
+- Update `committeesData` array with updated `agenda`, `overview`, and council details.
+- To update portfolio matrices for the registration dropdowns, edit `src/data/portfolios.ts`.
+
+### 4. Updating Registration Fees & Deadlines
+In `src/data/config.ts`:
+- Update `conferenceConfig.registration.fees` with updated amounts and deadline strings.
+- Changes reflect automatically across Home, Events, and Registration pages.
+
+### 5. Updating Contact Details & Helplines
+In `src/data/config.ts`:
+- Update `conferenceConfig.contacts.phoneNumbers` and `conferenceConfig.contacts.email`.
+- In `src/pages/ContactPage.tsx`, update `SECRETARIAT_PHONE_NUMBERS`.
 
 ---
 
-## Contact & Official Channels
+## Changelog
 
-For communications and delegate inquiries:
-
-- **Official Secretariat Email**: [munsoc.nita@gmail.com](mailto:munsoc.nita@gmail.com)
-- **Instagram**: [@munsoc.nita](https://www.instagram.com/munsoc.nita/)
-- **LinkedIn**: [MUNSOC NIT Agartala](https://www.linkedin.com/company/munsoc-nita/)
-- **Location**: National Institute of Technology Agartala, Tripura, India
-
----
-
-## Credits & Institutional Governance
-
-- **Organising Body**: Model United Nations Society (MUNSOC)
-- **Parent Institution**: National Institute of Technology Agartala (NIT Agartala)
+### November 24, 2026 — Comprehensive Engineering Audit & Production Hardening
+- **Multi-Device Responsiveness:**
+  - Audited all 6 routes across viewports from 320×568 (small mobile) through 1920×1080 (large desktop).
+  - Enhanced `Button.tsx` with `max-w-full text-center` and flex wrapping to guarantee zero text overflow on narrow 320px screens.
+- **Scroll Synchronization & Scroll-Lock Integrity:**
+  - Verified Lenis smooth scrolling with GSAP ScrollTrigger updates.
+  - Verified background scroll locking (`lockBackgroundScroll`) across committee dossier modals, terms/privacy modals, and navigation drawers.
+  - Ensured all modals utilize `data-lenis-prevent`, `overscroll-contain`, and native `-webkit-overflow-scrolling: touch`.
+- **Form Validation & Interaction Improvements:**
+  - Improved `RegistrationPage.tsx` validation: eliminated asynchronous state race condition on submit, ensuring immediate smooth scroll to the first invalid form field.
+  - Verified duplicate submission guards (`isSubmitting`) and timestamping on both registration and inquiry forms.
+- **Security & Git Hygiene Hardening:**
+  - Conducted `npm audit` with 0 vulnerabilities detected.
+  - Confirmed 0 instances of `dangerouslySetInnerHTML` or `eval` in the codebase.
+  - Verified all `target="_blank"` anchor tags include `rel="noopener noreferrer"`.
+  - Staged removal of accidental tracking of `dist/`, `tsconfig.tsbuildinfo`, and scratch analysis files from Git index without deleting local files.
+  - Enhanced `.gitignore` to strictly ignore `.env.*`, private keys (`*.pem`, `*.key`), and debug logs.
+- **Secretariat Social Icons:**
+  - Integrated 3 compact brand icon buttons (WhatsApp, Instagram, LinkedIn) into all four Executive Board cards.
+- **Documentation Overhaul:**
+  - Rewrote `README.md` to provide comprehensive, accurate documentation covering architecture, scripts, maintenance guides, and deployment workflows.

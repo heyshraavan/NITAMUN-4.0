@@ -284,8 +284,15 @@ export const RegistrationPage: React.FC = () => {
       newErrors.consent = 'You must agree to the Terms and Conditions and Privacy Policy.';
     }
 
+    const errorKeys = Object.keys(newErrors);
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    if (errorKeys.length > 0) {
+      const firstError = errorKeys[0];
+      const el = document.getElementById(firstError);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    return true;
   };
 
   // Submit Handler
@@ -293,9 +300,6 @@ export const RegistrationPage: React.FC = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      const firstError = Object.keys(errors)[0];
-      const el = document.getElementById(firstError);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
