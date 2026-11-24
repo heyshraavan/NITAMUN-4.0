@@ -14,6 +14,7 @@ export const CommitteesPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <SectionHeading
+          as="h1"
           sectionNumber="04"
           eyebrow="CHAMBERS OF DELIBERATION"
           title="The Four Committees"

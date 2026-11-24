@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#25231F" />
-    <title>NITAMUN 4.0 — Online Model United Nations | MUNSOC, NIT Agartala</title>
-    <meta name="description" content="NITAMUN 4.0 — Online Model United Nations conference organised by MUNSOC, National Institute of Technology Agartala. Convening delegates worldwide on January 23–24, 2027 for high-level diplomatic debate and international relations." />
+    <title>NITAMUN 4.0 | India's Largest Online Model United Nations</title>
+    <meta name="description" content="NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC), National Institute of Technology Agartala, on January 23–24, 2027." />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heyshraavan.github.io/NITAMUN-4.0/" />
+    <link rel="canonical" href="https://www.nitamun.co.in/" />
 
     <!-- Favicon & Touch Icons (Official NITAMUN 4.0 Emblem) -->
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
@@ -22,20 +22,69 @@
     
     <!-- Open Graph Metadata -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://heyshraavan.github.io/NITAMUN-4.0/" />
-    <meta property="og:title" content="NITAMUN 4.0 — Beyond Borders. Beyond Perspectives." />
-    <meta property="og:description" content="An online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
-    <meta property="og:image" content="https://heyshraavan.github.io/NITAMUN-4.0/emblem-circular.png" />
+    <meta property="og:url" content="https://www.nitamun.co.in/" />
+    <meta property="og:title" content="NITAMUN 4.0 | India's Largest Online Model United Nations" />
+    <meta property="og:description" content="NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC), National Institute of Technology Agartala, on January 23–24, 2027." />
+    <meta property="og:image" content="https://www.nitamun.co.in/emblem-circular.png" />
     <meta property="og:image:alt" content="NITAMUN 4.0 Official Emblem" />
     <meta property="og:site_name" content="NITAMUN 4.0" />
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://heyshraavan.github.io/NITAMUN-4.0/" />
-    <meta name="twitter:title" content="NITAMUN 4.0 — Online MUN" />
-    <meta name="twitter:description" content="An online Model United Nations conference organised by MUNSOC, NIT Agartala. January 23–24, 2027." />
-    <meta name="twitter:image" content="https://heyshraavan.github.io/NITAMUN-4.0/emblem-circular.png" />
+    <meta name="twitter:url" content="https://www.nitamun.co.in/" />
+    <meta name="twitter:title" content="NITAMUN 4.0 | India's Largest Online Model United Nations" />
+    <meta name="twitter:description" content="NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC), National Institute of Technology Agartala, on January 23–24, 2027." />
+    <meta name="twitter:image" content="https://www.nitamun.co.in/emblem-circular.png" />
     <meta name="twitter:image:alt" content="NITAMUN 4.0 Official Emblem" />
+
+    <!-- GitHub Pages Single Page App routing restoration -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search && l.search.startsWith('?/')) {
+          var decoded = l.search.slice(2).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.replace(/\/+$/, '') + '/' + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+
+    <!-- Schema.org Event JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "NITAMUN 4.0",
+      "alternateName": "NIT Agartala Model United Nations 4.0",
+      "description": "NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC), National Institute of Technology Agartala, on January 23–24, 2027.",
+      "url": "https://www.nitamun.co.in/",
+      "startDate": "2027-01-23",
+      "endDate": "2027-01-24",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://www.nitamun.co.in/"
+      },
+      "image": [
+        "https://www.nitamun.co.in/emblem-circular.png"
+      ],
+      "organizer": {
+        "@type": "Organization",
+        "name": "Model United Nations Society, National Institute of Technology Agartala",
+        "alternateName": "MUNSOC, NIT Agartala",
+        "url": "https://www.nitamun.co.in/",
+        "logo": "https://www.nitamun.co.in/emblem-circular.png",
+        "email": "munsoc.nitamun@gmail.com",
+        "sameAs": [
+          "https://www.instagram.com/munsoc.nita/",
+          "https://www.linkedin.com/company/munsoc-nita/"
+        ]
+      }
+    }
+    </script>
 
     <!-- Preload critical above-the-fold Hero emblem image -->
     <link rel="preload" as="image" href="/src/assets/emblem-circular.webp" type="image/webp" fetchpriority="high">

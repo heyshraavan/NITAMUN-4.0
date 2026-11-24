@@ -164,6 +164,7 @@ export const ContactPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <SectionHeading
+          as="h1"
           sectionNumber="06"
           eyebrow="COMMUNICATION & INQUIRIES"
           title="Connect with the Secretariat"

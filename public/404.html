@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NITAMUN 4.0 — Redirecting</title>
+    <script type="text/javascript">
+      // Single Page App routing fallback for GitHub Pages
+      // Preserves direct route hits and refreshes without 404 errors
+      var l = window.location;
+      var pathSegments = l.pathname.split('/').filter(Boolean);
+      var isSubdir = pathSegments.length > 0 && pathSegments[0].toLowerCase() === 'nitamun-4.0';
+      var keep = isSubdir ? 1 : 0;
+
+      var basePath = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        (keep ? '/' + pathSegments[0] : '') + '/';
+
+      var routePath = pathSegments.slice(keep).join('/');
+
+      var redirectUrl = basePath + '?' +
+        (routePath ? '/' + routePath : '') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash;
+
+      l.replace(redirectUrl);
+    </script>
+  </head>
+  <body style="background-color: #EBE9D8; color: #25231F; font-family: sans-serif; padding: 2rem; text-align: center;">
+    <p>Navigating to NITAMUN 4.0...</p>
+  </body>
+</html>

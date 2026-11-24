@@ -1,4 +1,7 @@
+# Robots.txt for NITAMUN 4.0
+# Primary Domain: https://www.nitamun.co.in
+
 User-agent: *
 Allow: /
 
-Sitemap: https://heyshraavan.github.io/NITAMUN-4.0/sitemap.xml
+Sitemap: https://www.nitamun.co.in/sitemap.xml

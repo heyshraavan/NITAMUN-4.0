@@ -19,6 +19,9 @@
 - **Tagline:** Beyond Borders. Beyond Perspectives.
 - **Conference Dates:** January 23–24, 2027
 - **Conference Mode:** Online Conference (Convened digitally worldwide)
+- **Official Website:** [https://www.nitamun.co.in](https://www.nitamun.co.in)
+- **Primary Domain:** `https://www.nitamun.co.in`
+- **Secondary Domain (Redirect):** `https://nitamun.co.in`
 - **Official Inquiries:** munsoc.nitamun@gmail.com
 
 NITAMUN 4.0 serves as the primary digital portal, substantive repository, and delegate accreditation interface for the conference. Designed with an editorial diplomatic aesthetic—Warm Ivory canvas (`#EBE9D8`), Deep Charcoal typography (`#25231F`), and Crimson accents (`#CB1B29`), paired with classical serifs and modern grotesques—the platform provides an authentic, accessible, and high-performance user experience across all devices.
@@ -46,38 +49,38 @@ The project utilizes a modern frontend architecture with strict dependency bound
 
 ## Features
 
-### 1. Six Dedicated Destinations (SPA Client Routing)
-Managed via `NavigationContext` with URL hash synchronization (`#/home`, `#/about`, `#/events`, `#/committees`, `#/registration`, `#/contact`):
+### 1. Six Dedicated Destinations (Clean Path & SPA Routing)
+Managed via `NavigationContext` using the browser History API with clean public URL paths (`/`, `/about`, `/events`, `/committees`, `/registration`, `/contact`) and automatic backward compatibility for legacy hash links:
 
-- **Home (`#/home`):**
+- **Home (`/`):**
   - Two-column hero with the official circular emblem, golden shimmer sweep, and dynamic astrolabe orbits.
   - Interactive background world map with diplomatic connection arcs and active node pulses.
   - Pinned 3-stage horizontal narrative (`Experience.tsx`) covering the progression of model diplomacy on desktop, adapting gracefully to vertical flow on mobile.
   - Highlights grid with quick gateways to other conference pillars and conference statistics.
-- **About Us (`#/about`):**
+- **About Us (`/about`):**
   - Institutional profile of MUNSOC and National Institute of Technology Agartala.
   - Conference vision, mission statement, and the four core institutional objectives.
   - Five pillars explaining why delegates choose NITAMUN.
   - Comprehensive two-tier Secretariat leadership showcase.
-- **Events (`#/events`):**
+- **Events (`/events`):**
   - **Important Dates:** January 23–24, 2027 (Confirmed Online Conclave).
-  - **Registration Fees:** Early Bird (₹400, until December 15), Regular (₹450, till Jan 10), Late (₹500, after Jan 10).
+  - **Registration Fees:** Early Bird (₹400, until December 15, 2026), Regular (₹450, till Jan 10, 2027), Late (₹500, after Jan 10, 2027).
   - **Participants:** Open accreditation welcoming students and working professionals.
   - **Awards Per Committee:** Best Delegate (1), High Commendation (1), Special Mention (1), Verbal/Honorable Mention (5).
   - **Total Prize Pool:** Prominent diplomatic distinction announcement block.
-- **Committees (`#/committees`):**
+- **Committees (`/committees`):**
   - Four simulation councils:
     - **UNSC** — United Nations Security Council (Continuous Crisis / Specialized Agency)
     - **UNHRC** — United Nations Human Rights Council (General Assembly Body)
     - **UNCSW** — United Nations Commission on the Status of Women (Functional Commission of ECOSOC)
     - **AIPPM** — All India Political Parties Meet (Specialized Indian Parliamentary Simulation)
   - Interactive substantive dossier modals with full background scroll lock, touch-friendly scrolling, and Escape key dismissal.
-- **Registration (`#/registration`):**
+- **Registration (`/registration`):**
   - Single delegate track: Individual Delegate.
   - Real-time client-side validation, duplicate committee preference prevention, and automatic portfolio choice resetting.
   - Direct integration with **SheetDB (Google Sheets)** for live submission tracking with timestamping and error resilience.
   - Smooth automatic scrolling to the first invalid input on validation failures.
-- **Contact Us (`#/contact`):**
+- **Contact Us (`/contact`):**
   - Direct Secretariat phone numbers with clickable `tel:` links:
     - `+91 91012 05308`
     - `+91 70671 64917`
@@ -250,18 +253,32 @@ cp .env.example .env
 ## Deployment
 
 ### Vercel Deployment (Primary)
-The repository is optimized for deployment on Vercel:
+The repository is optimized for deployment on Vercel under the custom domains:
+- **Primary Domain:** `https://www.nitamun.co.in`
+- **Secondary Domain:** `https://nitamun.co.in` (301 permanent redirect configured via `vercel.json`)
 - **Framework Preset:** Vite
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`
 - **Root Directory:** `./`
 - **Node.js Version:** `20.x`
+- **Route Rewrites:** All clean paths (`/`, `/about`, `/events`, `/committees`, `/registration`, `/contact`) rewrite to `/index.html` for direct visits and hard refreshes.
 
 ### GitHub Pages Deployment (Automated Workflow)
-Continuous deployment to GitHub Pages is configured via `.github/workflows/deploy.yml`:
+Continuous deployment to GitHub Pages is preserved via `.github/workflows/deploy.yml`:
 - Triggered automatically on pushes to branch `main`.
 - Automatically sets `VITE_BASE_PATH: /NITAMUN-4.0/`.
 - Executes `npm ci` and `npm run build`, uploading the resulting `dist/` artifact to GitHub Pages.
+- SPA path-routing fallback is handled via `public/404.html` and URL reconstruction in `index.html`.
+
+---
+
+## SEO & Structured Data
+
+- **XML Sitemap:** Accessible at `https://www.nitamun.co.in/sitemap.xml` with canonical absolute URLs for all 6 public routes.
+- **Robots.txt:** Accessible at `https://www.nitamun.co.in/robots.txt` allowing crawler access and pointing to the primary sitemap.
+- **Schema.org Structured Data:** Valid JSON-LD `Event` definition embedded in `index.html` with `OnlineEventAttendanceMode`, `EventScheduled`, `VirtualLocation`, and official organizer coordinates.
+- **Open Graph & Twitter Cards:** Complete, unique metadata tags for every route with high-resolution circular emblem preview images (`https://www.nitamun.co.in/emblem-circular.png`).
+- **Semantic Headings:** Exactly one `<h1>` per page with strict downward `<h2>`/`<h3>` hierarchy.
 
 ---
 
@@ -318,3 +335,11 @@ In `src/data/config.ts`:
   - Integrated 3 compact brand icon buttons (WhatsApp, Instagram, LinkedIn) into all four Executive Board cards.
 - **Documentation Overhaul:**
   - Rewrote `README.md` to provide comprehensive, accurate documentation covering architecture, scripts, maintenance guides, and deployment workflows.
+- **Production SEO & Routing Implementation:**
+  - Migrated from hash-based navigation to clean browser path routing (`/`, `/about`, `/events`, `/committees`, `/registration`, `/contact`) using the HTML5 History API while maintaining full backward compatibility for legacy hash links.
+  - Implemented page-specific SEO metadata across all six routes, including unique titles, descriptions, canonical URLs (`https://www.nitamun.co.in`), Open Graph, and Twitter Cards.
+  - Created valid XML sitemap (`/sitemap.xml`) and `robots.txt` referencing primary domain URLs without hashes or invented dates.
+  - Implemented Schema.org `Event` JSON-LD structured data with `OnlineEventAttendanceMode`, `EventScheduled`, `VirtualLocation`, and official organizer coordinates.
+  - Added `vercel.json` with 301 permanent redirect from `nitamun.co.in` to `https://www.nitamun.co.in` and rewrites to `/index.html` for direct route visits.
+  - Added `public/404.html` and URL restoration script to maintain compatibility with GitHub Pages SPA deployments.
+  - Standardized exactly one semantic `<h1>` tag per page using `SectionHeading as="h1"`.

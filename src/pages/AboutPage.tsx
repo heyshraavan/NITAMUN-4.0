@@ -32,6 +32,7 @@ export const AboutPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Page Header */}
         <SectionHeading
+          as="h1"
           sectionNumber="02"
           eyebrow="ABOUT US & INSTITUTIONAL PROFILE"
           title="Where Diplomacy Meets Rigour"

@@ -10,6 +10,7 @@ export interface SectionHeadingProps {
   align?: 'left' | 'center';
   variant?: 'light' | 'dark';
   className?: string;
+  as?: 'h1' | 'h2';
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -21,8 +22,10 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   align = 'left',
   variant = 'light',
   className,
+  as = 'h2',
 }) => {
   const isDark = variant === 'dark';
+  const HeadingTag = as;
 
   return (
     <div
@@ -58,7 +61,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       )}
 
       {/* Main Editorial Heading */}
-      <h2
+      <HeadingTag
         className={cn(
           'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif-display font-normal tracking-tight leading-[1.12]',
           isDark ? 'text-[#EBE9D8]' : 'text-[#25231F]'
@@ -70,7 +73,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
             {titleAccent}
           </span>
         )}
-      </h2>
+      </HeadingTag>
 
       {/* Diplomatic subtle underline accent */}
       <div
