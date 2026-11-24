@@ -124,6 +124,8 @@ export const aboutUsContent = {
     ],
     linkedInUrl: "https://www.linkedin.com/in/dr-gyanabati-khuraijam-ab517798/",
   },
+  mission:
+    "To create a platform where students engage with global issues, develop informed perspectives, and strengthen their skills in diplomacy, negotiation and public speaking through meaningful debate and discussion.",
   objectives: [
     {
       number: "01",

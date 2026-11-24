@@ -72,9 +72,18 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Faculty Advisor Feature */}
-          <div className="lg:col-span-6">
+          {/* Right Column: Faculty Advisor Feature & Our Mission */}
+          <div className="lg:col-span-6 flex flex-col gap-3.5 sm:gap-4">
             <FacultyAdvisorFeature />
+
+            <div className="py-3.5 px-5 sm:py-4 sm:px-6 bg-[#25231F] text-[#EBE9D8] border border-[#EBE9D8]/15 rounded-xs space-y-1.5 shadow-xs">
+              <h3 className="font-serif-display text-lg sm:text-xl font-bold text-[#EBE9D8]">
+                Our Mission
+              </h3>
+              <p className="text-xs sm:text-sm font-body text-[#EBE9D8]/85 leading-relaxed">
+                {aboutUsContent.mission}
+              </p>
+            </div>
           </div>
         </div>
 
