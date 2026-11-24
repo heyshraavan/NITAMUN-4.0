@@ -5,6 +5,7 @@ import { conferenceConfig } from '../data/config';
 import { useNavigation } from '../context/NavigationContext';
 import { Button } from '../components/Button';
 import { ExecutiveLeadership } from '../components/ExecutiveLeadership';
+import { FacultyAdvisorFeature } from '../components/FacultyAdvisorFeature';
 import { Scale, Globe, Award, Briefcase, Users, ShieldCheck } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -37,13 +38,13 @@ export const AboutPage: React.FC = () => {
           eyebrow="ABOUT US & INSTITUTIONAL PROFILE"
           title="Where Diplomacy Meets Rigour"
           titleAccent="NITAMUN & MUNSOC"
-          subtitle="Explore the vision, mission, methodology, and leadership driving the Fourth Edition of Model United Nations at the National Institute of Technology Agartala."
+          subtitle="Explore the conference mandate, host society, academic mentorship, and leadership driving the Fourth Edition of Model United Nations at the National Institute of Technology Agartala."
         />
 
-        {/* 2. Dual Narrative: About NITAMUN 4.0 & MUNSOC */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="p-8 bg-[#F6F4EB] border-l-4 border-[#CB1B29] space-y-4">
+        {/* 2. Dual Narrative: About NITAMUN 4.0 & MUNSOC and Faculty Advisor */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start mb-24">
+          <div className="lg:col-span-6 space-y-6">
+            <div className="p-6 sm:p-8 bg-[#F6F4EB] border-l-4 border-[#CB1B29] space-y-4">
               <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider">
                 ABOUT THE CONFERENCE
               </span>
@@ -55,7 +56,7 @@ export const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-8 bg-[#F6F4EB] border border-[#25231F]/15 space-y-4">
+            <div className="p-6 sm:p-8 bg-[#F6F4EB] border border-[#25231F]/15 space-y-4">
               <span className="text-xs font-mono-tech uppercase text-[#25231F]/60 font-bold tracking-wider">
                 HOST SOCIETY
               </span>
@@ -71,35 +72,9 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Vision & Mission Statement Box */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 bg-[#25231F] text-[#EBE9D8] border border-[#EBE9D8]/15 space-y-6 shadow-xl">
-              <div>
-                <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block mb-2">
-                  OUR GUIDING VISION
-                </span>
-                <h4 className="font-serif-display text-2xl font-bold text-[#EBE9D8] mb-3">
-                  Empowered Multilateral Statecraft
-                </h4>
-                <p className="text-sm font-body text-[#EBE9D8]/80 leading-relaxed">
-                  {aboutUsContent.vision}
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-[#EBE9D8]/15">
-                <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-wider block mb-2">
-                  OUR MISSION
-                </span>
-                <p className="text-sm font-body text-[#EBE9D8]/80 leading-relaxed">
-                  {aboutUsContent.mission}
-                </p>
-              </div>
-
-              <div className="pt-4 flex items-center justify-between text-xs font-mono-tech text-[#EBE9D8]/50">
-                <span>ONLINE SIMULATION PROTOCOL</span>
-                <span className="text-[#CB1B29]">NIT AGARTALA</span>
-              </div>
-            </div>
+          {/* Right Column: Faculty Advisor Feature */}
+          <div className="lg:col-span-6">
+            <FacultyAdvisorFeature />
           </div>
         </div>
 

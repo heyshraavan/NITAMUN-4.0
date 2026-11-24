@@ -106,10 +106,24 @@ export const aboutUsContent = {
     "NITAMUN 4.0 is an online Model United Nations conference organised by the Model United Nations Society (MUNSOC) of the National Institute of Technology Agartala. Convened entirely online, NITAMUN 4.0 brings together students and working professionals to experience diplomacy, debate, and international relations.",
   munsocNarrative:
     "Founded as an intellectual crucible within NIT Agartala, MUNSOC has fostered a community of debaters, policy analysts, and multilateral thinkers. The society organises year-round parliamentary workshops, training caucuses, and crisis simulations, bringing together collegiate scholars, school debaters, and working professionals from across the globe.",
-  vision:
-    "To cultivate an empowered generation of empathetic, analytically rigorous leaders who approach global friction not through polarizing rhetoric, but through constructive negotiation, legal precision, and multilateral statecraft.",
-  mission:
-    "To provide an uncompromising online simulation environment where participants experience the immense responsibility of foreign policy formulation, master the United Nations Rules of Procedure, and draft actionable solutions to the century's most pressing global crises.",
+  facultyAdvisor: {
+    label: "FACULTY ADVISOR",
+    name: "Dr. Gyanabati Khuraijam",
+    designation: "Associate Professor · Head of Department",
+    department: "Department of Management, Humanities & Social Sciences, NIT Agartala",
+    acknowledgement:
+      "MUNSOC, NIT Agartala, is grateful for her continued guidance and support. Her academic experience and encouragement have been valuable in helping the society organise its activities and provide students with opportunities for learning, discussion and engagement beyond the classroom.",
+    academicInterests: [
+      "Commonwealth Literature",
+      "Indian Writing in English",
+      "Gender Studies",
+      "Postcolonial Studies",
+      "Women Studies",
+      "Communication",
+      "Soft Skills",
+    ],
+    linkedInUrl: "https://www.linkedin.com/in/dr-gyanabati-khuraijam-ab517798/",
+  },
   objectives: [
     {
       number: "01",
