@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigation } from '../context/NavigationContext';
 import { conferenceConfig, NavDestinationId } from '../data/config';
-import { ArrowUp, Mail, Globe2 } from 'lucide-react';
-import officialEmblem from '../assets/emblem-sm.jpg';
-import officialEmblemWebp from '../assets/emblem-sm.webp';
+import { ArrowUp, Mail, Globe2, Phone } from 'lucide-react';
+import emblemCircularPng from '../assets/emblem-circular.png';
+import emblemCircularWebp from '../assets/emblem-circular.webp';
 
 export const Footer: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -28,14 +28,14 @@ export const Footer: React.FC = () => {
           {/* Col 1: Identity & Positioning (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="official-emblem w-13 h-9.5 rounded-[50%] overflow-hidden border border-[#CB1B29]/40 bg-[#66091c] flex items-center justify-center shrink-0 shadow-md p-0.5">
+              <div className="official-emblem w-12 h-12 sm:w-13 sm:h-13 shrink-0 flex items-center justify-center">
                 <picture className="w-full h-full block">
-                  <source srcSet={officialEmblemWebp} type="image/webp" />
+                  <source srcSet={emblemCircularWebp} type="image/webp" />
                   <img
-                    src={officialEmblem}
+                    src={emblemCircularPng}
                     alt="NITAMUN 4.0 Official Emblem"
-                    width={48}
-                    height={44}
+                    width={52}
+                    height={52}
                     loading="lazy"
                     className="w-full h-full object-contain !opacity-100"
                   />
@@ -92,11 +92,11 @@ export const Footer: React.FC = () => {
                 </svg>
               </a>
 
-              {/* Email: munsoc.nita@gmail.com */}
+              {/* Email: munsoc.nitamun@gmail.com */}
               <a
                 href={`mailto:${conferenceConfig.contacts.email}`}
                 className="w-9 h-9 rounded-xs border border-[#EBE9D8]/20 flex items-center justify-center text-[#EBE9D8]/80 hover:text-[#CB1B29] hover:border-[#CB1B29] transition-colors"
-                aria-label="Email munsoc.nita@gmail.com"
+                aria-label={`Email ${conferenceConfig.contacts.email}`}
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -133,16 +133,35 @@ export const Footer: React.FC = () => {
           {/* Col 3: Secretariat & Inquiries (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="text-xs font-mono-tech tracking-widest text-[#CB1B29] uppercase">
-              Secretariat Headquarters &amp; Format
+              Secretariat Headquarters
             </h4>
 
             <div className="space-y-3 text-xs font-mono-tech text-[#EBE9D8]/70">
               <div className="flex items-start gap-2.5">
                 <Globe2 className="w-4 h-4 text-[#CB1B29] shrink-0 mt-0.5" />
-                <span>
-                  {conferenceConfig.organizer.chapter}<br />
-                  {conferenceConfig.organizer.parentInstitute}
+                <span className="leading-relaxed">
+                  Model United Nations Society<br />
+                  National Institute of Technology Agartala
                 </span>
+              </div>
+
+              {/* Contact Phone Numbers */}
+              <div className="pt-1 space-y-1.5">
+                <div className="text-[11px] text-[#EBE9D8]/50 uppercase flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#CB1B29]" />
+                  <span>Contact:</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 pl-5">
+                  {conferenceConfig.contacts.phoneNumbers.map((phone) => (
+                    <a
+                      key={phone}
+                      href={`tel:${phone.replace(/\s+/g, '')}`}
+                      className="hover:text-[#CB1B29] transition-colors"
+                    >
+                      {phone}
+                    </a>
+                  ))}
+                </div>
               </div>
 
               <div className="flex items-center gap-2.5 pt-1">
@@ -162,12 +181,12 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="pt-2">
-                <button
-                  onClick={() => navigateTo('contact')}
-                  className="text-[#CB1B29] hover:underline font-semibold flex items-center gap-1.5 uppercase cursor-pointer"
+                <a
+                  href={`mailto:${conferenceConfig.contacts.email}?subject=Inquiry%20-%20NITAMUN%204.0%20Secretariat%20Desk`}
+                  className="text-[#CB1B29] hover:underline font-semibold inline-flex items-center gap-1.5 uppercase cursor-pointer"
                 >
                   Submit Inquiry via Secretariat Desk →
-                </button>
+                </a>
               </div>
             </div>
           </div>

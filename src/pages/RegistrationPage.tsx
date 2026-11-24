@@ -547,21 +547,6 @@ export const RegistrationPage: React.FC = () => {
           subtitle="Official individual delegate registration portal. Submit your personal, academic, and four-council preference dossier for the fourth edition convened online on January 23–24, 2027."
         />
 
-        {/* Live Conference Info Strip */}
-        <div className="mb-10 p-4 sm:p-5 bg-[#F6F4EB] border-l-4 border-[#CB1B29] shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono-tech">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#CB1B29] animate-pulse" />
-            <span className="text-[#25231F]/90 font-bold uppercase tracking-wider">
-              {conferenceConfig.dates.displayDate.toUpperCase()} • ONLINE EDITION
-            </span>
-          </div>
-          <div className="flex items-center gap-4 text-[#25231F]/70">
-            <span>EARLY BIRD: {conferenceConfig.registration.fees.earlyBird}</span>
-            <span>•</span>
-            <span>REGULAR: {conferenceConfig.registration.fees.regular}</span>
-          </div>
-        </div>
-
         {/* =========================================================================
             STATE 1: SUCCESS CONFIRMATION VIEW
             ========================================================================= */}

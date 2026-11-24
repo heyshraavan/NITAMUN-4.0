@@ -6,8 +6,8 @@ import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
 import { prefetchRoute } from '../lib/prefetch';
 import { Button } from './Button';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
-import officialEmblem from '../assets/emblem-sm.jpg';
-import officialEmblemWebp from '../assets/emblem-sm.webp';
+import emblemCircularPng from '../assets/emblem-circular.png';
+import emblemCircularWebp from '../assets/emblem-circular.webp';
 
 export const Header: React.FC = () => {
   const { currentDestination, navigateTo } = useNavigation();
@@ -82,15 +82,15 @@ export const Header: React.FC = () => {
             className="group flex items-center gap-3 text-left focus:outline-none cursor-pointer select-none"
             aria-label="NITAMUN 4.0 Home"
           >
-            {/* Official Oval Emblem Frame */}
-            <div className="official-emblem relative w-12 h-9 sm:w-13 sm:h-9.5 md:w-14 md:h-10 rounded-[50%] overflow-hidden border border-[#CB1B29]/40 shadow-xs group-hover:border-[#CB1B29] transition-all shrink-0 bg-[#66091c] p-0.5 flex items-center justify-center">
+            {/* Official Circular Emblem */}
+            <div className="official-emblem relative w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center">
               <picture className="w-full h-full block">
-                <source srcSet={officialEmblemWebp} type="image/webp" />
+                <source srcSet={emblemCircularWebp} type="image/webp" />
                 <img
-                  src={officialEmblem}
+                  src={emblemCircularPng}
                   alt="NITAMUN 4.0 Official Emblem"
                   width={48}
-                  height={44}
+                  height={48}
                   loading="eager"
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 !opacity-100"
                 />
@@ -178,14 +178,14 @@ export const Header: React.FC = () => {
           {/* Mobile Menu Top Bar — FIXED (flex-shrink-0) */}
           <div className="flex-shrink-0 flex items-center justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
             <div className="flex items-center gap-3">
-              <div className="official-emblem w-11 h-8 rounded-[50%] overflow-hidden border border-[#CB1B29] bg-[#66091c] p-0.5 shrink-0 flex items-center justify-center">
+              <div className="official-emblem w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
                 <picture className="w-full h-full block">
-                  <source srcSet={officialEmblemWebp} type="image/webp" />
+                  <source srcSet={emblemCircularWebp} type="image/webp" />
                   <img
-                    src={officialEmblem}
+                    src={emblemCircularPng}
                     alt="NITAMUN 4.0 Emblem"
-                    width={40}
-                    height={36}
+                    width={44}
+                    height={44}
                     className="w-full h-full object-contain"
                   />
                 </picture>

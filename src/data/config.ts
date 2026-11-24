@@ -62,6 +62,7 @@ export interface ConferenceConfig {
     email: string;
     phoneSecretariat: string;
     phoneDelegateAffairs: string;
+    phoneNumbers: string[];
     instagram: string;
     linkedin: string;
     address: string;
@@ -110,7 +111,7 @@ export const conferenceConfig: ConferenceConfig = {
     isAwaitingLink: false,
     fees: {
       earlyBird: "₹400",
-      earlyBirdDeadline: "till Nov 30",
+      earlyBirdDeadline: "Until December 15",
       regular: "₹450",
       regularDeadline: "till Jan 10",
       late: "₹500",
@@ -125,9 +126,15 @@ export const conferenceConfig: ConferenceConfig = {
     ],
   },
   contacts: {
-    email: "munsoc.nita@gmail.com",
-    phoneSecretariat: "+91 [CONTACT NUMBER TBA]",
-    phoneDelegateAffairs: "+91 [CONTACT NUMBER TBA]",
+    email: "munsoc.nitamun@gmail.com",
+    phoneSecretariat: "+91 9101205308",
+    phoneNumbers: [
+      "+91 9101205308",
+      "+91 7067164917",
+      "+91 7005789121",
+      "+91 9774550462"
+    ],
+    phoneDelegateAffairs: "+91 7067164917",
     instagram: "https://www.instagram.com/munsoc.nita/",
     linkedin: "https://www.linkedin.com/company/munsoc-nita/",
     address: "Model United Nations Society (MUNSOC), National Institute of Technology Agartala, Tripura, India",
@@ -135,7 +142,7 @@ export const conferenceConfig: ConferenceConfig = {
   formService: {
     endpoint: "https://api.web3forms.com/submit",
     accessKey: "YOUR_ACCESS_KEY_HERE",
-    recipientEmail: "munsoc.nita@gmail.com",
+    recipientEmail: "munsoc.nitamun@gmail.com",
   },
   sheetDb: {
     apiUrl: (import.meta.env.VITE_SHEETDB_API_URL || 'https://sheetdb.io/api/v1/32lxk4x4tllo7').trim(),

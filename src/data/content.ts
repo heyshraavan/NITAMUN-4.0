@@ -183,8 +183,8 @@ export const committeesData: CommitteeItem[] = [
     delegationType: "Single Delegate (P5 & Elected Members)",
     agenda: {
       status: "TBA",
-      title: "[AGENDA PLACEHOLDER: ADDRESSING ESCALATING MARITIME SECURITY DISPUTES AND NON-STATE ACTORS IN STRATEGIC STRAITS]",
-      description: "Official agenda text to be released by the Executive Board alongside the background guide.",
+      title: "TO BE ANNOUNCED",
+      description: "Official agenda text to be released by the Executive Board prior to accreditation.",
     },
     overview:
       "The pre-eminent organ tasked with the maintenance of international peace and security under the UN Charter. Featuring legally binding resolutions, presidential statements, and rapid, high-stakes continuous crisis updates that test tactical statecraft under immense pressure.",
@@ -200,8 +200,8 @@ export const committeesData: CommitteeItem[] = [
     delegationType: "Single Delegate",
     agenda: {
       status: "TBA",
-      title: "[AGENDA PLACEHOLDER: SAFEGUARDING CIVIL LIBERTIES AND COMBATING SYSTEMIC SURVEILLANCE ASYMMETRY IN DIGITAL AUTHORITARIAN STATES]",
-      description: "Official agenda item examining systemic humanitarian violations, privacy protections, and universal rights frameworks.",
+      title: "TO BE ANNOUNCED",
+      description: "Official agenda item to be released by the Executive Board prior to accreditation.",
     },
     overview:
       "Responsible for strengthening the promotion and protection of human rights globally. Delegates tackle urgent humanitarian imperatives, examining state accountability, refugee protections, civil liberties, and institutional equity across jurisdictions.",
@@ -217,8 +217,8 @@ export const committeesData: CommitteeItem[] = [
     delegationType: "Single Delegate",
     agenda: {
       status: "TBA",
-      title: "[AGENDA PLACEHOLDER: ACCELERATING GENDER EQUALITY AND ECONOMIC SOVEREIGNTY IN POST-CRISIS POST-CONFLICT RECONSTRUCTION]",
-      description: "Official agenda focusing on socioeconomic empowerment, structural protections, and institutional legislative parity.",
+      title: "TO BE ANNOUNCED",
+      description: "Official agenda item to be released by the Executive Board prior to accreditation.",
     },
     overview:
       "The principal global intergovernmental body dedicated exclusively to the promotion of gender equality and the empowerment of women. Delegates debate socio-economic barriers, institutional equity, maternal health protections, and legislative parity across emerging economies.",
@@ -234,8 +234,8 @@ export const committeesData: CommitteeItem[] = [
     delegationType: "Single Representative (Indian Political Leaders)",
     agenda: {
       status: "TBA",
-      title: "[AGENDA PLACEHOLDER: COMPREHENSIVE REVIEW OF FISCAL FEDERALISM, ELECTORAL MECHANISMS, AND INTER-STATE RESOURCE ALLOCATIONS]",
-      description: "Official agenda mirroring pressing national legislative, constitutional, and economic debates.",
+      title: "TO BE ANNOUNCED",
+      description: "Official agenda item to be released by the Executive Board prior to accreditation.",
     },
     overview:
       "A high-octane parliamentary forum capturing the vibrancy, ideological friction, and constitutional debates of Indian politics. Representatives articulate political party lines, cross-examine national policies, and negotiate bipartisan legislative consensus.",

@@ -5,7 +5,7 @@ import { Button } from './Button';
 import { CommitteeInsignia } from './CommitteeInsignia';
 import { useNavigation } from '../context/NavigationContext';
 import { lockBackgroundScroll, unlockBackgroundScroll } from '../lib/scroll';
-import { ArrowUpRight, BookOpen, FileText, CheckCircle2, X, Shield } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 
 export interface CommitteeCardProps {
   committee: CommitteeItem;
@@ -70,14 +70,14 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
             {committee.name}
           </h3>
 
-          {/* Agenda Placeholder Box */}
+          {/* Agenda Status Box */}
           <div className="my-4 p-3.5 bg-[#EBE9D8]/80 border-l-3 border-[#CB1B29] text-xs shadow-2xs">
-            <div className="font-mono-tech text-[10px] text-[#CB1B29] font-bold tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+            <div className="font-mono-tech text-[10px] text-[#CB1B29] font-bold tracking-wider uppercase mb-1 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
-              <span>Agenda Status: {committee.agenda.status}</span>
+              <span>OFFICIAL AGENDA</span>
             </div>
-            <p className="font-mono-tech text-[#25231F]/85 text-[11px] leading-relaxed font-medium">
-              {committee.agenda.title}
+            <p className="font-serif-display text-xl sm:text-2xl font-bold text-[#25231F] tracking-tight">
+              TO BE ANNOUNCED
             </p>
           </div>
 
@@ -183,60 +183,42 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
                 <CommitteeInsignia id={committee.id} size="100%" />
               </div>
 
-              {/* Section 1: Agenda Box */}
-              <div className="relative z-10 p-4 sm:p-5 bg-[#F6F4EB] border-l-4 border-[#CB1B29] shadow-xs">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <h4 className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] tracking-wider flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#CB1B29]" />
-                    Official Committee Agenda
+              {/* Section 1: Official Committee Agenda */}
+              <div className="relative z-10 p-6 sm:p-8 bg-[#F6F4EB] border-l-4 border-[#CB1B29] shadow-xs space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <h4 className="text-xs font-mono-tech uppercase font-bold text-[#CB1B29] tracking-widest flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#CB1B29] animate-pulse" />
+                    OFFICIAL COMMITTEE AGENDA
                   </h4>
-                  <span className="text-[10px] font-mono-tech uppercase px-2 py-0.5 rounded-2xs bg-[#CB1B29]/10 text-[#CB1B29] font-bold border border-[#CB1B29]/25">
-                    {committee.agenda.status}
+                  <span className="text-[10px] font-mono-tech uppercase px-2.5 py-0.5 rounded-2xs bg-[#CB1B29]/10 text-[#CB1B29] font-bold border border-[#CB1B29]/25">
+                    STATUS: TBA
                   </span>
                 </div>
-                <p className="font-mono-tech text-xs sm:text-sm text-[#25231F] font-semibold leading-relaxed">
-                  {committee.agenda.title}
+                <div className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#25231F]">
+                  TO BE ANNOUNCED
+                </div>
+                <p className="text-xs sm:text-sm font-mono-tech text-[#25231F]/65 pt-1 border-t border-[#25231F]/10">
+                  The substantive agenda and consultative debate topics will be formally unveiled by the Executive Board prior to delegate accreditation.
                 </p>
-                <p className="text-xs text-[#25231F]/75 mt-2.5 font-body leading-relaxed border-t border-[#25231F]/10 pt-2">
-                  {committee.agenda.description}
+              </div>
+
+              {/* Section 2: Portfolio Matrix */}
+              <div className="relative z-10 p-6 sm:p-8 bg-[#F6F4EB] border-l-4 border-[#25231F] shadow-xs space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 tracking-widest flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#25231F]/40" />
+                    PORTFOLIO MATRIX
+                  </h4>
+                  <span className="text-[10px] font-mono-tech uppercase px-2.5 py-0.5 rounded-2xs bg-[#25231F]/10 text-[#25231F] font-bold border border-[#25231F]/20">
+                    STATUS: TBA
+                  </span>
+                </div>
+                <div className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#25231F]">
+                  TO BE ANNOUNCED
+                </div>
+                <p className="text-xs sm:text-sm font-mono-tech text-[#25231F]/65 pt-1 border-t border-[#25231F]/10">
+                  Country matrix, sovereign representations, and specialized character allocations will be published alongside committee accreditation guidelines.
                 </p>
-              </div>
-
-              {/* Section 2: Mandate & Legal Framework */}
-              <div className="relative z-10">
-                <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 mb-2 flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-[#CB1B29]" />
-                  Charter & Legal Mandate
-                </h4>
-                <div className="text-sm font-body text-[#25231F]/85 leading-relaxed bg-[#F6F4EB] p-4 border border-[#25231F]/10 shadow-2xs">
-                  {committee.mandate}
-                </div>
-              </div>
-
-              {/* Section 3: Expected Outcomes & Simulated Instruments */}
-              <div className="relative z-10">
-                <h4 className="text-xs font-mono-tech uppercase font-bold text-[#25231F]/70 mb-2.5 flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[#CB1B29]" />
-                  Simulated Instruments & Binding Outcomes
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {committee.expectedOutcomes.map((outcome, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs font-mono-tech text-[#25231F]/90 bg-[#F6F4EB] p-2.5 border border-[#25231F]/10">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#CB1B29] shrink-0 mt-0.5" />
-                      <span>{outcome}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Section 4: Background Guide & Preparation Notice */}
-              <div className="relative z-10 p-3.5 bg-[#CB1B29]/8 border border-[#CB1B29]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono-tech">
-                <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-[#CB1B29] shrink-0" />
-                  <span className="text-[#CB1B29] font-bold">Substantive Guide:</span>
-                  <span className="text-[#25231F]/80">{committee.backgroundGuideStatus} (Releasing prior to accreditation)</span>
-                </div>
-                <span className="text-[10px] uppercase tracking-wider text-[#25231F]/50">SEC-ID: {committee.id.toUpperCase()}</span>
               </div>
             </div>
 

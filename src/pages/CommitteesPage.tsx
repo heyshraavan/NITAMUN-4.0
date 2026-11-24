@@ -25,7 +25,7 @@ export const CommitteesPage: React.FC = () => {
         <div className="mb-12 p-4 bg-[#F6F4EB] border-l-3 border-[#CB1B29] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono-tech text-[#25231F]">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-[#CB1B29] shrink-0" />
-            <span>Agendas are marked as editable placeholders. Official study guides will be released prior to conference accreditation.</span>
+            <span>Official committee agendas, study guides, and portfolio allocations will be released prior to conference accreditation.</span>
           </div>
           <button
             onClick={() => navigateTo('registration')}

@@ -8,9 +8,8 @@ import { scrollToSection } from '../lib/scroll';
 import { checkReducedMotion } from '../lib/animations';
 import { useNavigation } from '../context/NavigationContext';
 import { ArrowDown, Globe2, Calendar } from 'lucide-react';
-import heroEmblemMobile from '../assets/emblem-mobile.webp';
-import heroEmblemWebp from '../assets/emblem.webp';
-import heroEmblemJpg from '../assets/emblem.jpg';
+import emblemCircularWebp from '../assets/emblem-circular.webp';
+import emblemCircularPng from '../assets/emblem-circular.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -143,26 +142,12 @@ export const Hero: React.FC = () => {
       {/* Top Editorial Identifier */}
       <div
         ref={badgeRef}
-        className="relative z-20 max-w-7xl mx-auto w-full flex items-center justify-between text-xs font-mono-tech text-[#25231F]/70 pt-2"
+        className="relative z-20 max-w-7xl mx-auto w-full flex items-center text-xs font-mono-tech text-[#25231F]/70 pt-2"
       >
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#CB1B29] animate-pulse" />
           <span className="uppercase tracking-widest font-semibold text-[#CB1B29]">
             {conferenceConfig.organizer.chapter}
-          </span>
-          <span className="hidden sm:inline text-[#25231F]/40">•</span>
-          <span className="hidden sm:inline uppercase text-[#25231F]/60">
-            {conferenceConfig.dates.mode} Edition
-          </span>
-        </div>
-
-        <div className="flex items-center gap-4 text-[11px] uppercase tracking-wider text-[#25231F]/60">
-          <div className="hidden md:flex items-center gap-1.5">
-            <Globe2 className="w-3.5 h-3.5 text-[#CB1B29]" />
-            <span className="font-semibold text-[#25231F]/80">INDIA'S LARGEST ONLINE MUN</span>
-          </div>
-          <span className="font-semibold text-[#25231F] px-2 py-0.5 bg-[#F6F4EB] border border-[#25231F]/15">
-            {conferenceConfig.dates.displayDate}
           </span>
         </div>
       </div>
@@ -178,12 +163,6 @@ export const Hero: React.FC = () => {
             ref={leftColRef}
             className="lg:col-span-7 xl:col-span-7 text-left space-y-5 sm:space-y-6 order-2 lg:order-1 will-change-transform"
           >
-            {/* National Positioning */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xs bg-[#CB1B29]/10 border border-[#CB1B29]/30 text-xs font-mono-tech tracking-widest uppercase text-[#CB1B29] font-bold shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
-              <span>INDIA'S LARGEST ONLINE MUN</span>
-            </div>
-
             {/* Large Editorial Heading */}
             <h1
               ref={titleRef}
@@ -254,42 +233,41 @@ export const Hero: React.FC = () => {
 
           {/* =========================================================================
               RIGHT COLUMN — OFFICIAL EMBLEM PRESENTATION (5 COLS)
-              Oval-shaped frame with object-contain to preserve complete logo edges and details
+              Circular composition with object-contain to preserve complete logo edges and details
               ========================================================================= */}
           <div
             ref={emblemWrapperRef}
             className="lg:col-span-5 xl:col-span-5 flex flex-col items-center justify-center order-1 lg:order-2 will-change-transform relative lg:-translate-y-4 xl:-translate-y-8"
           >
             {/* Ambient Radial Maroon & Gold Glow */}
-            <div className="absolute -inset-8 rounded-[50%] bg-gradient-to-tr from-[#700F2B]/35 via-[#CB1B29]/20 to-[#B8860B]/15 blur-3xl pointer-events-none animate-pulse-glow" />
+            <div className="absolute -inset-8 rounded-full bg-gradient-to-tr from-[#700F2B]/35 via-[#CB1B29]/20 to-[#B8860B]/15 blur-3xl pointer-events-none animate-pulse-glow" />
 
             {/* Delicate Astrolabe Orbit Lines */}
-            <div className="absolute -inset-4 sm:-inset-6 rounded-[50%] border border-[#CB1B29]/25 border-dashed pointer-events-none animate-spin-slow" />
-            <div className="absolute -inset-1.5 sm:-inset-2 rounded-[50%] border border-[#CB1B29]/35 pointer-events-none" />
+            <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-[#CB1B29]/25 border-dashed pointer-events-none animate-spin-slow" />
+            <div className="absolute -inset-1.5 sm:-inset-2 rounded-full border border-[#CB1B29]/35 pointer-events-none" />
 
-            {/* Main Emblem Oval Container */}
+            {/* Main Emblem Circular Container */}
             <div
-              className="official-emblem relative w-[280px] h-[220px] sm:w-[330px] sm:h-[260px] md:w-[380px] md:h-[295px] lg:w-[430px] lg:h-[335px] xl:w-[480px] xl:h-[370px] rounded-[50%] overflow-hidden shadow-2xl shadow-[#25231F]/40 bg-[#66091c] border-2 border-[#CB1B29]/40 p-2 sm:p-2.5 md:p-3 sm:animate-emblem-float group opacity-100 transition-opacity"
+              className="official-emblem relative w-[270px] h-[270px] sm:w-[330px] sm:h-[330px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] xl:w-[460px] xl:h-[460px] rounded-full flex items-center justify-center sm:animate-emblem-float group opacity-100 transition-opacity"
               style={{ opacity: 1 }}
             >
               {/* The Official NITAMUN Emblem Image */}
               <picture className="w-full h-full block">
-                <source media="(max-width: 640px)" srcSet={heroEmblemMobile} type="image/webp" />
-                <source srcSet={heroEmblemWebp} type="image/webp" />
+                <source srcSet={emblemCircularWebp} type="image/webp" />
                 <img
-                  src={heroEmblemJpg}
+                  src={emblemCircularPng}
                   alt="NITAMUN 4.0 Official Emblem"
-                  width={480}
-                  height={370}
+                  width={460}
+                  height={460}
                   loading="eager"
                   fetchPriority="high"
-                  className="w-full h-full object-contain select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105 !opacity-100"
+                  className="w-full h-full object-contain select-none pointer-events-none drop-shadow-[0_20px_25px_rgba(37,35,31,0.25)] transition-transform duration-700 ease-out group-hover:scale-105 !opacity-100"
                   style={{ opacity: 1 }}
                 />
               </picture>
 
               {/* Restrained Golden Shimmer Sweep */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[50%]">
+              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-full">
                 <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-amber-100/25 to-transparent animate-golden-shimmer pointer-events-none" />
               </div>
             </div>
@@ -301,16 +279,12 @@ export const Hero: React.FC = () => {
       {/* Bottom Bar: Scroll Indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="relative z-20 max-w-7xl mx-auto w-full flex items-center justify-between pt-6 border-t border-[#25231F]/10 text-xs font-mono-tech text-[#25231F]/60"
+        className="relative z-20 max-w-7xl mx-auto w-full flex items-center justify-center pt-6 border-t border-[#25231F]/10 text-xs font-mono-tech text-[#25231F]/60"
       >
-        <div className="hidden sm:block">
-          MUNSOC NIT AGARTALA • ONLINE DIPLOMATIC ASSEMBLY
-        </div>
-
         {/* Scroll Indicator */}
         <button
           onClick={() => scrollToSection('#experience')}
-          className="group mx-auto sm:mx-0 flex items-center gap-2 text-[#25231F]/75 hover:text-[#CB1B29] transition-colors cursor-pointer"
+          className="group flex items-center gap-2 text-[#25231F]/75 hover:text-[#CB1B29] transition-colors cursor-pointer"
           aria-label="Scroll to conference experience"
         >
           <span className="uppercase tracking-widest text-[11px] font-medium">
@@ -320,10 +294,6 @@ export const Hero: React.FC = () => {
             <ArrowDown className="w-3 h-3 text-[#CB1B29]" />
           </span>
         </button>
-
-        <div className="hidden sm:block text-right">
-          {conferenceConfig.dates.displayDate.toUpperCase()} • ONLINE
-        </div>
       </div>
     </section>
   );

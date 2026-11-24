@@ -22,8 +22,8 @@ const INQUIRY_CLASSIFICATIONS = [
 ] as const;
 
 const SECRETARIAT_PHONE_NUMBERS = [
-  { display: '+91 91012 05308', tel: '+919101205308' },
-  { display: '+91 70671 64917', tel: '+917067164917' },
+  { display: '+91 9101205308', tel: '+919101205308' },
+  { display: '+91 7067164917', tel: '+917067164917' },
   { display: '+91 7005789121', tel: '+917005789121' },
   { display: '+91 9774550462', tel: '+919774550462' },
 ] as const;

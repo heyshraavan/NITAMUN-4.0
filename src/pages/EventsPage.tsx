@@ -109,7 +109,7 @@ export const EventsPage: React.FC = () => {
 
           {/* -----------------------------------------------------------------------
               GROUP 2: REGISTRATION FEES
-              Early Bird: ₹400 (till Nov 30)
+              Early Bird: ₹400 (Until December 15)
               Regular: ₹450 (till Jan 10)
               Late: ₹500 (after Jan 10)
               ----------------------------------------------------------------------- */}
@@ -149,8 +149,8 @@ export const EventsPage: React.FC = () => {
                   <div className="font-serif-display text-4xl sm:text-5xl font-bold text-[#CB1B29] my-3">
                     ₹400
                   </div>
-                  <div className="inline-block px-2 py-1 bg-[#F6F4EB] border border-[#25231F]/15 text-xs font-mono-tech font-bold text-[#25231F]">
-                    till Nov 30
+                  <div className="inline-block px-2.5 py-1 bg-[#F6F4EB] border border-[#25231F]/15 text-xs font-mono-tech font-bold text-[#25231F]">
+                    Until December 15
                   </div>
                 </div>
                 <div className="mt-6 pt-3 border-t border-[#25231F]/10 text-xs font-mono-tech text-[#25231F]/70">
@@ -357,6 +357,52 @@ export const EventsPage: React.FC = () => {
                 <div className="mt-6 pt-3 border-t border-[#25231F]/10 text-xs font-mono-tech text-[#CB1B29] font-bold">
                   Conferred: 5 per committee
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* -----------------------------------------------------------------------
+              GROUP 5: TOTAL PRIZE POOL
+              Prominent, refined diplomatic announcement block
+              ----------------------------------------------------------------------- */}
+          <div className="relative p-8 sm:p-12 bg-[#25231F] text-[#EBE9D8] border-2 border-[#CB1B29] shadow-xl overflow-hidden group">
+            {/* Background Archival Grid Pattern Accent */}
+            <div 
+              className="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style={{
+                backgroundImage: 'radial-gradient(#EBE9D8 1px, transparent 1px)',
+                backgroundSize: '20px 20px'
+              }}
+            />
+
+            {/* Subtle Top Crimson Accent Stripe */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CB1B29] via-[#EBE9D8]/40 to-[#CB1B29]" />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-10">
+              <div className="space-y-3 max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-2xs bg-[#CB1B29]/20 border border-[#CB1B29]/40 text-xs font-mono-tech tracking-widest uppercase text-[#CB1B29] font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#CB1B29] animate-pulse" />
+                  <span>OFFICIAL DISTINCTION &amp; HONORS</span>
+                </div>
+                <h2 className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#EBE9D8]">
+                  TOTAL PRIZE POOL
+                </h2>
+                <p className="text-sm sm:text-base text-[#EBE9D8]/75 font-body leading-relaxed">
+                  Substantial cumulative monetary honors, cash prizes, and diplomatic laurels awarded across all four committees. Full breakdown and tier disbursement to be officially unveiled by the Secretariat.
+                </p>
+              </div>
+
+              {/* The "To Be Announced" Badge / Announcement Box */}
+              <div className="shrink-0 w-full md:w-auto p-6 sm:p-8 bg-[#EBE9D8] text-[#25231F] border-l-4 border-[#CB1B29] shadow-lg flex flex-col items-start md:items-center justify-center text-center">
+                <span className="text-[11px] font-mono-tech uppercase font-bold tracking-widest text-[#CB1B29] block mb-1">
+                  STATUS
+                </span>
+                <span className="font-serif-display text-3xl sm:text-4xl font-bold text-[#25231F] whitespace-nowrap">
+                  To Be Announced
+                </span>
+                <span className="text-[10px] font-mono-tech uppercase text-[#25231F]/60 mt-1 tracking-wider">
+                  Pre-Conference Convocation
+                </span>
               </div>
             </div>
           </div>
