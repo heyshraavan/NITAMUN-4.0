@@ -1,9 +1,9 @@
 // Centralized Committee & Portfolio Configuration for NITAMUN 4.0
 // Official Committees:
-// 1. UNSC  — United Nations Security Council
-// 2. UNHRC — United Nations Human Rights Council
-// 3. UNCSW — United Nations Commission on the Status of Women
-// 4. AIPPM — All India Political Parties Meet
+// 1. UNSC  | United Nations Security Council
+// 2. UNHRC | United Nations Human Rights Council
+// 3. UNCSW | United Nations Commission on the Status of Women
+// 4. AIPPM | All India Political Parties Meet
 
 export type CommitteeId = 'UNSC' | 'UNHRC' | 'UNCSW' | 'AIPPM';
 

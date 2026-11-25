@@ -96,7 +96,7 @@ export const FloatingNavbar: React.FC = () => {
               onClick={() => handleSelect(dest.id)}
               onMouseEnter={() => prefetchRoute(dest.id)}
               onTouchStart={() => prefetchRoute(dest.id)}
-              aria-label={`${dest.label} — Destination 0${idx + 1}`}
+              aria-label={`${dest.label} | Destination 0${idx + 1}`}
               aria-current={isActive ? 'page' : undefined}
               className={`group relative flex items-center justify-center rounded-full text-xs font-heading font-medium uppercase tracking-wider transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CB1B29] ${
                 isDockHovered ? 'px-3.5 py-2' : 'w-10 h-10 p-2'
@@ -199,7 +199,7 @@ export const FloatingNavbar: React.FC = () => {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Drawer Header — FIXED (flex-shrink-0), stays accessible at all times */}
+            {/* Drawer Header | FIXED (flex-shrink-0), stays accessible at all times */}
             <div className="flex-shrink-0 flex items-center justify-between p-5 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
               <div className="flex items-center gap-2">
                 <span className="font-serif-display text-2xl font-bold tracking-tight text-[#25231F]">
@@ -218,7 +218,7 @@ export const FloatingNavbar: React.FC = () => {
               </button>
             </div>
 
-            {/* Scrollable Destination List (01 to 06) — flex-1 min-h-0 with native touch scroll */}
+            {/* Scrollable Destination List (01 to 06) | flex-1 min-h-0 with native touch scroll */}
             <div
               data-lenis-prevent
               className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-2 overscroll-contain"
@@ -274,7 +274,7 @@ export const FloatingNavbar: React.FC = () => {
               })}
             </div>
 
-            {/* Quick Link to Registration — FIXED (flex-shrink-0) with safe area padding */}
+            {/* Quick Link to Registration | FIXED (flex-shrink-0) with safe area padding */}
             <div
               className="flex-shrink-0 p-4 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-between text-xs font-mono-tech text-[#25231F]/60"
               style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}

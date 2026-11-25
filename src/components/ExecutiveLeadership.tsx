@@ -89,7 +89,7 @@ export const ExecutiveLeadership: React.FC = () => {
       aria-label="Executive Leadership and Secretariat"
     >
       {/* ========================================================
-          TIER ONE — THE EXECUTIVES
+          TIER ONE | THE EXECUTIVES
           Senior Leadership: Four large prominent cards in 1 row
           ======================================================== */}
       <div>
@@ -140,7 +140,7 @@ export const ExecutiveLeadership: React.FC = () => {
       </div>
 
       {/* ========================================================
-          TIER TWO — THE SECRETARIAT
+          TIER TWO | THE SECRETARIAT
           Under Secretary Generals (USGs) and Core Members.
           Significantly smaller, compact profile cards.
           Strict desktop requirement: Exactly six cards in ONE row (6 cols).

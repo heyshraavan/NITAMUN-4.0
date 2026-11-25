@@ -24,7 +24,7 @@
 - **Secondary Domain (Redirect):** `https://nitamun.co.in`
 - **Official Inquiries:** munsoc.nitamun@gmail.com
 
-NITAMUN 4.0 serves as the primary digital portal, substantive repository, and delegate accreditation interface for the conference. Designed with an editorial diplomatic aesthetic—Warm Ivory canvas (`#EBE9D8`), Deep Charcoal typography (`#25231F`), and Crimson accents (`#CB1B29`), paired with classical serifs and modern grotesques—the platform provides an authentic, accessible, and high-performance user experience across all devices.
+NITAMUN 4.0 serves as the primary digital portal, substantive repository, and delegate accreditation interface for the conference. Designed with an editorial diplomatic aesthetic: Warm Ivory canvas (`#EBE9D8`), Deep Charcoal typography (`#25231F`), and Crimson accents (`#CB1B29`), paired with classical serifs and modern grotesques, the platform provides an authentic, accessible, and high-performance user experience across all devices.
 
 ---
 
@@ -70,10 +70,10 @@ Managed via `NavigationContext` using the browser History API with clean public 
   - **Total Prize Pool:** Prominent diplomatic distinction announcement block.
 - **Committees (`/committees`):**
   - Four simulation councils:
-    - **UNSC** — United Nations Security Council (Continuous Crisis / Specialized Agency)
-    - **UNHRC** — United Nations Human Rights Council (General Assembly Body)
-    - **UNCSW** — United Nations Commission on the Status of Women (Functional Commission of ECOSOC)
-    - **AIPPM** — All India Political Parties Meet (Specialized Indian Parliamentary Simulation)
+    - **UNSC** | United Nations Security Council (Continuous Crisis / Specialized Agency)
+    - **UNHRC** | United Nations Human Rights Council (General Assembly Body)
+    - **UNCSW** | United Nations Commission on the Status of Women (Functional Commission of ECOSOC)
+    - **AIPPM** | All India Political Parties Meet (Specialized Indian Parliamentary Simulation)
   - Interactive substantive dossier modals with full background scroll lock, touch-friendly scrolling, and Escape key dismissal.
 - **Registration (`/registration`):**
   - Single delegate track: Individual Delegate.
@@ -314,7 +314,7 @@ In `src/data/config.ts`:
 
 ## Changelog
 
-### November 24, 2026 — Comprehensive Engineering Audit & Production Hardening
+### November 24, 2026 | Comprehensive Engineering Audit & Production Hardening
 - **Multi-Device Responsiveness:**
   - Audited all 6 routes across viewports from 320×568 (small mobile) through 1920×1080 (large desktop).
   - Enhanced `Button.tsx` with `max-w-full text-center` and flex wrapping to guarantee zero text overflow on narrow 320px screens.

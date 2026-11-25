@@ -129,7 +129,7 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Decorative Cartographic Astrolabe Rings — Anchored to fixed 100svh frame to prevent font-swap layout shift */}
+      {/* Decorative Cartographic Astrolabe Rings | Anchored to fixed 100svh frame to prevent font-swap layout shift */}
       <div
         className="absolute inset-x-0 top-0 h-[100svh] pointer-events-none overflow-hidden flex items-center justify-center select-none"
         aria-hidden="true"
@@ -157,7 +157,7 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
           
           {/* =========================================================================
-              LEFT COLUMN — CONFERENCE INTRODUCTION (7 COLS)
+              LEFT COLUMN | CONFERENCE INTRODUCTION (7 COLS)
               ========================================================================= */}
           <div
             ref={leftColRef}
@@ -204,7 +204,7 @@ export const Hero: React.FC = () => {
                 withArrow
                 className="shadow-md"
               >
-                Register for NITAMUN 4.0 — Early Bird ₹400
+                Register for NITAMUN 4.0 | Early Bird ₹400
               </Button>
               <Button
                 variant="editorial"
@@ -232,7 +232,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* =========================================================================
-              RIGHT COLUMN — OFFICIAL EMBLEM PRESENTATION (5 COLS)
+              RIGHT COLUMN | OFFICIAL EMBLEM PRESENTATION (5 COLS)
               Circular composition with object-contain to preserve complete logo edges and details
               ========================================================================= */}
           <div

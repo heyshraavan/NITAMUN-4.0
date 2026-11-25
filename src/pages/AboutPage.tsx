@@ -49,7 +49,7 @@ export const AboutPage: React.FC = () => {
                 ABOUT THE CONFERENCE
               </span>
               <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
-                {conferenceConfig.name} {conferenceConfig.editionRoman} — Online Edition
+                {conferenceConfig.name} {conferenceConfig.editionRoman} | Online Edition
               </h3>
               <p className="text-base sm:text-lg text-[#25231F]/85 font-body leading-relaxed">
                 {aboutUsContent.overview}
@@ -61,7 +61,7 @@ export const AboutPage: React.FC = () => {
                 HOST SOCIETY
               </span>
               <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#25231F]">
-                MUNSOC — NIT Agartala Chapter
+                MUNSOC | NIT Agartala Chapter
               </h3>
               <p className="text-base text-[#25231F]/80 font-body leading-relaxed">
                 {aboutUsContent.munsocNarrative}

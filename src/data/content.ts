@@ -267,7 +267,7 @@ export const committeesData: CommitteeItem[] = [
 export const secretariatData: SecretariatMember[] = [
   {
     id: "sec-sg",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "Secretary-General",
     department: "Executive Secretariat",
     message: "Welcoming delegates to an intellectually demanding online edition dedicated to genuine diplomatic empathy and rigor.",
@@ -275,7 +275,7 @@ export const secretariatData: SecretariatMember[] = [
   },
   {
     id: "sec-dsg",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "Deputy Secretary-General",
     department: "Executive Secretariat",
     message: "Guiding institutional coherence, academic consistency, and delegate care across all four councils.",
@@ -283,7 +283,7 @@ export const secretariatData: SecretariatMember[] = [
   },
   {
     id: "sec-dg",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "Director-General",
     department: "Operations & Digital Infrastructure",
     message: "Ensuring an effortless virtual conference infrastructure from inaugural plenary to the closing gavel strike.",
@@ -291,7 +291,7 @@ export const secretariatData: SecretariatMember[] = [
   },
   {
     id: "sec-cd",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "Charge d'Affaires",
     department: "Institutional Relations",
     message: "Fostering partnerships with educational institutions, professional networks, and international diplomatic societies.",
@@ -299,7 +299,7 @@ export const secretariatData: SecretariatMember[] = [
   },
   {
     id: "sec-usg-sub",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "USG Substantive Affairs",
     department: "Substantive Board",
     message: "Crafting authoritative background dossiers, procedural guidelines, and continuous crisis architectures.",
@@ -307,7 +307,7 @@ export const secretariatData: SecretariatMember[] = [
   },
   {
     id: "sec-usg-del",
-    name: "[NAME PLACEHOLDER — EDITABLE]",
+    name: "[NAME PLACEHOLDER | EDITABLE]",
     role: "USG Delegate Affairs",
     department: "Delegate Experience",
     message: "Your primary point of contact for portfolio allocations, queries, and virtual room orientations.",

@@ -50,7 +50,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header — FIXED (flex-shrink-0) */}
+        {/* Header | FIXED (flex-shrink-0) */}
         <div className="flex-shrink-0 flex items-start justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#EBE9D8]">
           <div className="flex items-center gap-3">
             <span className="w-10 h-10 rounded-xs bg-[#CB1B29]/10 text-[#CB1B29] flex items-center justify-center shrink-0">
@@ -74,7 +74,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
           </button>
         </div>
 
-        {/* Content — SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
+        {/* Content | SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
         <div
           data-lenis-prevent
           className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-4 text-xs sm:text-sm font-body leading-relaxed text-[#25231F]/85 overscroll-contain"
@@ -171,7 +171,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
           )}
         </div>
 
-        {/* Footer — FIXED (flex-shrink-0) */}
+        {/* Footer | FIXED (flex-shrink-0) */}
         <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#EBE9D8] flex justify-end">
           <button
             onClick={onClose}

@@ -175,7 +175,7 @@ export const Header: React.FC = () => {
           aria-label="Navigation Menu"
           className="lg:hidden fixed inset-0 bg-[#EBE9D8] z-[60] flex flex-col overflow-hidden animate-in fade-in duration-200 h-screen h-[100dvh]"
         >
-          {/* Mobile Menu Top Bar — FIXED (flex-shrink-0) */}
+          {/* Mobile Menu Top Bar | FIXED (flex-shrink-0) */}
           <div className="flex-shrink-0 flex items-center justify-between p-5 sm:p-6 pb-4 border-b border-[#25231F]/15 bg-[#F6F4EB]">
             <div className="flex items-center gap-3">
               <div className="official-emblem w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center">
@@ -209,7 +209,7 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Destinations Index — SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
+          {/* Destinations Index | SCROLLABLE (flex-1 min-h-0) with native touch scrolling */}
           <div
             data-lenis-prevent
             className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-4 overscroll-contain"
@@ -252,7 +252,7 @@ export const Header: React.FC = () => {
             </nav>
           </div>
 
-          {/* Bottom Info & Action — FIXED (flex-shrink-0) */}
+          {/* Bottom Info & Action | FIXED (flex-shrink-0) */}
           <div
             className="flex-shrink-0 p-5 sm:p-6 pt-4 border-t border-[#25231F]/15 bg-[#F6F4EB] space-y-3"
             style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom, 0px))' }}

@@ -11,7 +11,7 @@ export const FacultyAdvisorFeature: React.FC = () => {
       className="faculty-advisor-feature relative bg-[#F6F4EB] border border-[#25231F]/15 border-t-2 sm:border-t-4 border-t-[#CB1B29] p-5 sm:p-6 pb-4 sm:pb-5 rounded-xs overflow-hidden transition-all duration-300 shadow-xs"
       aria-labelledby="faculty-advisor-name"
     >
-      {/* Subtle botanical line art watermark in corner — graceful, hairline, strictly secondary */}
+      {/* Subtle botanical line art watermark in corner: graceful, hairline, strictly secondary */}
       <svg
         aria-hidden="true"
         className="absolute -top-3 -right-3 w-28 h-28 text-[#CB1B29] opacity-[0.08] pointer-events-none transform rotate-12"
@@ -50,7 +50,7 @@ export const FacultyAdvisorFeature: React.FC = () => {
               <source srcSet={drGyanabatiWebp} type="image/webp" />
               <img
                 src={drGyanabatiJpg}
-                alt="Dr. Gyanabati Khuraijam — Faculty Advisor, MUNSOC NIT Agartala"
+                alt="Dr. Gyanabati Khuraijam | Faculty Advisor, MUNSOC NIT Agartala"
                 width={640}
                 height={800}
                 loading="lazy"

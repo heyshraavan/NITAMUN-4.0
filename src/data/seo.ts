@@ -39,16 +39,16 @@ export const PAGE_SEO_METADATA: Record<string, PageMetadata> = {
   },
   about: {
     path: '/about',
-    title: 'About Us | NITAMUN 4.0 — MUNSOC NIT Agartala',
+    title: 'About Us | NITAMUN 4.0 | MUNSOC NIT Agartala',
     description:
       'Learn about NITAMUN 4.0, organised by the Model United Nations Society (MUNSOC) at National Institute of Technology Agartala. Discover our Secretariat, legacy, and diplomatic vision.',
     canonical: `${PRIMARY_DOMAIN}/about`,
     ogType: 'website',
-    ogTitle: 'About Us | NITAMUN 4.0 — MUNSOC NIT Agartala',
+    ogTitle: 'About Us | NITAMUN 4.0 | MUNSOC NIT Agartala',
     ogDescription:
       'Learn about NITAMUN 4.0, organised by the Model United Nations Society (MUNSOC) at National Institute of Technology Agartala. Discover our Secretariat, legacy, and diplomatic vision.',
     ogImage: DEFAULT_OG_IMAGE,
-    twitterTitle: 'About Us | NITAMUN 4.0 — MUNSOC NIT Agartala',
+    twitterTitle: 'About Us | NITAMUN 4.0 | MUNSOC NIT Agartala',
     twitterDescription:
       'Learn about NITAMUN 4.0, organised by the Model United Nations Society (MUNSOC) at National Institute of Technology Agartala. Discover our Secretariat, legacy, and diplomatic vision.',
     twitterImage: DEFAULT_OG_IMAGE,

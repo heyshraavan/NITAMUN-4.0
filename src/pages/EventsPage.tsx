@@ -241,10 +241,10 @@ export const EventsPage: React.FC = () => {
 
           {/* -----------------------------------------------------------------------
               GROUP 4: AWARDS PER COMMITTEE
-              Best Delegate — 1
-              High Commendation — 1
-              Special Mention — 1
-              Verbal/Honorable Mention — 5
+              Best Delegate | 1
+              High Commendation | 1
+              Special Mention | 1
+              Verbal/Honorable Mention | 5
               ----------------------------------------------------------------------- */}
           <div className="p-8 sm:p-12 bg-[#F6F4EB] border border-[#25231F]/15 relative overflow-hidden group hover:border-[#CB1B29] transition-colors shadow-xs">
             <div className="flex items-center justify-between pb-6 border-b border-[#25231F]/10 mb-8">
@@ -267,7 +267,7 @@ export const EventsPage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Best Delegate — 1 */}
+              {/* Best Delegate | 1 */}
               <div className="p-6 bg-[#EBE9D8] border border-[#25231F]/15 flex flex-col justify-between hover:border-[#CB1B29] transition-colors">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -290,7 +290,7 @@ export const EventsPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* High Commendation — 1 */}
+              {/* High Commendation | 1 */}
               <div className="p-6 bg-[#EBE9D8] border border-[#25231F]/15 flex flex-col justify-between hover:border-[#CB1B29] transition-colors">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -313,7 +313,7 @@ export const EventsPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Special Mention — 1 */}
+              {/* Special Mention | 1 */}
               <div className="p-6 bg-[#EBE9D8] border border-[#25231F]/15 flex flex-col justify-between hover:border-[#CB1B29] transition-colors">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -336,7 +336,7 @@ export const EventsPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Verbal / Honorable Mention — 5 */}
+              {/* Verbal / Honorable Mention | 5 */}
               <div className="p-6 bg-[#EBE9D8] border border-[#25231F]/15 flex flex-col justify-between hover:border-[#CB1B29] transition-colors">
                 <div>
                   <div className="flex items-center justify-between mb-4">

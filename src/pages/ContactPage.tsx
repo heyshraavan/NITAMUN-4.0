@@ -541,9 +541,6 @@ export const ContactPage: React.FC = () => {
         {/* Frequently Addressed Inquiries (FAQ Section) */}
         <div className="mt-24 pt-16 border-t border-[#25231F]/15">
           <div className="mb-12 text-center max-w-2xl mx-auto">
-            <span className="text-xs font-mono-tech uppercase text-[#CB1B29] font-bold tracking-widest block mb-2">
-              // DELEGATE HELPDESK &amp; PROTOCOL
-            </span>
             <h2 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#25231F]">
               Frequently Addressed Questions
             </h2>

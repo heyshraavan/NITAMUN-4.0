@@ -103,7 +103,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         </div>
       </div>
 
-      {/* Expanded Modal / Diplomatic Dossier View — Rendered via Portal directly into document.body */}
+      {/* Expanded Modal / Diplomatic Dossier View | Rendered via Portal directly into document.body */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#25231F]/80 backdrop-blur-sm animate-in fade-in duration-200 min-h-screen min-h-[100dvh]"
@@ -135,7 +135,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
               <span className="text-[#CB1B29] font-bold">REF: NITAMUN-4.0/{committee.acronym}</span>
             </div>
 
-            {/* Modal Header — FIXED (flex-shrink-0), stays visible & accessible at all times */}
+            {/* Modal Header | FIXED (flex-shrink-0), stays visible & accessible at all times */}
             <div className="flex-shrink-0 p-5 sm:p-6 border-b border-[#25231F]/15 bg-[#F6F4EB] relative flex items-start gap-4 pr-14 sm:pr-16">
               {/* Committee Insignia Crest Seal */}
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xs border border-[#CB1B29]/30 bg-[#EBE9D8] p-1.5 flex items-center justify-center text-[#CB1B29] shrink-0 shadow-xs">
@@ -159,7 +159,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
                 </p>
               </div>
 
-              {/* Close Button — Permanently accessible in header */}
+              {/* Close Button | Permanently accessible in header */}
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xs border border-[#25231F]/20 text-[#25231F] hover:text-[#EBE9D8] hover:bg-[#CB1B29] hover:border-[#CB1B29] bg-[#EBE9D8] transition-colors cursor-pointer"
@@ -169,7 +169,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
               </button>
             </div>
 
-            {/* Scrollable Substantive Dossier Sections — flex-1 min-h-0 with native touch scrolling */}
+            {/* Scrollable Substantive Dossier Sections | flex-1 min-h-0 with native touch scrolling */}
             <div
               data-lenis-prevent
               className="relative flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 text-sm text-[#25231F] overscroll-contain bg-[#EBE9D8]"
@@ -222,7 +222,7 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
               </div>
             </div>
 
-            {/* Modal Footer Actions — FIXED (flex-shrink-0), always visible and accessible */}
+            {/* Modal Footer Actions | FIXED (flex-shrink-0), always visible and accessible */}
             <div className="flex-shrink-0 p-4 sm:p-5 border-t border-[#25231F]/15 bg-[#F6F4EB] flex items-center justify-between gap-3">
               <div className="hidden sm:block text-xs font-mono-tech text-[#25231F]/60">
                 Accreditation Protocol
