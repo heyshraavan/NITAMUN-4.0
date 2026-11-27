@@ -145,10 +145,10 @@ export const conferenceConfig: ConferenceConfig = {
     recipientEmail: "munsoc.nitamun@gmail.com",
   },
   sheetDb: {
-    apiUrl: (import.meta.env.VITE_SHEETDB_API_URL || 'https://sheetdb.io/api/v1/32lxk4x4tllo7').trim(),
+    apiUrl: (import.meta.env.VITE_SHEETDB_API_URL || '/api/register').trim(),
   },
   sheetDbInquiry: {
-    apiUrl: (import.meta.env.VITE_SHEETDB_INQUIRY_API_URL || 'https://sheetdb.io/api/v1/s0lfoie3eqpyp').trim(),
+    apiUrl: (import.meta.env.VITE_SHEETDB_INQUIRY_API_URL || '/api/contact').trim(),
   },
   destinations: [
     {

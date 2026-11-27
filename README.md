@@ -230,23 +230,29 @@ NITAMUN-4.0/
 
 ---
 
-## Environment Configuration
+## Environment & Security Configuration
 
-The application uses client-side Vite environment variables. All variables exposed to the browser must be prefixed with `VITE_`.
+The application follows a secure defense-in-depth architecture. Client-side forms submit exclusively to serverless proxy routes (`/api/register` and `/api/contact`) which enforce HTTP POST-only method restrictions and validate payload schemas before communicating with upstream database services using server-side secrets.
+
+### Client-Side Variables (Vite)
 
 | Variable | Description | Default Fallback |
 | :--- | :--- | :--- |
 | `VITE_BASE_PATH` | Base path for GitHub Pages deployment (e.g. `/NITAMUN-4.0/`) | `/` |
-| `VITE_SHEETDB_API_URL` | SheetDB API endpoint for delegate registration submissions | `https://sheetdb.io/api/v1/32lxk4x4tllo7` |
-| `VITE_SHEETDB_INQUIRY_API_URL` | SheetDB API endpoint for Secretariat inquiry submissions | `https://sheetdb.io/api/v1/s0lfoie3eqpyp` |
+| `VITE_SHEETDB_API_URL` | Client submission route for delegate registrations | `/api/register` |
+| `VITE_SHEETDB_INQUIRY_API_URL` | Client submission route for Secretariat inquiries | `/api/contact` |
 
-Create a `.env` file in the project root if you wish to override the defaults locally:
+### Server-Side Variables (Vercel Serverless Functions)
 
-```bash
-cp .env.example .env
-```
+Configure these variables securely in your **Vercel Project Settings > Environment Variables** (or locally in `.env` for serverless development):
 
-> **Security Note:** Never place secret credentials, private database passwords, or service-role keys in `.env` files, as any `VITE_` variables are bundled directly into client-side JavaScript.
+| Variable | Description | Security Scope |
+| :--- | :--- | :--- |
+| `SHEETDB_API_URL` | Private upstream SheetDB/database URL for registrations | Server-Side Only |
+| `SHEETDB_INQUIRY_API_URL` | Private upstream SheetDB/database URL for inquiries | Server-Side Only |
+| `SHEETDB_BEARER_TOKEN` | Optional Bearer authentication token for SheetDB access | Server-Side Only |
+
+> **Security Note:** Never place secret credentials, private database passwords, or upstream database endpoints in `VITE_` variables or public code. Frontend bundles are accessible to all site visitors. Backend operations and access tokens are strictly confined to server-side functions.
 
 ---
 

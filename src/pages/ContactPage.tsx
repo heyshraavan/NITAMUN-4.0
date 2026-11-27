@@ -122,10 +122,11 @@ export const ContactPage: React.FC = () => {
 
       const data = await res.json().catch(() => null);
 
-      // SheetDB responds with { created: 1 } or array of inserted records on success
+      // Supports both secure serverless endpoint { success: true } and legacy SheetDB responses
       const isSuccess =
         res.ok &&
-        (data?.created === 1 ||
+        (data?.success === true ||
+          data?.created === 1 ||
           (Array.isArray(data) && data.length > 0) ||
           (typeof data?.created === 'number' && data.created > 0));
 

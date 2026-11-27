@@ -315,7 +315,7 @@ export const RegistrationPage: React.FC = () => {
       setIsSubmitting(false);
       setSubmitStatus('config_error');
       setErrorMessage(
-        'SheetDB API endpoint is not configured. Please set the VITE_SHEETDB_API_URL environment variable to enable live spreadsheet submissions.'
+        'Registration API endpoint is not configured. Please contact the Secretariat or try again later.'
       );
       return;
     }
@@ -380,9 +380,11 @@ export const RegistrationPage: React.FC = () => {
         setSubmitStatus('success');
         setFormData(initialFormState);
       } else {
+        const errorData = await response.json().catch(() => null);
         setSubmitStatus('error');
         setErrorMessage(
-          `The registration server responded with status ${response.status}. Your details have been preserved; please try submitting again.`
+          errorData?.error ||
+            `The registration server responded with status ${response.status}. Your details have been preserved; please try submitting again.`
         );
       }
     } catch (err: unknown) {

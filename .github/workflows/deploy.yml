@@ -38,7 +38,7 @@ jobs:
       - name: Build production site
         env:
           VITE_BASE_PATH: /NITAMUN-4.0/
-          VITE_SHEETDB_API_URL: ${{ vars.VITE_SHEETDB_API_URL || secrets.VITE_SHEETDB_API_URL || 'https://sheetdb.io/api/v1/32lxk4x4tllo7' }}
+          VITE_SHEETDB_API_URL: ${{ vars.VITE_SHEETDB_API_URL || secrets.VITE_SHEETDB_API_URL || '/api/register' }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact
