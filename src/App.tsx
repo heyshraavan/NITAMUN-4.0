@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { Header } from './components/Header';
 import { FloatingNavbar } from './components/FloatingNavbar';
@@ -135,6 +136,7 @@ export const App: React.FC = () => {
   return (
     <NavigationProvider>
       <MainLayout />
+      <Analytics />
     </NavigationProvider>
   );
 };
